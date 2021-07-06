@@ -1,12 +1,5 @@
 const settings = {
   name: "tax-benefits",
-  state: {
-    frontity: {
-      url: "https://platform.digital.canada.ca/tax-benefits/",
-      title: "-",
-      description: "WordPress installation for Frontity development",
-    },
-  },
   packages: [
     {
       name: "@frontity/mars-theme",
@@ -24,8 +17,8 @@ const settings = {
       name: "@frontity/wp-source",
       state: {
         source: {
-          url: "https://platform.digital.canada.ca/tax-benefits/",
-          homepage:"/tax-benefits",
+          url: "https://platform.digital.canada.ca/tax-benefits",
+          homepage:"/home",
         },
       },
       
