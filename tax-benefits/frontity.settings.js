@@ -1,5 +1,11 @@
 const settings = {
   name: "tax-benefits",
+  state: {
+    frontity: {
+      title: "Claim tax benefits documentation",
+      description: "Help low-income Canadians file taxes to access their benefits",
+    },
+  },
   packages: [
     {
       name: "@frontity/mars-theme",

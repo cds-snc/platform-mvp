@@ -4,9 +4,6 @@ import Link from "@frontity/components/link";
 
 const isActive = (state, link) => {
   const current = state.router.link;
-
-  console.log("current:", `${state.source.url}${current}`,"link:",link)
-  
   if (`${state.source.url}${current}` === link) {
     return "sidebar-nav-active";
   }
@@ -29,9 +26,7 @@ const SideNav = ({ state }) => {
             if (!item.child_items) {
               return (
                 <li key={item.ID} className={isActive(state, item.url)}>
-                  <Link link={item.url} >
-                    {item.title}
-                  </Link>
+                  <Link link={item.url}>{item.title}</Link>
                 </li>
               );
             } else {
@@ -42,7 +37,13 @@ const SideNav = ({ state }) => {
                   <ul className="sub-menu">
                     {childItems.map((childItem) => {
                       return (
-                        <li className={`sub-link ${isActive(state, childItem.url)}`} key={childItem.ID}>
+                        <li
+                          className={`sub-link ${isActive(
+                            state,
+                            childItem.url
+                          )}`}
+                          key={childItem.ID}
+                        >
                           <Link link={childItem.url}>{childItem.title}</Link>
                         </li>
                       );
