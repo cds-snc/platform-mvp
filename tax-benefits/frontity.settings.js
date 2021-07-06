@@ -3,7 +3,7 @@ const settings = {
   state: {
     frontity: {
       url: "https://platform.digital.canada.ca/tax-benefits/",
-      title: "Test Frontity Blog",
+      title: "-",
       description: "WordPress installation for Frontity development",
     },
   },
@@ -25,7 +25,7 @@ const settings = {
       state: {
         source: {
           url: "https://platform.digital.canada.ca/tax-benefits/",
-          homepage:"/test",
+          homepage:"/home",
         },
       },
       
