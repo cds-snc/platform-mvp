@@ -25,7 +25,7 @@ const settings = {
       state: {
         source: {
           url: "https://platform.digital.canada.ca/tax-benefits/",
-          homepage:"/home",
+          homepage:"/tax-benefits",
         },
       },
       
