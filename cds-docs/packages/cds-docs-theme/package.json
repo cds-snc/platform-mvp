@@ -1,16 +1,22 @@
 {
   "name": "@cdssnc/cds-docs-theme",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CDS docs theme",
   "keywords": [
     "frontity",
-    "frontity-cds"
+    "frontity-cds",
+    "frontity-theme"
   ],
+  "scripts": {
+    "sass": "node-sass packages/mars-theme/src/assets/css/main.scss -o packages/mars-theme/src/assets/css/"
+  },
   "publishConfig": {
-		"access": "public"
-	},
+    "access": "public"
+  },
   "license": "Apache-2.0",
   "dependencies": {
-    "frontity": "^1.16.1"
+    "frontity": "^1.16.1",
+    "@frontity/components": "^1.7.2",
+    "@frontity/html2react": "^1.6.1"
   }
 }

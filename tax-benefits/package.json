@@ -1,6 +1,6 @@
 {
   "name": "tax-benefits",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "description": "Frontity project",
   "keywords": [
@@ -14,18 +14,15 @@
     "start": "frontity serve --port $PORT",
     "dev": "frontity dev",
     "build": "frontity build",
-    "serve": "frontity serve",
-    "sass": "node-sass packages/mars-theme/src/assets/css/main.scss -o packages/mars-theme/src/assets/css/"
+    "serve": "frontity serve"
   },
   "prettier": {},
   "dependencies": {
-    "@cdssnc/cds-docs-theme": "^1.0.0",
+    "@cdssnc/cds-docs-theme": "^1.0.1",
     "@frontity/core": "^1.14.3",
     "@frontity/html2react": "^1.7.0",
-    "@frontity/mars-theme": "./packages/mars-theme",
     "@frontity/tiny-router": "^1.4.3",
     "@frontity/wp-source": "^1.11.5",
-    "frontity": "^1.16.1",
-    "node-sass": "^6.0.1"
+    "frontity": "^1.16.1"
   }
 }
