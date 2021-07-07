@@ -8,7 +8,7 @@ const settings = {
   },
   packages: [
     {
-      name: "@frontity/mars-theme",
+      name: "@cdssnc/cds-docs-theme",
       state: {
         theme: {
           menu: [],

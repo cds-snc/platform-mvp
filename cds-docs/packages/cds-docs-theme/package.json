@@ -1,0 +1,16 @@
+{
+  "name": "@cdssnc/cds-docs-theme",
+  "version": "1.0.0",
+  "description": "CDS docs theme",
+  "keywords": [
+    "frontity",
+    "frontity-cds"
+  ],
+  "publishConfig": {
+		"access": "public"
+	},
+  "license": "Apache-2.0",
+  "dependencies": {
+    "frontity": "^1.16.1"
+  }
+}
