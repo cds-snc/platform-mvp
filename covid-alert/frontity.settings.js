@@ -1,5 +1,5 @@
 const settings = {
-  name: "tax-benefits",
+  name: "covid-alert",
   state: {
     frontity: {
       title: "-",
@@ -35,3 +35,5 @@ const settings = {
 };
 
 export default settings;
+
+//https://platform.digital.canada.ca/covid-alert/fr/
