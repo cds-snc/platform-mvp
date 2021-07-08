@@ -1,7 +1,7 @@
 const settings = [
   {
     name: "covid-alert",
-    match: ["(?!/fr)"],
+    match: ["https://platform-covid-alert.herokuapp.com/"],
     state: {
       frontity: {
         title: "-",
@@ -27,7 +27,7 @@ const settings = [
   },
   {
     name: "covid-alert-fr",
-    match: ["https://platform-mvp-fr-cziutdmfv34tqi.herokuapp.com"],
+    match: ["https://platform-mvp-fr-cziutdmfv34tqi.herokuapp.com/"],
     state: {
       frontity: {
         title: "-",
