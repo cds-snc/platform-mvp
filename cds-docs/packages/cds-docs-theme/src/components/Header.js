@@ -1,6 +1,7 @@
 import React from "react";
 import { connect} from "frontity";
-export const Header = ({ state }) => {
+import Link from "@frontity/components/link";
+export const Header = ({ state, actions }) => {
   const { name } = state.source.get("nameAndDescription");
   return (
     <header>
@@ -11,7 +12,9 @@ export const Header = ({ state }) => {
           </a>
         </div>
         <h2 className="float-right">
-          <a href="#">FR</a>
+          <Link link="#" onClick={actions.theme.toggleLanguage}>
+            {state.theme.lang}
+          </Link>
         </h2>
       </div>
     </header>

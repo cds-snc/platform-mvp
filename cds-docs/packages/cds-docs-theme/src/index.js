@@ -56,6 +56,7 @@ const marsTheme = {
     theme: {
       autoPrefetch: "in-view",
       menu: [],
+      lang: "English",
       menuUrl: "main",
       footerUrl: "footer",
       featured: {
@@ -72,7 +73,12 @@ const marsTheme = {
   actions: {
     theme: {
       beforeSSR: beforeSSR,
-      beforeCSR: beforeCSR
+      beforeCSR: beforeCSR,
+      toggleLanguage: ({ state }) => {
+        state.theme.lang == "English"
+          ? (state.theme.lang = "Français")
+          : (state.theme.lang = "English");
+      },
     },
   },
   libraries: {
