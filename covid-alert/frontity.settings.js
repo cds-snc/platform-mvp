@@ -27,7 +27,7 @@ const settings = [
   },
   {
     name: "covid-alert-fr",
-    match: ["https://platform-mvp-fr-cziutdmfv34tqi.herokuapp.com/"],
+    match: ["^platform-mvp-fr"],
     state: {
       frontity: {
         title: "-",
