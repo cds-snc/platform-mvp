@@ -17,7 +17,7 @@ const settings = [
         name: "@frontity/wp-source",
         state: {
           source: {
-            url: "https://platform.digital.canada.ca/covid-alert/fr",
+            url: "https://platform.digital.canada.ca/covid-alert",
             homepage: "/home",
           },
         },
@@ -29,7 +29,6 @@ const settings = [
       "@frontity/html2react",
     ],
   },
-  /*
   {
     name: "covid-alert-fr",
     match: [
@@ -59,7 +58,6 @@ const settings = [
       "@frontity/html2react",
     ],
   },
-  */
 ];
 
 export default settings;
