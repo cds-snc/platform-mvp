@@ -28,6 +28,7 @@ const settings = [
       "@frontity/html2react",
     ],
   },
+  /*
   {
     name: "covid-alert-fr",
     match: [
@@ -57,6 +58,7 @@ const settings = [
       "@frontity/html2react",
     ],
   },
+  */
 ];
 
 export default settings;
