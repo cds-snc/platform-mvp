@@ -12,7 +12,7 @@
   },
   "scripts": {
     "start": "frontity serve --port $PORT",
-    "dev": "frontity dev",
+    "dev": "frontity dev --port 4000",
     "build": "frontity build",
     "serve": "frontity serve"
   },

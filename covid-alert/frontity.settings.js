@@ -1,7 +1,10 @@
 const settings = [
   {
     name: "covid-alert",
-    match: [".*https?:\/\/platform-covid-alert.herokuapp.com"],
+    match: [
+      ".*https?://localhost:3000",
+      ".*https?://platform-covid-alert.herokuapp.com",
+    ],
     state: {
       frontity: {
         title: "-",
@@ -27,7 +30,10 @@ const settings = [
   },
   {
     name: "covid-alert-fr",
-    match: [".*https?:\/\/platform-covid-alert-fr.herokuapp.com"],
+    match: [
+      ".*https?://localhost:4000",
+      ".*https?://platform-covid-alert-fr.herokuapp.com",
+    ],
     state: {
       frontity: {
         title: "-",
@@ -40,7 +46,7 @@ const settings = [
         state: {
           source: {
             url: "https://platform.digital.canada.ca/covid-alert/fr",
-            homepage: "/home",
+            homepage: "/home-fr",
           },
         },
       },
