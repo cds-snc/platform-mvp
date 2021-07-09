@@ -2,6 +2,15 @@ service: aws-node-express-api
 
 frameworkVersion: '2'
 
+plugins:
+  - serverless-aws-static-file-handler
+  - serverless-offline
+
+custom:
+  apiGateway:
+    binaryMediaTypes:
+      - "*/*"
+
 
 provider:
   name: aws
@@ -18,3 +27,17 @@ functions:
       - http:
           path: /{proxy+}
           method: ANY
+  static:
+    handler: handler.static
+    events:
+      - http:
+          path: /static/{proxy+}
+          method: get
+
+  favicon:
+    handler: handler.favicon
+    events:
+      - http:
+          path: /favicon.ico
+          method: get
+

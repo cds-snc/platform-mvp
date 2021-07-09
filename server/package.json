@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "dependencies": {
-    "express": "^4.17.1",
-    "serverless-http": "^2.7.0"
+    "aws-serverless-express": "^3.4.0",
+    "serverless-aws-static-file-handler": "^3.0.1",
+    "serverless-offline": "^7.0.0"
   }
 }
