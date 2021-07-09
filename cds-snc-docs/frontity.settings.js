@@ -22,7 +22,7 @@ const settings = [
         },
       },
       {
-        name: "@cdssnc/cds-docs-theme",
+        name: "cds-docs-theme",
       },
       "@frontity/tiny-router",
       "@frontity/html2react",
@@ -51,7 +51,7 @@ const settings = [
         },
       },
       {
-        name: "@cdssnc/cds-docs-theme",
+        name: "cds-docs-theme",
       },
       "@frontity/tiny-router",
       "@frontity/html2react",
