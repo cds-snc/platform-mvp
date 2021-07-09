@@ -9,6 +9,7 @@ const settings = [
       frontity: {
         title: "-",
         description: "-",
+        url: "https://localhost:3000",
       },
     },
     packages: [
@@ -16,7 +17,7 @@ const settings = [
         name: "@frontity/wp-source",
         state: {
           source: {
-            url: "https://platform.digital.canada.ca/covid-alert/",
+            url: "https://platform.digital.canada.ca/covid-alert/fr",
             homepage: "/home",
           },
         },
