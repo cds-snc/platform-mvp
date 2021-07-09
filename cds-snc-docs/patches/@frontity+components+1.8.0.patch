@@ -1,0 +1,20 @@
+diff --git a/node_modules/@frontity/components/.DS_Store b/node_modules/@frontity/components/.DS_Store
+new file mode 100644
+index 0000000..da24698
+Binary files /dev/null and b/node_modules/@frontity/components/.DS_Store differ
+diff --git a/node_modules/@frontity/components/link/utils.ts b/node_modules/@frontity/components/link/utils.ts
+index 894784b..f7efd96 100644
+--- a/node_modules/@frontity/components/link/utils.ts
++++ b/node_modules/@frontity/components/link/utils.ts
+@@ -129,9 +129,11 @@ export const removeSourceUrl = ({
+   match,
+ }: RemoveSourceUrlParams) => {
+   // if match is present we need to ensure the internal link matches the current site url pattern
++  /*
+   if (match && !match.some((regexp) => new RegExp(regexp).test(link))) {
+     return link;
+   }
++  */
+ 
+   // Ensure `sourceUrl` and `frontityUrl` always include a trailing slash. All
+   // the logic below is based on those variables fulfilling that condition.

@@ -16,15 +16,17 @@
     "dev:en": "frontity dev --port 3000",
     "dev:fr": "frontity dev --port 4000",
     "build": "frontity build",
-    "serve": "frontity serve"
+    "serve": "frontity serve",
+    "postinstall": "patch-package"
   },
   "prettier": {},
   "dependencies": {
-    "cds-docs-theme": "./packages/cds-docs-theme",
     "@frontity/core": "^1.14.3",
     "@frontity/html2react": "^1.7.0",
     "@frontity/tiny-router": "^1.4.3",
     "@frontity/wp-source": "^1.11.5",
-    "frontity": "^1.16.1"
+    "cds-docs-theme": "./packages/cds-docs-theme",
+    "frontity": "^1.16.1",
+    "patch-package": "^6.4.7"
   }
 }
