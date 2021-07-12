@@ -1,7 +1,18 @@
 import React from "react";
 import { connect } from "frontity";
 import Link from "@frontity/components/link";
-export const Header = ({ state, actions }) => {
+
+const languageToggle = (state) => {
+  const items = state.source.get(`/menu/${state.theme.languageUrl}/`).items;
+
+  if (items && items[0]) {
+    return <Link link={items[0].url}>{items[0].title}</Link>;
+  }
+
+  return null;
+};
+
+export const Header = ({ state }) => {
   const { name } = state.source.get("nameAndDescription");
   return (
     <header>
@@ -11,11 +22,7 @@ export const Header = ({ state, actions }) => {
             {name}
           </a>
         </div>
-        <h2 className="float-right">
-          <Link link="#" onClick={actions.theme.toggleLanguage}>
-            {state.theme.lang == "en" ? "Français" : "English"}
-          </Link>
-        </h2>
+        <h2 className="float-right">{languageToggle(state)}</h2>
       </div>
     </header>
   );

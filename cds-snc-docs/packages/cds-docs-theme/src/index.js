@@ -7,6 +7,7 @@ import menuHandler from "./components/handlers/menu-handler";
 const beforeSSR = async ({ state, libraries, actions }) => {
   await actions.source.fetch(`/menu/${state.theme.menuUrl}/`);
   await actions.source.fetch(`/menu/${state.theme.footerUrl}/`);
+  await actions.source.fetch(`/menu/${state.theme.languageUrl}/`);
   // Add image processor.
   libraries.html2react.processors.push(image);
 
@@ -56,9 +57,9 @@ const marsTheme = {
     theme: {
       autoPrefetch: "in-view",
       menu: [],
-      lang: "en",
       menuUrl: "main",
       footerUrl: "footer",
+      languageUrl :"language",
       featured: {
         showOnList: false,
         showOnPost: false,
@@ -74,11 +75,6 @@ const marsTheme = {
     theme: {
       beforeSSR: beforeSSR,
       beforeCSR: beforeCSR,
-      toggleLanguage: ({ state }) => {
-        state.theme.lang == "en"
-          ? (state.theme.lang = "fr")
-          : (state.theme.lang = "en");
-      },
     },
   },
   libraries: {

@@ -13,10 +13,8 @@ const Footer = ({ state }) => {
     <footer>
       <div className="wrap">
         <p>
-          This project was built by the {getLink(items[0])}. Read the{" "}
-          {getLink(items[1])}.
+          This project was built by the {getLink(items[0])}.
         </p>
-        <p>{getLink(items[2])}</p>
       </div>
     </footer>
   );
