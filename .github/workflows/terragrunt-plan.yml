@@ -48,7 +48,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets[format('{0}_AWS_SECRET_ACCESS_KEY',matrix.environment)] }}      
         uses: cds-snc/terraform-plan@v1
         with:
-          directory: "terraform/env/${{ matrix.environment }}/${{ matrix.module_name }}"
+          directory: "terragrunt/env/${{ matrix.environment }}/${{ matrix.module_name }}"
           comment-delete: "true"
           comment-title: "${{ matrix.environment }}: ${{ matrix.module_name }}"
           github-token: "${{ secrets.GITHUB_TOKEN }}"
