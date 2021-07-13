@@ -15,6 +15,7 @@ custom:
 provider:
   name: aws
   runtime: nodejs12.x
+  region: ca-central-1
   lambdaHashingVersion: '20201221'
 
 functions:
