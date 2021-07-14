@@ -20,16 +20,23 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: |
+    - name: Build
+      run: |
        pwd
        cd cds-snc-docs
        pwd
        npm ci
        npm run build
-    - name: Copy
+       ls
+       mkdir ../server/build
+       cp -r ./build/* ../server/build
+       cd ../server
+       pwd
+       ls
+
     
     
-    #- run: npm ci --only=dev
+    
     #- name: serverless deploy
     #- run: cd server
       #uses: serverless/github-action@master
