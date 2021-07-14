@@ -1,0 +1,40 @@
+name: Deploy main branch
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "cds-snc-docs/**"
+
+jobs:
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: |
+       pwd
+       cd cds-snc-docs
+       pwd
+       npm ci
+       npm run build
+    - name: Copy
+    
+    
+    #- run: npm ci --only=dev
+    #- name: serverless deploy
+    #- run: cd server
+      #uses: serverless/github-action@master
+      #with:
+        #args: deploy
+      #env:
+        #AWS_ACCESS_KEY_ID: ${{ secrets.DEV_AWS_ACCESS_KEY_ID }}
+        #AWS_SECRET_ACCESS_KEY: ${{ secrets.DEV_AWS_SECRET_ACCESS_KEY }}
