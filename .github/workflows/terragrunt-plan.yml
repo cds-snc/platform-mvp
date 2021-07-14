@@ -1,0 +1,71 @@
+name: "Terragrunt plan for PRs"
+
+on:
+  pull_request:
+    paths:
+      - "terragrunt/**"
+      - ".github/workflows/terragrunt-plan.yml"
+
+env:
+  AWS_REGION: ca-central-1
+  TERRAFORM_VERSION: 1.0.2
+  TERRAGRUNT_VERSION: 0.31.0
+  TF_INPUT: false
+  TF_VAR_domain_name: ${{ secrets.DEV_DOMAIN_NAME }}
+
+jobs:
+
+  terragrunt-plan:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - module_name: domain
+            environment: dev
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1.2.1
+        with:
+          terraform_version: ${{ env.TERRAFORM_VERSION }}
+          terraform_wrapper: false
+
+      - name: Setup Terragrunt
+        run: |
+          mkdir bin
+          wget -O bin/terragrunt https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_VERSION/terragrunt_linux_amd64
+          chmod +x bin/*
+          echo "$GITHUB_WORKSPACE/bin" >> $GITHUB_PATH
+
+      - name: Terragrunt plan
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets[format('{0}_AWS_ACCESS_KEY_ID',matrix.environment)] }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets[format('{0}_AWS_SECRET_ACCESS_KEY',matrix.environment)] }}      
+        uses: cds-snc/terraform-plan@v1
+        with:
+          directory: "terragrunt/env/${{ matrix.environment }}/${{ matrix.module_name }}"
+          comment-delete: "true"
+          comment-title: "${{ matrix.environment }}: ${{ matrix.module_name }}"
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          terragrunt: "true"
+
+  comment-end:
+    if: always()
+    needs: [terragrunt-plan]
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/github-script@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.issues.createComment({
+              ...context.repo,
+              issue_number: context.issue.number,
+              body: "### 🏁 Plans are complete for this run"
+            })
