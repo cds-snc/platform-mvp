@@ -11,16 +11,13 @@ jobs:
   deploy:
     name: deploy
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [14.x]
     steps:
     - uses: actions/checkout@v2
     
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+    - name: Setup Node
+      uses: actions/setup-node@v2
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: '14'
     
     - name: Build
       run: |
@@ -36,8 +33,4 @@ jobs:
         npm ci
         node ./node_modules/serverless/bin/serverless.js config credentials --provider aws --key ${{ secrets.DEV_AWS_ACCESS_KEY_ID }} --secret ${{ secrets.DEV_AWS_SECRET_ACCESS_KEY }} --profile papaya --overwrite
         node ./node_modules/serverless/bin/serverless.js deploy --aws-s3-accelerate --stage dev --verbose
-      env:
-         AWS_ACCESS_KEY_ID: ${{ secrets.DEV_AWS_ACCESS_KEY_ID }}
-         AWS_SECRET_ACCESS_KEY: ${{ secrets.DEV_AWS_SECRET_ACCESS_KEY }}
-         SLS_DEBUG: 1
       
