@@ -9,7 +9,6 @@ on:
 
 jobs:
   deploy:
-    
     name: deploy
     runs-on: ubuntu-latest
     strategy:
@@ -31,16 +30,14 @@ jobs:
        mkdir ../server/build
        cp -r ./build/* ../server/build
     
-    - name: Server
-      run: |
-       cd server
-       npm ci
-    
     - name: Serverless deploy
-      uses: serverless/github-action@master
-      with:
-        args: deploy
+      run: |
+        cd server
+        npm ci
+        node ./node_modules/serverless/bin/serverless.js config credentials --provider aws --key ${{ secrets.DEV_AWS_ACCESS_KEY_ID }} --secret ${{ secrets.DEV_AWS_SECRET_ACCESS_KEY  }} --profile papaya --overwrite
+        node ./node_modules/serverless/bin/serverless.js deploy --aws-s3-accelerate --stage dev --verbose
       env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.DEV_AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.DEV_AWS_SECRET_ACCESS_KEY }}
+         AWS_ACCESS_KEY_ID: ${{ secrets.DEV_AWS_ACCESS_KEY_ID }}
+         AWS_SECRET_ACCESS_KEY: ${{ secrets.DEV_AWS_SECRET_ACCESS_KEY }}
+         SLS_DEBUG: 1
       
