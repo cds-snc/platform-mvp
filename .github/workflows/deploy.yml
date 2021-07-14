@@ -1,0 +1,36 @@
+name: Deploy main branch
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "cds-snc-docs/**"
+
+jobs:
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+    
+    - name: Build
+      run: |
+       cd cds-snc-docs
+       npm ci
+       npm run build
+       mkdir ../server/build
+       cp -r ./build/* ../server/build
+    
+    - name: Serverless deploy
+      run: |
+        cd server
+        npm ci
+        node ./node_modules/serverless/bin/serverless.js config credentials --provider aws --key ${{ secrets.DEV_AWS_ACCESS_KEY_ID }} --secret ${{ secrets.DEV_AWS_SECRET_ACCESS_KEY }} --profile papaya --overwrite
+        node ./node_modules/serverless/bin/serverless.js deploy --aws-s3-accelerate --stage dev --verbose
+      

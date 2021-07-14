@@ -4,6 +4,7 @@
   "description": "",
   "dependencies": {
     "aws-serverless-express": "^3.4.0",
+    "serverless": "^2.51.2",
     "serverless-aws-static-file-handler": "^3.0.1",
     "serverless-offline": "^7.0.0"
   }
