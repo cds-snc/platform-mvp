@@ -34,7 +34,7 @@ jobs:
       run: |
         cd server
         npm ci
-        node ./node_modules/serverless/bin/serverless.js config credentials --provider aws --key ${{ secrets.DEV_AWS_ACCESS_KEY_ID }} --secret ${{ secrets.DEV_AWS_SECRET_ACCESS_KEY  }} --profile papaya --overwrite
+        node ./node_modules/serverless/bin/serverless.js config credentials --provider aws --key ${{ secrets.DEV_AWS_ACCESS_KEY_ID }} --secret ${{ secrets.DEV_AWS_SECRET_ACCESS_KEY }} --profile papaya --overwrite
         node ./node_modules/serverless/bin/serverless.js deploy --aws-s3-accelerate --stage dev --verbose
       env:
          AWS_ACCESS_KEY_ID: ${{ secrets.DEV_AWS_ACCESS_KEY_ID }}
