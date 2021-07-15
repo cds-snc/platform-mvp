@@ -12,7 +12,7 @@ const isActive = (state, link) => {
 
 const SideNav = ({ state, libraries }) => {
   const items = state.source.get(`/menu/${state.theme.menuUrl}/`).items;
-  const { description } = state.source.get("nameAndDescription");
+  const description = state.frontity.description;
   const Html2React = libraries.html2react.Component;
 
   if (!items) {
