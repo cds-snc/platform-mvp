@@ -6,6 +6,10 @@ resource "aws_acm_certificate" "platform_mvp" {
   tags = {
     (var.billing_tag_key) = var.billing_tag_value
   }
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "aws_route53_record" "platform_mvp_validation" {
