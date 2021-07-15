@@ -13,13 +13,13 @@ const languageToggle = (state) => {
 };
 
 export const Header = ({ state }) => {
-  const { name } = state.source.get("nameAndDescription");
+  const title = state.frontity.title;
   return (
     <header>
       <div className="wrap">
         <div className="site-title">
           <Link className="title-link" link="/">
-            {name}
+            {title}
           </Link>
         </div>
         <h2 className="float-right">{languageToggle(state)}</h2>

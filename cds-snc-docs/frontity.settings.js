@@ -7,8 +7,8 @@ const settings = [
     ],
     state: {
       frontity: {
-        title: "-",
-        description: "-",
+        title: "Covid Alert",
+        description: "COVID Alert is Canada's free COVID-19 exposure notification app.",
         url: "https://localhost:3000",
       },
     },
@@ -37,8 +37,9 @@ const settings = [
     ],
     state: {
       frontity: {
-        title: "-",
-        description: "-",
+        title: "Alerte COVID",
+        description:
+          "Alerte COVID est l'application gratuite de notification d'exposition du Canada.",
       },
     },
     packages: [
