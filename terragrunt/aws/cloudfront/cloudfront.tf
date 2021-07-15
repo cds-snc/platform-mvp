@@ -1,10 +1,15 @@
+locals {
+  api_id = data.aws_api_gateway_rest_api.platform_mvp.id
+}
+
 resource "aws_cloudfront_distribution" "platform_mvp" {
 
   # checkov:skip=CKV_AWS_68:WAF will be enabled in future iteration
 
   origin {
-    domain_name = var.domain_name
-    origin_id   = var.origin_id
+    domain_name = "${local.api_id}.execute-api.${var.region}.amazonaws.com"
+    origin_path = "/${var.api_stage_name}"
+    origin_id   = local.api_id
 
     custom_origin_config {
       http_port              = 80
@@ -17,11 +22,13 @@ resource "aws_cloudfront_distribution" "platform_mvp" {
   enabled         = true
   is_ipv6_enabled = true
 
+  aliases = [var.domain_name]
+
   # By default, cache nothing
   default_cache_behavior {
-    allowed_methods  = ["GET", "HEAD", "OPTIONS", "POST"]
-    cached_methods   = ["GET", "HEAD"]
-    target_origin_id = var.origin_id
+    allowed_methods  = ["GET", "HEAD", "OPTIONS"]
+    cached_methods   = ["GET", "HEAD", "OPTIONS"]
+    target_origin_id = local.api_id
 
     forwarded_values {
       query_string = true
@@ -46,7 +53,7 @@ resource "aws_cloudfront_distribution" "platform_mvp" {
   }
 
   viewer_certificate {
-    acm_certificate_arn      = var.certificate_arn
+    acm_certificate_arn      = aws_acm_certificate.platform_mvp_cloudfront.arn
     minimum_protocol_version = "TLSv1.2_2021"
     ssl_support_method       = "sni-only"
   }
@@ -55,6 +62,10 @@ resource "aws_cloudfront_distribution" "platform_mvp" {
     include_cookies = false
     bucket          = aws_s3_bucket.cloudfront_logs.bucket_domain_name
     prefix          = "cloudfront"
+  }
+
+  tags = {
+    (var.billing_tag_key) = var.billing_tag_value
   }
 
   depends_on = [aws_s3_bucket.cloudfront_logs]
