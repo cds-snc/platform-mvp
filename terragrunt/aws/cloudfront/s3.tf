@@ -2,6 +2,7 @@ resource "aws_s3_bucket" "cloudfront_logs" {
 
   # checkov:skip=CKV_AWS_18:access logging not required for ephemeral data
   # checkov:skip=CKV_AWS_21:verioning not needed for ephemeral data
+  # checkov:skip=CKV_AWS_52:MFA delete not needed for ephemeral data
   # checkov:skip=CKV_AWS_145:encryption with default S3 service key is acceptable
   # checkov:skip=CKV_AWS_144:cross-region replication not needed for ephemeral data
 
