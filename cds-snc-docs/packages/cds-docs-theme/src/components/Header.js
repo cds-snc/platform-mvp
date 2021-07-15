@@ -18,9 +18,9 @@ export const Header = ({ state }) => {
     <header>
       <div className="wrap">
         <div className="site-title">
-          <a className="title-link" href="#">
+          <Link className="title-link" link="/">
             {name}
-          </a>
+          </Link>
         </div>
         <h2 className="float-right">{languageToggle(state)}</h2>
       </div>
