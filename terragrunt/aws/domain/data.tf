@@ -1,3 +1,3 @@
-data "aws_api_gateway_rest_api" "docs_platform_mvp" {
+data "aws_api_gateway_rest_api" "platform_mvp" {
   name = var.api_name
 }
