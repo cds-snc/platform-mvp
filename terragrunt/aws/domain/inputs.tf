@@ -11,5 +11,4 @@ variable "api_stage_name" {
 variable "domain_name" {
   description = "(Required) domain name to use for for the Platform MVP CMS project"
   type        = string
-  sensitive   = true
 }
