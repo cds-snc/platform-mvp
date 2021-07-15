@@ -10,16 +10,19 @@ const isActive = (state, link) => {
   return null;
 };
 
-const SideNav = ({ state }) => {
+const SideNav = ({ state, libraries }) => {
   const items = state.source.get(`/menu/${state.theme.menuUrl}/`).items;
   const { description } = state.source.get("nameAndDescription");
+  const Html2React = libraries.html2react.Component;
 
   if (!items) {
     return null;
   }
   return (
     <aside>
-      <p className="intro">{description}</p>
+      <p className="intro">
+        <Html2React html={description} />
+      </p>
       <nav className="sidebar-nav">
         <ul>
           {items.map((item) => {
