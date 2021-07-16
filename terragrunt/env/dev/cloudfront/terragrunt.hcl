@@ -9,7 +9,7 @@ dependencies {
 dependency "waf" {
   config_path = "../waf"
 
-  mock_outputs_allowed_terraform_commands = ["validate", "plan"]
+  mock_outputs_allowed_terraform_commands = ["init", "fmt", "validate", "plan", "show"]
   mock_outputs = {
     cloudfront_waf_acl_id = ""
   }
