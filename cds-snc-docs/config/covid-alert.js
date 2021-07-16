@@ -3,13 +3,14 @@ export const covidAlert = {
   match: [
     ".*https?://localhost:3000",
     ".*https?://platform-covid-alert.herokuapp.com",
+    "\/covid-alert"
   ],
   state: {
     frontity: {
       title: "Covid Alert",
       description:
         "COVID Alert is Canada's free COVID-19 exposure notification app.",
-      url: "https://localhost:3000",
+      url: "https://platform.cdssandbox.xyz/covid-alert",
     },
   },
   packages: [

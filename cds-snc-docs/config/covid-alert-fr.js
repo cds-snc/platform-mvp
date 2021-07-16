@@ -1,14 +1,12 @@
 export const covidAlertFr = {
   name: "covid-alert-fr",
-  match: [
-    ".*https?://localhost:4000",
-    ".*https?://platform.cdssandbox.xyz/alerte-covid",
-  ],
+  match: [".*https?://localhost:4000", "\/alerte-covid"],
   state: {
     frontity: {
       title: "Alerte COVID",
       description:
         "Alerte COVID est l'application gratuite de notification d'exposition du Canada.",
+      url: "https://platform.cdssandbox.xyz/alerte-covid",
     },
   },
   packages: [
