@@ -40,8 +40,8 @@ const beforeCSR = ({ libraries }) => {
   libraries.html2react.processors.push(image);
 };
 
-const marsTheme = {
-  name: "@frontity/mars-theme",
+const cdsDocsTheme = {
+  name: "cds-docs-theme",
   roots: {
     /**
      * In Frontity, any package can add React components to the site.
@@ -92,4 +92,4 @@ const marsTheme = {
   },
 };
 
-export default marsTheme;
+export default cdsDocsTheme;
