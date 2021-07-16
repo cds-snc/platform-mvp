@@ -8,6 +8,11 @@ variable "api_stage_name" {
   type        = string
 }
 
+variable "cloudfront_waf_acl_id" {
+  description = "(Required) ID of the WAF ACL for the CloudFront distribution"
+  type        = string
+}
+
 variable "domain_name" {
   description = "(Required) domain name to use for for the Platform MVP CMS project"
   type        = string

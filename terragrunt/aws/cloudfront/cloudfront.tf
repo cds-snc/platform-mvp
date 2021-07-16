@@ -4,12 +4,15 @@ locals {
 
 resource "aws_cloudfront_distribution" "platform_mvp" {
 
-  # checkov:skip=CKV_AWS_68:WAF will be enabled in future iteration
-
   origin {
     domain_name = "${local.api_id}.execute-api.${var.region}.amazonaws.com"
     origin_path = "/${var.api_stage_name}"
     origin_id   = local.api_id
+
+    custom_header {
+      name  = var.cloudfront_custom_header_name
+      value = var.cloudfront_custom_header_value
+    }
 
     custom_origin_config {
       http_port              = 80
@@ -21,6 +24,7 @@ resource "aws_cloudfront_distribution" "platform_mvp" {
 
   enabled         = true
   is_ipv6_enabled = true
+  web_acl_id      = var.cloudfront_waf_acl_id
 
   aliases = [var.domain_name]
 

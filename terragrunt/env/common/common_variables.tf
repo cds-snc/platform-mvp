@@ -4,12 +4,22 @@ variable "account_id" {
 }
 
 variable "billing_tag_key" {
-  description = "(required) the key we use to track billing"
+  description = "(Required) the key we use to track billing"
   type        = string
 }
 
 variable "billing_tag_value" {
   description = "(required) the value we use to track billing"
+  type        = string
+}
+
+variable "cloudfront_custom_header_name" {
+  description = "(Required) custom header added to CloudFront requests to the origin"
+  type        = string
+}
+
+variable "cloudfront_custom_header_value" {
+  description = "(Required) custer header value added to CloudFront requests to the origin"
   type        = string
 }
 
