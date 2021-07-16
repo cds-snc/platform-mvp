@@ -2,7 +2,6 @@ export const covidAlert = {
   name: "covid-alert",
   match: [
     ".*https?://localhost:3000",
-    ".*https?://platform-covid-alert.herokuapp.com",
     "\/covid-alert"
   ],
   state: {
@@ -19,7 +18,7 @@ export const covidAlert = {
       state: {
         source: {
           url: "https://platform.digital.canada.ca/covid-alert",
-          homepage: "/home",
+          homepage: "/covid-alert",
         },
       },
     },
