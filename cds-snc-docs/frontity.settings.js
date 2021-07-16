@@ -1,7 +1,7 @@
 import { covidAlert } from "./config/covid-alert";
-import { covidAlertFr } from "./config/covid-alert-fr";
+import { alerteCovid } from "./config/alerte-covid";
 
-const settings = [covidAlert, covidAlertFr];
+const settings = [covidAlert, alerteCovid];
 
 export default settings;
 // ?frontity_name=covid-alert-fr

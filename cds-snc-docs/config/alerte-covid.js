@@ -1,5 +1,5 @@
-export const covidAlertFr = {
-  name: "covid-alert-fr",
+export const alerteCovid = {
+  name: "alerte-covid",
   match: [".*https?://localhost:4000", "\/alerte-covid"],
   state: {
     frontity: {
@@ -15,7 +15,7 @@ export const covidAlertFr = {
       state: {
         source: {
           url: "https://platform.digital.canada.ca/covid-alert/fr",
-          homepage: "/home-fr",
+          homepage: "/alerte-covid",
         },
       },
     },
