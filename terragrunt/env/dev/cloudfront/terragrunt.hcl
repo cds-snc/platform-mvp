@@ -11,15 +11,13 @@ dependency "waf" {
 
   mock_outputs_allowed_terraform_commands = ["init", "fmt", "validate", "plan", "show"]
   mock_outputs = {
-    cloudfront_waf_acl_id = ""
+    cloudfront_waf_acl_arn = ""
   }
 }
 
 inputs = {
-  api_name              = "dev-aws-node-express-api"
-  api_stage_name        = "dev"
-  cloudfront_waf_acl_id = dependency.waf.outputs.cloudfront_waf_acl_id
-  domain_name           = "platform.cdssandbox.xyz"
+  cloudfront_waf_acl_arn  = dependency.waf.outputs.cloudfront_waf_acl_arn
+  domain_name             = "platform.cdssandbox.xyz"
 }
 
 terraform {

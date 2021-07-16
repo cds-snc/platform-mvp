@@ -4,6 +4,8 @@ locals {
 
 inputs = {
   account_id                      = "${local.vars.inputs.account_id}"
+  api_name                        = "${local.vars.inputs.api_name}"
+  api_stage_name                  = "${local.vars.inputs.api_stage_name}"
   billing_tag_key                 = "${local.vars.inputs.billing_tag_key}"
   billing_tag_value               = "${local.vars.inputs.billing_tag_value}"
   cloudfront_custom_header_name   = "${local.vars.inputs.cloudfront_custom_header_name}"

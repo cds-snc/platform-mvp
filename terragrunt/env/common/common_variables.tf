@@ -3,6 +3,16 @@ variable "account_id" {
   type        = string
 }
 
+variable "api_name" {
+  description = "(Required) name of the Platform MVP REST API"
+  type        = string
+}
+
+variable "api_stage_name" {
+  description = "(Required) name of the Platform MVP REST API stage for the base path mapping"
+  type        = string
+}
+
 variable "billing_tag_key" {
   description = "(Required) the key we use to track billing"
   type        = string
