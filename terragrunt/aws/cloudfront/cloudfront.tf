@@ -24,7 +24,7 @@ resource "aws_cloudfront_distribution" "platform_mvp" {
 
   enabled         = true
   is_ipv6_enabled = true
-  web_acl_id      = var.cloudfront_waf_acl_id
+  web_acl_id      = var.cloudfront_waf_acl_arn
 
   aliases = [var.domain_name]
 
@@ -43,8 +43,8 @@ resource "aws_cloudfront_distribution" "platform_mvp" {
 
     viewer_protocol_policy = "redirect-to-https"
     min_ttl                = 0
-    default_ttl            = 3600
-    max_ttl                = 7200
+    default_ttl            = 0
+    max_ttl                = 0
     compress               = true
   }
 
