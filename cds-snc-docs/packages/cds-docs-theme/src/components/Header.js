@@ -18,7 +18,7 @@ export const Header = ({ state }) => {
     <header>
       <div className="wrap">
         <div className="site-title">
-          <Link className="title-link" link="/">
+          <Link className="title-link" link={state.frontity.url}>
             {title}
           </Link>
         </div>
