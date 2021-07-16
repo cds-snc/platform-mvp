@@ -2,7 +2,7 @@ export const covidAlertFr = {
   name: "covid-alert-fr",
   match: [
     ".*https?://localhost:4000",
-    ".*https?://platform-covid-alert-fr.herokuapp.com",
+    ".*https?://platform.cdssandbox.xyz/alerte-covid",
   ],
   state: {
     frontity: {
