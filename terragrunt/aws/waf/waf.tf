@@ -189,6 +189,6 @@ resource "aws_wafv2_web_acl" "platform_mvp_cloudfront" {
 # AWS WAF - Resource Assocation
 ###
 resource "aws_wafv2_web_acl_association" "platform_mvp_api" {
-  resource_arn = data.aws_api_gateway_rest_api.platform_mvp.arn
+  resource_arn = "${data.aws_api_gateway_rest_api.platform_mvp.arn}/stages/${var.api_stage_name}"
   web_acl_arn  = aws_wafv2_web_acl.platform_mvp_api.arn
 }
