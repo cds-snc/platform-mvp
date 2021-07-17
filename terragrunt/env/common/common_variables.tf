@@ -26,11 +26,13 @@ variable "billing_tag_value" {
 variable "cloudfront_custom_header_name" {
   description = "(Required) custom header added to CloudFront requests to the origin"
   type        = string
+  sensitive   = true
 }
 
 variable "cloudfront_custom_header_value" {
   description = "(Required) custer header value added to CloudFront requests to the origin"
   type        = string
+  sensitive   = true
 }
 
 variable "env" {

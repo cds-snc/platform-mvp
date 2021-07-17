@@ -8,8 +8,6 @@ inputs = {
   api_stage_name                  = "${local.vars.inputs.api_stage_name}"
   billing_tag_key                 = "${local.vars.inputs.billing_tag_key}"
   billing_tag_value               = "${local.vars.inputs.billing_tag_value}"
-  cloudfront_custom_header_name   = "${local.vars.inputs.cloudfront_custom_header_name}"
-  cloudfront_custom_header_value  = "${local.vars.inputs.cloudfront_custom_header_value}"
   env                             = "${local.vars.inputs.env}"
   region                          = "ca-central-1"
 }
