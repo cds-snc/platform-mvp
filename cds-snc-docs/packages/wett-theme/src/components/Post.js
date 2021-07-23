@@ -1,9 +1,8 @@
 import { useEffect } from "react";
 import { connect } from "frontity";
 
-
 const Post = ({ state, actions, libraries }) => {
-  console.log("state", state)
+  console.log("state", state);
   // Get information about the current URL.
   const data = state.source.get(state.router.link);
   // Get the data of the post.
@@ -23,13 +22,16 @@ const Post = ({ state, actions, libraries }) => {
 
   // Load the post, but only if the data is ready.
   return data.isReady ? (
-      <section id="main" className="main-content" role="main">
-        <h1 className="page-title">{post.title.rendered}</h1>
-        <Html2React html={post.content.rendered} />
-        test
-      </section>
-    
-  ) : <div>test</div>;
+    <main
+      property="mainContentOfPage"
+      class="container"
+      resource="#wb-main"
+      typeof="WebPageElement"
+    >
+      <h1 className="page-title">{post.title.rendered}</h1>
+      <Html2React html={post.content.rendered} />
+    </main>
+  ) : null;
 };
 
 export default connect(Post);
