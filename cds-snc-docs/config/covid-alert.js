@@ -1,7 +1,7 @@
 export const covidAlert = {
   name: "covid-alert",
   match: [
-    ".*https?://localhost:3000",
+    ".*https?://localhost:8000",
     "\/covid-alert"
   ],
   state: {

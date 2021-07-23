@@ -1,12 +1,14 @@
 import { Global, connect, Head } from "frontity";
+
 import Switch from "@frontity/components/switch";
+import Loading from "./Loading";
+import PageError from "./PageError";
 import Post from "./Post";
+
 import SideNav from "./SideNav";
 import Header from "./Header";
 import Footer from "./Footer";
-import Loading from "./Loading";
 import Title from "./Title";
-import PageError from "./PageError";
 
 import normalizeCss from "../assets/css/normalize.css";
 import mainCss from "../assets/css/main.css";
