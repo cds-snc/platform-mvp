@@ -1,20 +1,19 @@
 import React from "react";
 import { connect } from "frontity";
+import Link from "@frontity/components/link";
 
-const getLink = (item) => {
-  if(!item) return null
-  return <a href={item.url}>{item.title}</a>;
-};
 
 const Footer = ({ state }) => {
-  const items = state.source.get(`/menu/${state.theme.footerUrl}/`).items;
-  if(!items) return null
+  const items = state.source.get(`/menu/${state.frontity.footerUrl}/`).items;
+  
+  if (!items) return null;
+
   return (
     <footer>
       <div className="wrap">
-        <p>
-          This project was built by the {getLink(items[0])}.
-        </p>
+        {items.map((item) => {
+          return <Link key={item.ID} link={item.url}>{item.title}</Link>;
+        })}
       </div>
     </footer>
   );

@@ -11,13 +11,14 @@ const isActive = (state, link) => {
 };
 
 const SideNav = ({ state, libraries }) => {
-  const items = state.source.get(`/menu/${state.theme.menuUrl}/`).items;
+  const items = state.source.get(`/menu/${state.frontity.menuUrl}/`).items;
   const description = state.frontity.description;
   const Html2React = libraries.html2react.Component;
 
   if (!items) {
     return null;
   }
+  
   return (
     <aside>
       <p className="intro">

@@ -4,6 +4,8 @@ const menuHandler = {
     pattern: "/menu/:slug",
     func: async ({ link, params, state, libraries }) => {
       const { slug } = params;
+
+      // https://platform.digital.canada.ca/covid-alert/fr/wp-json/menus/v1/menus/
   
       // Fetch the menu data from the endpoint
       const response = await libraries.source.api.get({
