@@ -83,7 +83,7 @@ export const Footer = () => {
                 {" "}
                 <a href="#wb-cont">
                   Top of Page{" "}
-                  <span class="glyphicon glyphicon-chevron-up"></span>
+                  <span className="glyphicon glyphicon-chevron-up"></span>
                 </a>{" "}
               </div>
               <div className="col-xs-6 col-md-3 col-lg-2 text-right">
