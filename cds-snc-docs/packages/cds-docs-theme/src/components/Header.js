@@ -3,13 +3,15 @@ import { connect } from "frontity";
 import Link from "@frontity/components/link";
 
 const languageToggle = (state) => {
-  const items = state.source.get(`/menu/${state.theme.languageUrl}/`).items;
+  const items = state.source.get(`/menu/${state.frontity.languageUrl}/`).items;
 
-  if (items && items[0]) {
-    return <Link link={items[0].url}>{items[0].title}</Link>;
+  if (!items) {
+    return null;
   }
 
-  return null;
+  return items.map((item) => {
+    return <Link key={item.ID} link={item.url}>{item.title}</Link>;
+  });
 };
 
 export const Header = ({ state }) => {

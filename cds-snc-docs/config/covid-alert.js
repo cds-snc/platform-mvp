@@ -10,6 +10,9 @@ export const covidAlert = {
       description:
         "COVID Alert is Canada's free COVID-19 exposure notification app.",
       url: "https://platform.cdssandbox.xyz/covid-alert",
+      menuUrl: "main",
+      footerUrl: "footer",
+      languageUrl: "language",
     },
   },
   packages: [

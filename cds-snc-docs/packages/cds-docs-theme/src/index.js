@@ -5,9 +5,9 @@ import link from "@frontity/html2react/processors/link";
 import menuHandler from "./components/handlers/menu-handler";
 
 const beforeSSR = async ({ state, libraries, actions }) => {
-  await actions.source.fetch(`/menu/${state.theme.menuUrl}/`);
-  await actions.source.fetch(`/menu/${state.theme.footerUrl}/`);
-  await actions.source.fetch(`/menu/${state.theme.languageUrl}/`);
+  await actions.source.fetch(`/menu/${state.frontity.menuUrl}/`);
+  await actions.source.fetch(`/menu/${state.frontity.footerUrl}/`);
+  await actions.source.fetch(`/menu/${state.frontity.languageUrl}/`);
   // Add image processor.
   libraries.html2react.processors.push(image);
 };
@@ -34,9 +34,6 @@ const cdsDocsTheme = {
     theme: {
       autoPrefetch: "in-view",
       menu: [],
-      menuUrl: "main",
-      footerUrl: "footer",
-      languageUrl :"language",
       featured: {
         showOnList: false,
         showOnPost: false,
