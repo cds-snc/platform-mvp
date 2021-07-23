@@ -1,3 +1,5 @@
+import Menu from "./Menu"
+
 export const Header = () => {
   return (
     <header>
@@ -60,16 +62,9 @@ export const Header = () => {
             <span className="wb-inv">Main </span>Menu{" "}
             <span className="expicon glyphicon glyphicon-chevron-down"></span>
           </button>
-          <ul role="menu" aria-orientation="vertical">
-            <li role="presentation">
-              <a
-                role="menuitem"
-                href="https://platform.cdssandbox.xyz/covid-alert"
-              >
-                Covid Alert
-              </a>
-            </li>
-          </ul>
+
+          <Menu />
+          
         </div>
       </nav>
       <nav id="wb-bc" property="breadcrumb">

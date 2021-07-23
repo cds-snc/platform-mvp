@@ -7,6 +7,7 @@ export const main = {
         description:
           "Main website",
         url: "http://localhost:3000",
+        menuUrl: "main",
       },
     },
     packages: [

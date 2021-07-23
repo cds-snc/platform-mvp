@@ -2,8 +2,10 @@ import Theme from "./components/_layout";
 import image from "@frontity/html2react/processors/image";
 import iframe from "@frontity/html2react/processors/iframe";
 import link from "@frontity/html2react/processors/link";
+import menuHandler from "./components/handlers/menu-handler";
 
 const beforeSSR = async ({ state, libraries, actions }) => {
+  await actions.source.fetch(`/menu/${state.frontity.menuUrl}/`);
   // Add image processor.
   libraries.html2react.processors.push(image);
 };
@@ -44,7 +46,7 @@ export default {
       processors: [image, iframe, link],
     },
     source: {
-      handlers: [],
+      handlers: [menuHandler],
     },
   },
 };
