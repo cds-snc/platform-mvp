@@ -24,11 +24,13 @@ const Post = ({ state, actions, libraries }) => {
   return data.isReady ? (
     <main
       property="mainContentOfPage"
-      class="container"
+      className="container"
       resource="#wb-main"
       typeof="WebPageElement"
     >
-      <h1 className="page-title">{post.title.rendered}</h1>
+      <h1 className="page-title">
+        <Html2React html={post.title.rendered} />
+      </h1>
       <Html2React html={post.content.rendered} />
     </main>
   ) : null;

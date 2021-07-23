@@ -33,15 +33,14 @@ const Theme = ({ state }) => {
       {/* Add some global styles for the whole site, like body or a's. 
         Not classes here because we use CSS-in-JS. Only global HTML tags. */}
       <Global styles={[GCWeb]} />
-      <body vocab="http://schema.org/" resource="#wb-webpage" typeof="WebPage">
-        <Header />
-        <Switch>
-          <Loading when={data.isFetching} />
-          <Post when={data.isPostType} />
-          <PageError when={data.isError} />
-        </Switch>
-        <Footer />
-      </body>
+
+      <Header />
+      <Switch>
+        <Loading when={data.isFetching} />
+        <Post when={data.isPostType} />
+        <PageError when={data.isError} />
+      </Switch>
+      <Footer />
     </>
   );
 };

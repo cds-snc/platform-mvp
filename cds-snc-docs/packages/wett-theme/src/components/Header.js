@@ -57,7 +57,7 @@ export const Header = () => {
             <h2>Search</h2>
             <form action="#" method="post" name="cse-search-box" role="search">
               <div className="form-group wb-srch-qry">
-                <label for="wb-srch-q" className="wb-inv">
+                <label htmlFor="wb-srch-q" className="wb-inv">
                   Search Canada.ca
                 </label>
                 <input
