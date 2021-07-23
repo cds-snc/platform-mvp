@@ -4,7 +4,6 @@ import Switch from "@frontity/components/switch";
 import Loading from "./Loading";
 import PageError from "./PageError";
 import Post from "./Post";
-import GCWeb from "../GCWeb/css/theme.min.css";
 
 import Title from "./Title";
 
@@ -22,6 +21,9 @@ const Theme = ({ state }) => {
       <Head>
         <meta name="description" content={state.frontity.description} />
         <html lang="en" />
+
+        <link rel="stylesheet" href="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/css/theme.min.css" />
+
         <link
           rel="stylesheet"
           href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
@@ -32,7 +34,7 @@ const Theme = ({ state }) => {
 
       {/* Add some global styles for the whole site, like body or a's. 
         Not classes here because we use CSS-in-JS. Only global HTML tags. */}
-      <Global styles={[GCWeb]} />
+      <Global styles={[]} />
 
       <Header />
       <Switch>
