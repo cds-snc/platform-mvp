@@ -4,9 +4,6 @@ import iframe from "@frontity/html2react/processors/iframe";
 import link from "@frontity/html2react/processors/link";
 
 const beforeSSR = async ({ state, libraries, actions }) => {
-  await actions.source.fetch(`/menu/${state.frontity.menuUrl}/`);
-  await actions.source.fetch(`/menu/${state.frontity.footerUrl}/`);
-  await actions.source.fetch(`/menu/${state.frontity.languageUrl}/`);
   // Add image processor.
   libraries.html2react.processors.push(image);
 };
@@ -22,13 +19,20 @@ export default {
     wett: Theme,
   },
   state: {
-    wett: {}
+    wett: {
+      autoPrefetch: "in-view",
+      menu: [],
+      featured: {
+        showOnList: false,
+        showOnPost: false,
+      },
+    },
   },
   actions: {
     wett: {
       beforeSSR: beforeSSR,
       beforeCSR: beforeCSR,
-    }
+    },
   },
   libraries: {
     html2react: {
@@ -37,7 +41,7 @@ export default {
        * and internal link inside the content HTML.
        * You can add your own processors too.
        */
-       processors: [image, iframe, link],
+      processors: [image, iframe, link],
     },
     source: {
       handlers: [],

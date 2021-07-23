@@ -6,7 +6,7 @@ export const main = {
         title: "Main",
         description:
           "Main website",
-        url: "https://platform.cdssandbox.xyz/alerte-covid",
+        url: "http://localhost:3000",
       },
     },
     packages: [
@@ -15,7 +15,7 @@ export const main = {
         state: {
           source: {
             url: "https://platform.digital.canada.ca/docs",
-            homepage: "",
+            homepage: "/docs",
           },
         },
       },

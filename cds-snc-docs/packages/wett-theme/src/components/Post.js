@@ -3,6 +3,7 @@ import { connect } from "frontity";
 
 
 const Post = ({ state, actions, libraries }) => {
+  console.log("state", state)
   // Get information about the current URL.
   const data = state.source.get(state.router.link);
   // Get the data of the post.
