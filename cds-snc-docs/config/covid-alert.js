@@ -1,9 +1,6 @@
 export const covidAlert = {
   name: "covid-alert",
-  match: [
-    ".*https?://localhost:8000",
-    "\/covid-alert"
-  ],
+  match: [".*https?://localhost:8000", "/covid-alert"],
   state: {
     frontity: {
       title: "Covid Alert",
