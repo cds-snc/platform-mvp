@@ -4,17 +4,21 @@ import iframe from "@frontity/html2react/processors/iframe";
 import link from "@frontity/html2react/processors/link";
 import menuHandler from "./components/handlers/menu-handler";
 
+import {divClass} from "./divClass";
+
 const beforeSSR = async ({ state, libraries, actions }) => {
   await actions.source.fetch(`/menu/${state.frontity.menuUrl}/`);
   await actions.source.fetch(`/menu/${state.frontity.footerUrl}/`);
   await actions.source.fetch(`/menu/${state.frontity.languageUrl}/`);
   // Add image processor.
   libraries.html2react.processors.push(image);
+  libraries.html2react.processors.push(divClass);
 };
 
 const beforeCSR = ({ libraries }) => {
   // Add image processor.
   libraries.html2react.processors.push(image);
+  libraries.html2react.processors.push(divClass);
 };
 
 const cdsDocsTheme = {
@@ -58,7 +62,7 @@ const cdsDocsTheme = {
        * and internal link inside the content HTML.
        * You can add your own processors too.
        */
-      processors: [image, iframe, link],
+      processors: [image, iframe, link, divClass],
     },
     source: {
       handlers: [menuHandler],
