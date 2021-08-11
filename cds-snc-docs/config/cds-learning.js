@@ -7,9 +7,9 @@ export const cdsLearning = {
       description:
         "-",
       url: "https://platform.digital.canada.ca/cds-learning/",
-      menuUrl: "main-fr",
-      footerUrl: "footer-fr",
-      languageUrl: "language-fr",
+      menuUrl: "main",
+      footerUrl: "footer",
+      languageUrl: "language",
     },
   },
   packages: [
