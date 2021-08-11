@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - "terragrunt/**"
+      - "infrastructure/terragrunt/**"
       - ".github/workflows/terragrunt-apply-dev.yml"
 
 env:
@@ -41,5 +41,5 @@ jobs:
 
       - name: Terragrunt apply DEV
         run: |
-          cd terragrunt/env/dev
+          cd infrastructure/terragrunt/env/dev
           terragrunt run-all apply --terragrunt-non-interactive
