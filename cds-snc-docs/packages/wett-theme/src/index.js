@@ -3,16 +3,25 @@ import image from "@frontity/html2react/processors/image";
 import iframe from "@frontity/html2react/processors/iframe";
 import link from "@frontity/html2react/processors/link";
 import menuHandler from "./components/handlers/menu-handler";
+import { borderedTable } from "../processors/borderedTable";
+import { responsiveCardsTable } from "../processors/responsiveCardsTable";
+import { filterableTable } from "../processors/filterableTable";
 
 const beforeSSR = async ({ state, libraries, actions }) => {
   await actions.source.fetch(`/menu/${state.frontity.menuUrl}/`);
   // Add image processor.
   libraries.html2react.processors.push(image);
+  libraries.html2react.processors.push(borderedTable);
+  libraries.html2react.processors.push(responsiveCardsTable);
+  libraries.html2react.processors.push(filterableTable);
 };
 
 const beforeCSR = ({ libraries }) => {
   // Add image processor.
   libraries.html2react.processors.push(image);
+  libraries.html2react.processors.push(borderedTable);
+  libraries.html2react.processors.push(responsiveCardsTable);
+  libraries.html2react.processors.push(filterableTable);
 };
 
 export default {
@@ -43,7 +52,14 @@ export default {
        * and internal link inside the content HTML.
        * You can add your own processors too.
        */
-      processors: [image, iframe, link],
+      processors: [
+        image,
+        iframe,
+        link,
+        borderedTable,
+        responsiveCardsTable,
+        filterableTable,
+      ],
     },
     source: {
       handlers: [menuHandler],
