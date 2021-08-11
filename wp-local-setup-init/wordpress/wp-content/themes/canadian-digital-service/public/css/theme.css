@@ -1,0 +1,15 @@
+.gf_progressbar_title{
+    color:#666666;
+    font-weight: normal;
+}
+
+.form-group p{
+    padding-bottom: 0;
+}
+
+.gform_previous_button{
+    margin-right:20px;
+    color:rgb(40, 65, 98)!important;
+    background-color: rgb(226, 232, 240)!important;
+    border-color: rgb(40, 65, 98)!important;
+}
