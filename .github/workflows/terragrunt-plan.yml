@@ -3,7 +3,7 @@ name: "Terragrunt plan for PRs"
 on:
   pull_request:
     paths:
-      - "terragrunt/**"
+      - "infrastructure/terragrunt/**"
       - ".github/workflows/terragrunt-plan.yml"
 
 env:
@@ -49,7 +49,7 @@ jobs:
           TF_VAR_cloudfront_custom_header_value: ${{ secrets[format('{0}_CLOUDFRONT_CUSTOM_HEADER_VALUE',matrix.environment)] }}
         uses: cds-snc/terraform-plan@v1
         with:
-          directory: "terragrunt/env/${{ matrix.environment }}/${{ matrix.module_name }}"
+          directory: "infrastructure/terragrunt/env/${{ matrix.environment }}/${{ matrix.module_name }}"
           comment-delete: "true"
           comment-title: "${{ matrix.environment }}: ${{ matrix.module_name }}"
           github-token: "${{ secrets.GITHUB_TOKEN }}"
@@ -91,7 +91,7 @@ jobs:
           TF_VAR_cloudfront_custom_header_value: ${{ secrets[format('{0}_CLOUDFRONT_CUSTOM_HEADER_VALUE',matrix.environment)] }}
         uses: cds-snc/terraform-plan@v1
         with:
-          directory: "terragrunt/env/${{ matrix.environment }}/${{ matrix.module_name }}"
+          directory: "infrastructure/terragrunt/env/${{ matrix.environment }}/${{ matrix.module_name }}"
           comment-delete: "true"
           comment-title: "${{ matrix.environment }}: ${{ matrix.module_name }}"
           github-token: "${{ secrets.GITHUB_TOKEN }}"
