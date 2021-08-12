@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - "cds-snc-docs/**"
+      - "front-end/**"
 
 jobs:
   deploy:
@@ -21,11 +21,11 @@ jobs:
     
     - name: Build
       run: |
-       cd cds-snc-docs
+       cd front-end
        npm ci
        npm run build
-       mkdir ../server/build
-       cp -r ./build/* ../server/build
+       mkdir ../front-end-server/build
+       cp -r ./build/* ../front-end-server/build
     
     - name: Serverless deploy
       run: |
