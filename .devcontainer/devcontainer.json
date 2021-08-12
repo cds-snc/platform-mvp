@@ -6,7 +6,7 @@
 
 	// Uncomment the appropriate line depending on plugin vs theme development.
 	// This should match the active volume mount in docker-compose.yml
-	"workspaceFolder": "/home/default",
+	"workspaceFolder": "/home/default/project",
 
 	// Set *default* container specific settings.json values on container create.
 	"settings": { 

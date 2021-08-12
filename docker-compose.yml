@@ -83,7 +83,7 @@ services:
       context: .
       dockerfile: .devcontainer/Dockerfile
     volumes:
-      - ./:/home/default
+      - ./:/home/default/project
     restart: unless-stopped
     networks:
       - app-network
