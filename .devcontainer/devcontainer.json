@@ -2,7 +2,7 @@
 	"name": "WordPress",
 
 	"dockerComposeFile": "../docker-compose.yml",
-	"service": "project",
+	"service": "cli",
 
 	// Uncomment the appropriate line depending on plugin vs theme development.
 	// This should match the active volume mount in docker-compose.yml
@@ -10,7 +10,6 @@
 
 	// Set *default* container specific settings.json values on container create.
 	"settings": { 
-		"terminal.integrated.shell.linux": "/bin/bash",
 		"php.suggest.basic": false // avoids duplicate autocomplete
 	},
 

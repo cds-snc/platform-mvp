@@ -34,4 +34,6 @@ RUN adduser -D $USER \
 USER $USER
 WORKDIR $HOME
 
+ENV SHELL /bin/bash
+
 CMD ["sleep", "infinity"]
