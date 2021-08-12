@@ -56,5 +56,5 @@ resource "aws_route53_record" "platform_mvp_dmarc" {
   name    = "_dmarc.${var.ses_sending_domain}"
   type    = "TXT"
   ttl     = "600"
-  records = ["v=DMARC1; p=${var.dmarc_policy}; rua=mailto:${var.dmarc_report_email};"]
+  records = ["v=DMARC1; p=${var.dmarc_policy}; sp=${var.dmarc_policy}; pct=100; rua=mailto:${var.dmarc_report_email};"]
 }
