@@ -112,3 +112,6 @@ dist
 .terragrunt-cache
 
 .gitconfig
+.vscode-server
+.ssh
+.bash_history
