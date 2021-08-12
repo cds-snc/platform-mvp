@@ -35,3 +35,14 @@ SMTP interface: `localhost:1025`
 Web admin for MySQL database.
 
 Web interface: `localhost:8080`
+
+## Plugins and Themes
+
+### Installing
+This project is configured to use [Composer](https://getcomposer.org/) to manage [WordPress Themes and Plugins](https://www.smashingmagazine.com/2019/03/composer-wordpress/). 
+
+To install a plugin or theme, find it on [WPackagist](https://wpackagist.org/), add it to composer.json, and run `composer install` or use `composer require [package-name]`. These commands should be run from within the `wordpress` folder.
+
+### Creating
+
+When creating a custom plugin or theme, you should prefix the folder name with `cds-`.
