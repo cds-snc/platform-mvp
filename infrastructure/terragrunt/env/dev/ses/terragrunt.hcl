@@ -17,6 +17,8 @@ dependency "cloudfront" {
 }
 
 inputs = {
+  dmarc_policy       = "none"
+  dmarc_report_email = "platform+platform-cms@cds-snc.ca"
   route53_zone_id    = dependency.cloudfront.outputs.route53_zone_id
   ses_sending_domain = dependency.cloudfront.outputs.domain_name
 }
