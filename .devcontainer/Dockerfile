@@ -1,7 +1,7 @@
 FROM php:cli-alpine
 
-# Bash
-RUN apk add bash
+# install sudo
+RUN apk add sudo
 
 # SSH
 RUN apk add --update openssh
@@ -20,8 +20,9 @@ RUN apk add git
 # Node/NPM
 RUN apk add --no-cache nodejs npm
 
-# install sudo
-RUN apk add --update sudo
+# ZSH
+RUN apk add zsh zsh-autosuggestions zsh-syntax-highlighting \
+    rm -rf /var/cache/apk/*
 
 # Create non-root default user
 ARG USER=default
@@ -34,6 +35,11 @@ RUN adduser -D $USER \
 USER $USER
 WORKDIR $HOME
 
-ENV SHELL /bin/bash
+# Oh-my-zsh
+RUN sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+RUN echo "source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc && \
+    echo "source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
+
+ENV SHELL /bin/zsh
 
 CMD ["sleep", "infinity"]
