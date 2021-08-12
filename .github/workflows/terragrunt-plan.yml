@@ -20,49 +20,11 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - module_name: waf
-            environment: dev
-
-    steps:
-
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1.2.1
-        with:
-          terraform_version: ${{ env.TERRAFORM_VERSION }}
-          terraform_wrapper: false
-
-      - name: Setup Terragrunt
-        run: |
-          mkdir bin
-          wget -O bin/terragrunt https://github.com/gruntwork-io/terragrunt/releases/download/v$TERRAGRUNT_VERSION/terragrunt_linux_amd64
-          chmod +x bin/*
-          echo "$GITHUB_WORKSPACE/bin" >> $GITHUB_PATH
-
-      - name: Terragrunt plan
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets[format('{0}_AWS_ACCESS_KEY_ID',matrix.environment)] }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets[format('{0}_AWS_SECRET_ACCESS_KEY',matrix.environment)] }}
-          TF_VAR_cloudfront_custom_header_name: ${{ secrets[format('{0}_CLOUDFRONT_CUSTOM_HEADER_NAME',matrix.environment)] }}
-          TF_VAR_cloudfront_custom_header_value: ${{ secrets[format('{0}_CLOUDFRONT_CUSTOM_HEADER_VALUE',matrix.environment)] }}
-        uses: cds-snc/terraform-plan@v1
-        with:
-          directory: "infrastructure/terragrunt/env/${{ matrix.environment }}/${{ matrix.module_name }}"
-          comment-delete: "true"
-          comment-title: "${{ matrix.environment }}: ${{ matrix.module_name }}"
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
-          terragrunt: "true"
-
-  terragrunt-plan-deps:
-    needs: [terragrunt-plan]
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
           - module_name: cloudfront
+            environment: dev
+          - module_name: ses
+            environment: dev
+          - module_name: waf
             environment: dev
 
     steps:
@@ -99,7 +61,7 @@ jobs:
 
   comment-end:
     if: always()
-    needs: [terragrunt-plan-deps]
+    needs: [terragrunt-plan]
     runs-on: ubuntu-latest
     steps:
 

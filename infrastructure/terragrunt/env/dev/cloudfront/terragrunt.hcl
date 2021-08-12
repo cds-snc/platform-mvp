@@ -16,8 +16,8 @@ dependency "waf" {
 }
 
 inputs = {
-  cloudfront_waf_acl_arn  = dependency.waf.outputs.cloudfront_waf_acl_arn
-  domain_name             = "platform.cdssandbox.xyz"
+  cloudfront_waf_acl_arn = dependency.waf.outputs.cloudfront_waf_acl_arn
+  domain_name            = "platform.cdssandbox.xyz"
 }
 
 terraform {
