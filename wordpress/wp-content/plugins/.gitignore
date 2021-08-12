@@ -1,3 +1,3 @@
-# ignore default installed plugins
-akismet
-hello.php
+# ignore installed plugins, add wildcard exception for our custom plugins
+/*
+!cds-*

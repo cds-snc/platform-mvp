@@ -1,4 +1,3 @@
-# ignore default installed themes
-twentynineteen
-twentytwenty
-twentytwentyone
+# ignore installed themes, add wildcard exception for our custom themes
+/*
+!cds-*
