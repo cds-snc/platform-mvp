@@ -43,6 +43,8 @@ This project is configured to use [Composer](https://getcomposer.org/) to manage
 
 To install a plugin or theme, find it on [WPackagist](https://wpackagist.org/), add it to composer.json, and run `composer install` or use `composer require [package-name]`. These commands should be run from within the `wordpress` folder.
 
+Note: when starting up the devcontainer or docker-compose, `composer install` is run to automatically install plugins and themes defined in composer.json.
+
 ### Creating
 
 When creating a custom plugin or theme, you should prefix the folder name with `cds-`.

@@ -74,6 +74,13 @@ services:
     networks:
       - app-network
 
+  composer:
+    restart: 'no'
+    image: composer/composer:latest
+    command: install
+    volumes:
+      - ./wordpress:/app
+
   cli:
     container_name: cli
     depends_on:
@@ -87,7 +94,7 @@ services:
     restart: unless-stopped
     networks:
       - app-network
-    
+
 volumes:
   wordpress:
   dbdata:
