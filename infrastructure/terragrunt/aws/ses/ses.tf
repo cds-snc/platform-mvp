@@ -20,28 +20,28 @@ resource "aws_ses_domain_mail_from" "platform_mvp_domain_mail_from" {
 # SNS topic that receives bounce, delivery and complaint notifications 
 # from to SES email sending
 resource "aws_sns_topic" "platform_mvp_ses" {
-  name              = "ses-notifications"
-  kms_master_key_id = "alias/aws/sns"
+  name              = "ses-notify"
+  kms_master_key_id = aws_kms_alias.sns.name
 }
 
 resource "aws_ses_identity_notification_topic" "platform_mvp_ses_bounce_topic" {
   topic_arn                = aws_sns_topic.platform_mvp_ses.arn
   notification_type        = "Bounce"
-  identity                 = aws_ses_domain_identity.platform_mvp_sending_domain.domain
+  identity                 = aws_ses_domain_identity.platform_mvp_sending_domain.arn
   include_original_headers = false
 }
 
 resource "aws_ses_identity_notification_topic" "cplatform_mvp_ses_delivery_topic" {
   topic_arn                = aws_sns_topic.platform_mvp_ses.arn
   notification_type        = "Delivery"
-  identity                 = aws_ses_domain_identity.platform_mvp_sending_domain.domain
+  identity                 = aws_ses_domain_identity.platform_mvp_sending_domain.arn
   include_original_headers = false
 }
 
 resource "aws_ses_identity_notification_topic" "platform_mvp_ses_complaint_topic" {
   topic_arn                = aws_sns_topic.platform_mvp_ses.arn
   notification_type        = "Complaint"
-  identity                 = aws_ses_domain_identity.platform_mvp_sending_domain.domain
+  identity                 = aws_ses_domain_identity.platform_mvp_sending_domain.arn
   include_original_headers = false
 }
 
