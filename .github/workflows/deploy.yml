@@ -29,7 +29,7 @@ jobs:
     
     - name: Serverless deploy
       run: |
-        cd server
+        cd front-end-server
         npm ci
         node ./node_modules/serverless/bin/serverless.js config credentials --provider aws --key ${{ secrets.DEV_AWS_ACCESS_KEY_ID }} --secret ${{ secrets.DEV_AWS_SECRET_ACCESS_KEY }}
         node ./node_modules/serverless/bin/serverless.js deploy --aws-s3-accelerate --stage dev --verbose
