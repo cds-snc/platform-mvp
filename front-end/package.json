@@ -1,8 +1,8 @@
 {
-  "name": "cds-snc-docs",
-  "version": "1.0.0",
+  "name": "front-end-web-publishing-mvp",
+  "version": "1.0.1",
   "private": true,
-  "description": "Central documentantion for CDS projects",
+  "description": "",
   "keywords": [
     "frontity"
   ],
@@ -23,10 +23,10 @@
   "dependencies": {
     "@frontity/core": "^1.14.3",
     "@frontity/html2react": "^1.7.0",
-    "@frontity/tiny-router": "^1.4.3",
+    "@frontity/tiny-router": "^1.4.4",
     "@frontity/wp-source": "^1.11.5",
     "cds-docs-theme": "./packages/cds-docs-theme",
-    "frontity": "^1.16.1",
+    "frontity": "^1.17.0",
     "patch-package": "^6.4.7",
     "wett-theme": "file:packages/wett-theme"
   }
