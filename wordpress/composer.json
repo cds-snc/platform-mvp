@@ -1,0 +1,11 @@
+{
+    "repositories":[
+        {
+            "type":"composer",
+            "url":"https://wpackagist.org"
+        }
+    ],
+    "require": {
+        "wpackagist-plugin/wp-rest-api-v2-menus": "^0.10.0"
+    }
+}
