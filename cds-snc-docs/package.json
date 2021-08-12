@@ -16,7 +16,8 @@
     "build": "frontity build",
     "serve": "frontity serve",
     "postinstall": "patch-package",
-    "dev:cds-learning": "frontity dev --port 10000"
+    "dev:cds-learning": "frontity dev --port 10000",
+    "dev:life-in-canada": "frontity dev --port 11000"
   },
   "prettier": {},
   "dependencies": {
