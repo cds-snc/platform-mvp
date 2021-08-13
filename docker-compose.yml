@@ -7,9 +7,9 @@ services:
     restart: unless-stopped
     environment:
       - MYSQL_DATABASE=wordpress
-      - MYSQL_ROOT_PASSWORD=secret
-      - MYSQL_USER=db_user
-      - MYSQL_PASSWORD=db_password
+      - MYSQL_ROOT_PASSWORD=${WORDPRESS_DB_PASSWORD}
+      - MYSQL_USER=${WORDPRESS_DB_USER}
+      - MYSQL_PASSWORD=${WORDPRESS_DB_PASSWORD}
     volumes:
       - dbdata:/var/lib/mysql
     command: '--default-authentication-plugin=mysql_native_password'
@@ -22,7 +22,7 @@ services:
     image: wordpress:5.8.0-fpm-alpine
     container_name: wordpress
     restart: unless-stopped
-    env_file: .wp-env
+    env_file: .env
     volumes:
       - wordpress:/var/www/html
       - ./wordpress/wp-content:/var/www/html/wp-content
@@ -74,7 +74,7 @@ services:
       - db
       - wordpress
     image: wordpress:cli
-    env_file: .wp-env
+    env_file: .env
     command: >
       /bin/bash -c '
       sleep 10;
