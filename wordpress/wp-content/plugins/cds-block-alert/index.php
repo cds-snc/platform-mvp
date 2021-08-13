@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Plugin Name: CDS-SNC Alert
+ * Plugin Name: CDS-SNC Block - Alert
  * Plugin URI: https://github.com/cds-snc/platform-mvp
  * Description: Alert block plugin
  * Version: 1.0.0

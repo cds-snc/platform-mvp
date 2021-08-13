@@ -1,0 +1,16 @@
+#!/bin/bash
+
+PATH_TO_SCRIPT=$(dirname $0)
+
+source $PATH_TO_SCRIPT/common
+
+if [ $# -eq 0 ]
+  then
+    die "No arguments supplied.  Please specify a plugin name."
+fi
+
+if [ ! -d "$PATH_TO_SCRIPT/../wordpress/wp-content/plugins/$1" ]; then
+  die "Plugin doesn't exist"
+fi
+
+rsync -avL --progress --exclude "node_modules" -e "ssh -i $PATH_TO_SCRIPT/$PEMFILE" $PATH_TO_SCRIPT/../wordpress/wp-content/plugins/$1 $SERVER_URL:$SERVER_PATH/plugins/
