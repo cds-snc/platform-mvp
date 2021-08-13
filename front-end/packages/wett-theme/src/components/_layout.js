@@ -4,6 +4,7 @@ import Switch from "@frontity/components/switch";
 import Loading from "./Loading";
 import PageError from "./PageError";
 import Post from "./Post";
+import themeCss from "../theme.css";
 
 import Title from "./Title";
 
@@ -34,7 +35,7 @@ const Theme = ({ state }) => {
 
       {/* Add some global styles for the whole site, like body or a's. 
         Not classes here because we use CSS-in-JS. Only global HTML tags. */}
-      <Global styles={[]} />
+      <Global styles={[themeCss]} />
 
       <Header />
       <Switch>
