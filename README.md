@@ -30,6 +30,12 @@ cp .env.example .env
 - Open the project in VS Code
 - When prompted "Reopen in container" or press F1 -> Remote-Containers: Open folder in container
 - Visit `localhost:8000` to see your new WordPress install
+- Visit `localhost:8000/wp-admin` to see the admin interface
+
+Wordpress will be installed with some pre-configured plugins and themes, and will be configured as a multi-site install. There will also be a default administrator account, with the following credentials:
+
+username: admin
+password: secret
 
 ## Useful services
 
