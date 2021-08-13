@@ -8,10 +8,11 @@ Begin by configuring your environment.
 
 `cp .env.example .env`
 
-There are two environment variables that need to be configured:
+There are three environment variables that need to be configured:
 
 - `SERVER_URL` - this is the username and server url in the format `username@ip.address`
-- `PEMFILE` - this is a relative path to the pem key file for authentication to the server
+- `SERVER_PATH` - this is the absolute path to the wp-content directory on the server
+- `PEMFILE` - this is a relative path to the pem key file
 
 With those variable configured, you can deploy plugins or themes (from within this directory):
 
