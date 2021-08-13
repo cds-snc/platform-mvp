@@ -6,6 +6,7 @@ import menuHandler from "./components/handlers/menu-handler";
 import { borderedTable } from "../processors/borderedTable";
 import { responsiveCardsTable } from "../processors/responsiveCardsTable";
 import { filterableTable } from "../processors/filterableTable";
+import { gridColumns } from "../processors/gridColumns";
 
 const beforeSSR = async ({ state, libraries, actions }) => {
   await actions.source.fetch(`/menu/${state.frontity.menuUrl}/`);
@@ -14,6 +15,7 @@ const beforeSSR = async ({ state, libraries, actions }) => {
   libraries.html2react.processors.push(borderedTable);
   libraries.html2react.processors.push(responsiveCardsTable);
   libraries.html2react.processors.push(filterableTable);
+  libraries.html2react.processors.push(gridColumns);
 };
 
 const beforeCSR = ({ libraries }) => {
@@ -22,6 +24,7 @@ const beforeCSR = ({ libraries }) => {
   libraries.html2react.processors.push(borderedTable);
   libraries.html2react.processors.push(responsiveCardsTable);
   libraries.html2react.processors.push(filterableTable);
+  libraries.html2react.processors.push(gridColumns);
 };
 
 export default {
@@ -59,6 +62,7 @@ export default {
         borderedTable,
         responsiveCardsTable,
         filterableTable,
+        gridColumns
       ],
     },
     source: {
