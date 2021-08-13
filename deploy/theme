@@ -1,0 +1,30 @@
+#!/bin/bash
+
+PATH_TO_SCRIPT=$(dirname $0)
+
+die () {
+    echo >&2 "$@"
+    exit
+}
+
+if [ -f $PATH_TO_SCRIPT/.env ]
+then
+  export $(cat $PATH_TO_SCRIPT/.env | sed 's/#.*//g' | xargs)
+else
+  die "Missing .env"
+fi
+
+if [ ! -f $PATH_TO_SCRIPT/$PEMFILE ] || [ ! $PATH_TO_SCRIPT/$PEMFILE ]; then
+  die ".pem key file missing"
+fi
+
+if [ $# -eq 0 ]
+  then
+    die "No arguments supplied.  Please specify a theme name."
+fi
+
+if [ ! -d "$PATH_TO_SCRIPT/../wordpress/wp-content/themes/$1" ]; then
+  die "Theme doesn't exist"
+fi
+
+rsync -avL --progress -e "ssh -i $PATH_TO_SCRIPT/$PEMFILE" $PATH_TO_SCRIPT/../wordpress/wp-content/themes/$1 $SERVER_URL:/opt/bitnami/apps/wordpress/htdocs/wp-content/themes/
