@@ -1,0 +1,16 @@
+#!/bin/bash
+
+PATH_TO_SCRIPT=$(dirname $0)
+
+source $PATH_TO_SCRIPT/common
+
+if [ $# -eq 0 ]
+  then
+    die "No arguments supplied.  Please specify a theme name."
+fi
+
+if [ ! -d "$PATH_TO_SCRIPT/../wordpress/wp-content/themes/$1" ]; then
+  die "Theme doesn't exist"
+fi
+
+rsync -avL --progress -e "ssh -i $PATH_TO_SCRIPT/$PEMFILE" $PATH_TO_SCRIPT/../wordpress/wp-content/themes/$1 $SERVER_URL:$SERVER_PATH/themes/

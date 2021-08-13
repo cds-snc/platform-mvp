@@ -1,0 +1,8 @@
+{
+    "name": "deploy",
+    "scripts": {
+      "deploy-plugin": "./deploy/plugin",
+      "deploy-theme": "./deploy/theme"
+    }
+  }
+  
