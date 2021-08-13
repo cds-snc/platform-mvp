@@ -17,6 +17,14 @@ Docker-compose and VS Code Remote Container environment featuring:
 - Docker-compose
 - VS Code w/ Remote Containers extension
 
+## Config
+
+Copy the .env.example file to .env and customize as necessary (you might not need to change anything)
+
+```
+cp .env.example .env
+```
+
 ## Usage
 
 - Open the project in VS Code
