@@ -22,7 +22,7 @@ services:
     image: wordpress:5.8.0-fpm-alpine
     container_name: wordpress
     restart: unless-stopped
-    env_file: .env
+    env_file: local_env
     volumes:
       - wordpress:/var/www/html
       - ./wordpress/wp-content:/var/www/html/wp-content
@@ -74,7 +74,7 @@ services:
       - db
       - wordpress
     image: wordpress:cli
-    env_file: .env
+    env_file: local_env
     command: >
       /bin/bash -c '
       sleep 10;
