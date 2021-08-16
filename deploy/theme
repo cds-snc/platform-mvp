@@ -13,4 +13,4 @@ if [ ! -d "$PATH_TO_SCRIPT/../wordpress/wp-content/themes/$1" ]; then
   die "Theme doesn't exist"
 fi
 
-rsync -avL --progress -e "ssh -i $PATH_TO_SCRIPT/$PEMFILE" $PATH_TO_SCRIPT/../wordpress/wp-content/themes/$1 $SERVER_URL:$SERVER_PATH/themes/
+rsync -avL --progress -e "ssh -i $PEMFILE" $PATH_TO_SCRIPT/../wordpress/wp-content/themes/$1 $SERVER_URL:$SERVER_PATH/themes/

@@ -110,3 +110,5 @@ dist
 
 # Terraform
 .terragrunt-cache
+
+*.pem

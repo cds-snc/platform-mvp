@@ -5,17 +5,20 @@ die () {
     exit
 }
 
-if [ -f $PATH_TO_SCRIPT/.env ]
+# Load env vars
+if [ -f .env ]
 then
-  export $(cat $PATH_TO_SCRIPT/.env | sed 's/#.*//g' | xargs)
+  export $(cat .env | sed 's/#.*//g' | xargs)
 else
   die "Missing .env"
 fi
 
-if [ ! -f $PATH_TO_SCRIPT/$PEMFILE ] || [ ! $PATH_TO_SCRIPT/$PEMFILE ]; then
+# Make sure .pem file exists
+if [ ! -f $PEMFILE ]; then
   die ".pem key file missing"
 fi
 
+# More required config
 if [ ! $SERVER_URL ] || [ ! $SERVER_PATH ]; then
   die "missing SERVER_URL or SERVER_PATH"
 fi
