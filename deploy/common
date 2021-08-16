@@ -5,6 +5,7 @@ die () {
     exit
 }
 
+# Load env vars
 if [ -f .env ]
 then
   export $(cat .env | sed 's/#.*//g' | xargs)
@@ -12,10 +13,12 @@ else
   die "Missing .env"
 fi
 
+# Make sure .pem file exists
 if [ ! -f $PEMFILE ]; then
   die ".pem key file missing"
 fi
 
+# More required config
 if [ ! $SERVER_URL ] || [ ! $SERVER_PATH ]; then
   die "missing SERVER_URL or SERVER_PATH"
 fi
