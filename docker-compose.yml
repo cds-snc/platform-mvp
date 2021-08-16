@@ -73,13 +73,25 @@ services:
       - wordpress
     image: wordpress:cli
     env_file: .env
+    environment:
+      WORDPRESS_CONFIG_EXTRA: |
+        /* Multisite */
+        define('WP_ALLOW_MULTISITE', true );
+        define('MULTISITE', true);
+        define('SUBDOMAIN_INSTALL', false);
+        define('DOMAIN_CURRENT_SITE', 'localhost:${WEB_PORT}');
+        define('PATH_CURRENT_SITE', '/');
+        define('SITE_ID_CURRENT_SITE', 1);
+        define('BLOG_ID_CURRENT_SITE', 1);
     command: >
       /bin/bash -c '
       sleep 10;
       wp core multisite-install --path="/var/www/html" --url="localhost:${WEB_PORT}" --title="CDS Wordpress Base" --admin_user=${ADMIN_USER} --admin_password=${ADMIN_PASSWORD} --admin_email=${ADMIN_EMAIL};
+      wp theme enable cds-default --activate
       '
     volumes:
       - wordpress:/var/www/html
+      - ./wordpress/wp-content:/var/www/html/wp-content
     networks:
       - app-network
 
@@ -91,7 +103,20 @@ services:
     build: 
       context: .
       dockerfile: .devcontainer/Dockerfile
+    env_file: .env
+    environment:
+      WORDPRESS_CONFIG_EXTRA: |
+        /* Multisite */
+        define('WP_ALLOW_MULTISITE', true );
+        define('MULTISITE', true);
+        define('SUBDOMAIN_INSTALL', false);
+        define('DOMAIN_CURRENT_SITE', 'localhost:${WEB_PORT}');
+        define('PATH_CURRENT_SITE', '/');
+        define('SITE_ID_CURRENT_SITE', 1);
+        define('BLOG_ID_CURRENT_SITE', 1);
     volumes:
+      - wordpress:/var/www/html
+      - ./wordpress/wp-content:/var/www/html/wp-content
       - ./:/home/default/project
     restart: unless-stopped
     networks:
