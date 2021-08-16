@@ -174,6 +174,29 @@ resource "aws_wafv2_web_acl" "platform_mvp_cloudfront" {
     }
   }
 
+  # Allow up to 10,000 requests for a given IP in a 5 minute period
+  rule {
+    name     = "RequestRateLimit"
+    priority = 6
+
+    action {
+      block {}
+    }
+
+    statement {
+      rate_based_statement {
+        limit              = 10000
+        aggregate_key_type = "IP"
+      }
+    }
+
+    visibility_config {
+      cloudwatch_metrics_enabled = true
+      metric_name                = "RequestRateLimit"
+      sampled_requests_enabled   = true
+    }
+  }
+
   tags = {
     (var.billing_tag_key) = var.billing_tag_value
   }
