@@ -6,8 +6,7 @@ Stay tuned ...
 
 Docker-compose and VS Code Remote Container environment featuring:
   - mysql8
-  - wordpress (alpine/php-fpm)
-  - nginx (proxy to wp)
+  - wordpress (wordpress/apache)
   - wp-cli & composer (devcontainer)
   - mailhog (fake mail)
   - phpmyadmin (db admin)
