@@ -5,16 +5,11 @@ die () {
     exit
 }
 
-if [ -f $PATH_TO_SCRIPT/.env ]
+if [ -f .env ]
 then
-  export $(cat $PATH_TO_SCRIPT/.env | sed 's/#.*//g' | xargs)
+  export $(cat .env | sed 's/#.*//g' | xargs)
 else
-  if [ -f .env ]
-  then
-    export $(cat .env | sed 's/#.*//g' | xargs)
-  else
-    die "Missing .env"
-  fi
+  die "Missing .env"
 fi
 
 if [ ! -f $PEMFILE ]; then
