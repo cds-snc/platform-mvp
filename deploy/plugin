@@ -13,4 +13,4 @@ if [ ! -d "$PATH_TO_SCRIPT/../wordpress/wp-content/plugins/$1" ]; then
   die "Plugin doesn't exist"
 fi
 
-rsync -avL --progress --exclude "node_modules" -e "ssh -i $PATH_TO_SCRIPT/$PEMFILE" $PATH_TO_SCRIPT/../wordpress/wp-content/plugins/$1 $SERVER_URL:$SERVER_PATH/plugins/
+rsync -avL --progress --exclude "node_modules" -e "ssh -i $PEMFILE" $PATH_TO_SCRIPT/../wordpress/wp-content/plugins/$1 $SERVER_URL:$SERVER_PATH/plugins/

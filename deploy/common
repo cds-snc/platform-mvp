@@ -9,10 +9,15 @@ if [ -f $PATH_TO_SCRIPT/.env ]
 then
   export $(cat $PATH_TO_SCRIPT/.env | sed 's/#.*//g' | xargs)
 else
-  die "Missing .env"
+  if [ -f .env ]
+  then
+    export $(cat .env | sed 's/#.*//g' | xargs)
+  else
+    die "Missing .env"
+  fi
 fi
 
-if [ ! -f $PATH_TO_SCRIPT/$PEMFILE ] || [ ! $PATH_TO_SCRIPT/$PEMFILE ]; then
+if [ ! -f $PEMFILE ]; then
   die ".pem key file missing"
 fi
 
