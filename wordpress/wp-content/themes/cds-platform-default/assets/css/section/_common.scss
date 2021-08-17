@@ -1,0 +1,32 @@
+#main {
+  // background: $gray-300;
+}
+
+.load-more {
+  display: flex;
+  justify-content: center;
+  padding: ($spacer * 2) 0;
+  .#{$theme-name}-loader {
+    overflow: visible;
+    .b {
+      fill: theme-color('primary');
+    }    
+  }
+}
+
+p {
+  max-width: 60ch;
+}
+
+a[href],
+area[href],
+input,
+select textarea,
+button,
+iframe,
+[tabindex],
+[contentEditable="true"] {
+  &:not([disabled]):focus:not(.autocomplete__option) {
+    @include focus();
+  }
+}

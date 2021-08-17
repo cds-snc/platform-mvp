@@ -1,0 +1,15 @@
+.archive-search {
+  background: $white;
+}
+.search-no-results {
+  .post-header {
+    background-color: inherit;
+    margin-top: $spacer * 4;
+  }
+  .post-title {
+    margin-bottom: $spacer * 0.5;
+  }
+}
+.no-results.not-found {
+  width: 100%;
+}

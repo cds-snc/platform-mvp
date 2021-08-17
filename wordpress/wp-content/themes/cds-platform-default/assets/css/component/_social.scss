@@ -1,0 +1,24 @@
+.social {
+  @media (pointer: coarse) {
+    // margin-left: -$grid-gutter-width/2;
+    // margin-right: -$grid-gutter-width/2;
+  }
+  .social__item {
+    // padding: $grid-gutter-width/2;
+    @media (pointer: coarse) {
+      // padding: $grid-gutter-width/2 !important;
+      width: 45px;
+      height: 45px;  
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    a {
+      color: theme-color('primary');
+      font-size: 1.5rem;
+    }
+    
+    
+    
+  }
+}
