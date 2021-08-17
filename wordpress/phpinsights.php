@@ -37,7 +37,7 @@ return [
     |
     */
 
-    'ide' => "phpstorm",
+    'ide' => 'phpstorm',
 
     /*
     |--------------------------------------------------------------------------
@@ -51,7 +51,13 @@ return [
     */
 
     'exclude' => [
-        //  'path/to/directory-or-file'
+        'wp-content/themes/cds-platform-default',
+        'wp-content/themes/twentynineteen',
+        'wp-content/themes/twentytwenty',
+        'wp-content/themes/twentytwentyone',
+        'wp-content/plugins/akismet',
+        'wp-content/plugins/wp-rest-api-v2-menus',
+        'wp-content/plugins/hello.php',
     ],
 
     'add' => [
@@ -82,11 +88,11 @@ return [
     */
 
     'requirements' => [
-//        'min-quality' => 0,
-//        'min-complexity' => 0,
-//        'min-architecture' => 0,
-//        'min-style' => 0,
-//        'disable-security-check' => false,
+        'min-quality' => 80,
+        'min-complexity' => 90,
+        'min-architecture' => 75,
+        'min-style' => 90,
+        'disable-security-check' => false,
     ],
 
     /*
