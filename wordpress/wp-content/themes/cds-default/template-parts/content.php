@@ -16,15 +16,12 @@ declare(strict_types=1);
     <header class="entry-header">
         <?php
         if (is_singular()) {
-            
             the_title('<h1 class="entry-title">', '</h1>');
-        } else  {
-            
+        } else {
             the_title('<h2 class="entry-title"><a href="' . esc_url(get_permalink()) . '" rel="bookmark">', '</a></h2>');
         }
 
         if (get_post_type() === 'post') {
-            
             ?>
             <div class="entry-meta">
                 <?php
@@ -40,8 +37,8 @@ declare(strict_types=1);
     <div class="entry-content">
         <?php
         the_content(
-                    sprintf(
-                wp_kses(
+                sprintf(
+                        wp_kses(
                     /* translators: %s: Name of current post. Only visible to screen readers */
                     __('Continue reading<span class="screen-reader-text"> "%s"</span>', 'cds'),
                     [
@@ -50,9 +47,9 @@ declare(strict_types=1);
                         ],
                     ]
                 ),
-                wp_kses_post(get_the_title())
-            )
-                );
+                        wp_kses_post(get_the_title())
+                    )
+            );
 
         wp_link_pages(
             [

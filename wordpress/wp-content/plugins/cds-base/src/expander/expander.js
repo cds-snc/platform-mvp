@@ -1,12 +1,9 @@
 import { __ } from "@wordpress/i18n";
 import { registerBlockType } from "@wordpress/blocks";
 import { useBlockProps, RichText } from "@wordpress/block-editor";
-import { TextControl } from "@wordpress/components";
-
-TextControl;
 
 registerBlockType("cds-snc/expander", {
-  title: __("Expander", "cds-snc-expander"),
+  title: __("Expander", "cds-snc"),
   icon: "megaphone",
   category: "layout",
   example: {},
@@ -31,14 +28,14 @@ registerBlockType("cds-snc/expander", {
           value={attributes.title} // Any existing content, either from the database or an attribute default
           allowedFormats={[]} // Allow the content to be made bold or italic, but do not allow other formatting options
           onChange={(title) => setAttributes({ title })} // Store updated content as a block attribute
-          placeholder={__("Title")} // Display this text before any content has been added by the user
+          placeholder={__("Title", "cds-snc")} // Display this text before any content has been added by the user
         />
         <RichText
           tagName="div" // The tag here is the element output and editable in the admin
           value={attributes.content} // Any existing content, either from the database or an attribute default
           // allowedFormats={["core/bold", "core/italic", "core/list"]} // Allow the content to be made bold or italic, but do not allow other formatting options
           onChange={(content) => setAttributes({ content })} // Store updated content as a block attribute
-          placeholder={__("Summary")} // Display this text before any content has been added by the user
+          placeholder={__("Summary", "cds-snc")} // Display this text before any content has been added by the user
         />
       </>
     );

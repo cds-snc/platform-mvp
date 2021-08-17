@@ -3,13 +3,13 @@
 declare(strict_types=1);
 
 /**
- * Plugin Name: CDS-SNC Expander
+ * Plugin Name: CDS-SNC Base
  * Plugin URI: https://github.com/cds-snc/platform-mvp
- * Description: Expander plugin
- * Version: 1.1.0
+ * Description: Custom Block setup and other overrides
+ * Version: 1.0.0
  * Author: Tim Arney
  *
- * @package cds-snc-blocks
+ * @package cds-snc-base
  */
 
 defined('ABSPATH') || exit;
@@ -21,7 +21,7 @@ add_action('init', 'cds_textdomain');
 
 function cds_textdomain(): void
 {
-    load_plugin_textdomain('cds-snc-expander', false, basename(__DIR__) . '/languages');
+    load_plugin_textdomain('cds-snc', false, basename(__DIR__) . '/languages');
 }
 
 /**
@@ -37,15 +37,46 @@ function cds_register_block(): void
     $asset_file = include plugin_dir_path(__FILE__) . 'build/index.asset.php';
 
     wp_register_script(
-        'cds-snc-expander',
+        'cds-snc',
         plugins_url('build/index.js', __FILE__),
         $asset_file['dependencies'],
         $asset_file['version']
     );
 
+    /* blocks */
+
     register_block_type('cds-snc/expander', [
-        'editor_script' => 'cds-snc-expander',
+        'editor_script' => 'cds-snc',
     ]);
+
+    register_block_type('cds-snc/alert', [
+        'editor_script' => 'cds-snc',
+    ]);
+
+    /* table styles */
+    register_block_style(
+        'core/table',
+        [
+            'name' => 'bordered-table',
+            'label' => 'Bordered Table',
+        ]
+    );
+
+    register_block_style(
+          'core/table',
+          [
+            'name' => 'filterable',
+            'label' => 'Filterable Table',
+        ]
+      );
+
+    register_block_style(
+          'core/table',
+          [
+            'name' => 'responsive-cards',
+            'label' => 'Responsive Cards Table',
+        ]
+      );
 
     if (function_exists('wp_set_script_translations')) {
         /**
@@ -53,7 +84,7 @@ function cds_register_block(): void
          * plugin_dir_path( MY_PLUGIN ) . 'languages' ) ). For details see
          * https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/
          */
-        wp_set_script_translations('cds-snc-expander', 'expander');
+        wp_set_script_translations('cds-snc-base', 'cds-snc');
     }
 }
 add_action('init', 'cds_register_block');

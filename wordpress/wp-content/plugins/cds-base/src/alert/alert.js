@@ -11,17 +11,17 @@ import { PanelBody, PanelRow, SelectControl } from "@wordpress/components";
 
 const AlertSettings = ({ alertType, setAttributes }) => (
   <InspectorControls>
-    <PanelBody title="Settings" initialOpen={true}>
+    <PanelBody title={__("Settings", "cds-snc")} initialOpen={true}>
       <PanelRow>
         <PanelRow>
           <SelectControl
-            label="Alert Type"
+            label={__("Alert Type", "cds-snc")}
             value={alertType}
             options={[
-              { label: "Info", value: "alert-info" },
-              { label: "Success", value: "alert-success" },
-              { label: "Warning", value: "alert-warning" },
-              { label: "Danger", value: "alert-danger" },
+              { label: __("Info", "cds-snc"), value: "alert-info" },
+              { label: __("Success", "cds-snc"), value: "alert-success" },
+              { label: __("Warning", "cds-snc"), value: "alert-warning" },
+              { label: __("Danger", "cds-snc"), value: "alert-danger" },
             ]}
             onChange={(newval) => setAttributes({ alertType: newval })}
           />
@@ -32,7 +32,7 @@ const AlertSettings = ({ alertType, setAttributes }) => (
 );
 
 registerBlockType("cds-snc/alert", {
-  title: __("Alert", "cds-snc-alert"),
+  title: __("Alert", "cds-snc"),
   icon: "info-outline",
   category: "layout",
   example: {},
@@ -67,14 +67,14 @@ registerBlockType("cds-snc/alert", {
               value={attributes.title} // Any existing content, either from the database or an attribute default
               allowedFormats={[]} // Allow the content to be made bold or italic, but do not allow other formatting options
               onChange={(title) => setAttributes({ title })} // Store updated content as a block attribute
-              placeholder={__("Title")} // Display this text before any content has been added by the user
+              placeholder={__("Title", "cds-snc")} // Display this text before any content has been added by the user
             />
             <RichText
               tagName="p" // The tag here is the element output and editable in the admin
               value={attributes.content} // Any existing content, either from the database or an attribute default
               // allowedFormats={["core/bold", "core/italic", "core/list"]} // Allow the content to be made bold or italic, but do not allow other formatting options
               onChange={(content) => setAttributes({ content })} // Store updated content as a block attribute
-              placeholder={__("Summary")} // Display this text before any content has been added by the user
+              placeholder={__("Summary", "cds-snc")} // Display this text before any content has been added by the user
             />
           </div>
         </div>

@@ -33,19 +33,16 @@ declare(strict_types=1);
             <?php
             the_custom_logo();
             if (is_front_page() && is_home()) {
-                
                 ?>
                 <h1 class="site-title"><a href="<?php echo esc_url(home_url('/')); ?>" rel="home"><?php bloginfo('name'); ?></a></h1>
                 <?php
-            } else  {
-                
+            } else {
                 ?>
                 <p class="site-title"><a href="<?php echo esc_url(home_url('/')); ?>" rel="home"><?php bloginfo('name'); ?></a></p>
                 <?php
             }
             $cds_description = get_bloginfo('description', 'display');
             if ($cds_description || is_customize_preview()) {
-                
                 ?>
                 <p class="site-description"><?php echo $cds_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?></p>
             <?php
@@ -57,9 +54,9 @@ declare(strict_types=1);
             <?php
             wp_nav_menu(
                     [
-                    'theme_location' => 'menu-1',
-                    'menu_id' => 'primary-menu',
-                ]
+                        'theme_location' => 'menu-1',
+                        'menu_id' => 'primary-menu',
+                    ]
                 );
             ?>
         </nav><!-- #site-navigation -->
