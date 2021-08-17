@@ -12,5 +12,5 @@ jobs:
         with:
           php-version: 8.0
       - run: cd wordpress && composer install --prefer-dist --no-progress --no-suggest
-      - run: cd wordpress && vendor/bin/phpinsights analyse ./wp-content/**/cds-* -n --ansi --format=github-action
+      - run: cd wordpress && vendor/bin/phpinsights analyse ./wp-content/**/cds-* -n --ansi --format=github-action --min-quality=80 --min-complexity=90 --min-architecture=75 --min-style=90
         

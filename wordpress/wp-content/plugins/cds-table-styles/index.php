@@ -1,5 +1,8 @@
 <?php
-/** 
+
+declare(strict_types=1);
+
+/**
  * Plugin Name: CDS-SNC Table Styles
  * Plugin URI: https://github.com/cds-snc/platform-mvp
  * Description: Adds additional styles to table options within the WP Admin
@@ -9,34 +12,28 @@
  * @package cds-snc-table-styles
  */
 
-defined( 'ABSPATH' ) || exit;
+defined('ABSPATH') || exit;
 
 register_block_style(
-  'core/table',
-  array(
-      'name'  => 'bordered-table',
+    'core/table',
+    [
+      'name' => 'bordered-table',
       'label' => 'Bordered Table',
-  )
+  ]
 );
 
 register_block_style(
-  'core/table',
-  array(
-      'name'  => 'filterable',
+    'core/table',
+    [
+      'name' => 'filterable',
       'label' => 'Filterable Table',
-  )
+  ]
 );
 
 register_block_style(
-  'core/table',
-  array(
-      'name'  => 'responsive-cards',
+    'core/table',
+    [
+      'name' => 'responsive-cards',
       'label' => 'Responsive Cards Table',
-  )
+  ]
 );
-
-
-
-
-
-
