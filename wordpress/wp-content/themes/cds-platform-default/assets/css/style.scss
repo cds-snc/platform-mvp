@@ -1,0 +1,32 @@
+
+
+// Variables and bootstrap overrides
+@import "config/variables";
+
+// Include all of Bootstrap
+@import "../modules/bootstrap/scss/bootstrap";
+
+//Custom CSS
+@import "config/mixins";
+@import "config/functions";
+@import "config/typography";
+
+// Include libraries
+// @import "../modules/select2/core";
+
+@import "layout";
+@import "component/buttons";
+// @import "component/search";
+@import "component/card";
+@import "component/nav";
+@import "component/sidebar";
+
+@import "section/header";
+@import "section/footer";
+@import "section/common";
+@import "section/content";
+@import "section/homepage";
+@import "section/search";
+
+
+@import "tailwind";

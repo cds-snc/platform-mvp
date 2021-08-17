@@ -1,0 +1,64 @@
+// fontawesome
+@mixin fa {
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+@mixin fas {
+  @include fa;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+}
+
+//Ratio buddy
+@mixin ratio($x, $y, $inner, $gutter: 0) {
+  position: relative;
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: ($y / $x) * 100%;
+  }
+  > #{$inner} {
+    position: absolute;
+    top: 0;
+    right: #{$gutter}px;
+    bottom: 0;
+    left: #{$gutter}px;
+  }
+}
+
+@mixin focus($outline: 3px, $outlineOffset: 0) {
+  outline: $outline solid var(--yellow);
+  outline-offset: $outlineOffset;
+}
+
+
+@mixin chevron($direction: "right") {
+  border-style: solid;
+  content: "";
+  display: inline-block;
+  height: 0.45em;
+  position: relative;
+  width: 0.45em;
+  transform: rotate(45deg);
+
+  @if $direction == "right" {
+    border-width: 0.15em 0.15em 0 0;
+    left: 0.3em;
+  } @else if $direction == "left" {
+    border-width: 0 0 0.15em 0.15em;
+    right: 0.3em;
+  } @else if $direction == "down" {
+    border-width: 0 0.15em 0.15em 0;
+    bottom: 0.25em;
+    left: 0.6em;
+  } @else if $direction == "up" {
+    border-width: 0.15em 0 0 0.15em;
+    top: 0;
+    left: 0.6em;
+  }
+}
