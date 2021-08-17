@@ -1,28 +1,19 @@
-FROM php:cli-alpine
+FROM wordpress:cli
 
-# install sudo
-RUN apk add sudo
+# ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+USER root
 
-# SSH
-RUN apk add --update openssh
-
-# Composer
-RUN apk add --no-cache composer
-
-# WP-CLI
-RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-RUN chmod +x wp-cli.phar
-RUN mv wp-cli.phar /usr/local/bin/wp
-
-# GIT
-RUN apk add git
-
-# Node/NPM
-RUN apk add --no-cache nodejs npm
-
-# ZSH
-RUN apk add zsh zsh-autosuggestions zsh-syntax-highlighting \
-    rm -rf /var/cache/apk/*
+# install utils
+RUN apk add sudo --no-cache \
+    nano \
+    openssh \
+    git \
+    composer \
+    nodejs \
+    npm \
+    zsh \
+    zsh-autosuggestions \
+    zsh-syntax-highlighting
 
 # Create non-root default user
 ARG USER=default
