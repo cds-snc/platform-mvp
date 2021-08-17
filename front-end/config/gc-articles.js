@@ -28,11 +28,9 @@ export const gcArticles = {
       state: {
         theme: {
           menu: [
-            ["Home", "/"],
-            ["Nature", "/category/nature/"],
-            ["Travel", "/category/travel/"],
-            ["Japan", "/tag/japan/"],
-            ["About Us", "/about-us/"]
+            ["Home", "/gc-articles/"],
+            ["Nature", "/gc-articles/category/nature/"],
+            ["Travel", "/gc-articles/category/travel/"],
           ],
           colors: {
             primary: "#E6324B",
