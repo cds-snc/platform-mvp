@@ -1,8 +1,8 @@
 {
-	"name": "cds-snc-expander",
+	"name": "cds-base",
 	"version": "1.0.0",
 	"private": true,
-	"description": "CDS-SNC expander",
+	"description": "CDS-SNC base plugin",
 	"author": "Tim Arney",
 	"license": "GPL-2.0-or-later",
 	"keywords": [
@@ -14,14 +14,13 @@
 	"bugs": {
 		"url": "https://github.com/cds-snc/platform-mvp/issues"
 	},
-	"main": "build/index.js",
+	"main": "index.js",
 	"devDependencies": {
 		"@wordpress/scripts": "^9.0.0"
 	},
 	"scripts": {
-		"build": "wp-scripts build",
-		"format:js": "wp-scripts format-js",
-		"lint:js": "wp-scripts lint-js",
+		"build": "wp-scripts build src/index.js",
+		"update-translations": "scripts/translations/extract-messages.sh && scripts/translations/update-translation-files.sh && scripts/translations/compile-translation-files.sh",
 		"packages-update": "wp-scripts packages-update",
 		"start": "wp-scripts start"
 	}
