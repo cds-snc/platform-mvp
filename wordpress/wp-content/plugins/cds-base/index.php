@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Plugin Name: CDS-SNC Base
  * Plugin URI: https://github.com/cds-snc/platform-mvp
@@ -10,12 +12,12 @@
  * @package cds-snc-base
  */
 
-defined( 'ABSPATH' ) || exit;
+defined('ABSPATH') || exit;
 
 /**
  * Load all translations for our plugin from the MO file.
-*/
-add_action( 'init', 'cds_textdomain' );
+ */
+add_action('init', 'cds_textdomain');
 
 function cds_textdomain() {
 	load_plugin_textdomain( 'cds-snc', false, basename( __DIR__ ) . '/languages' );
@@ -88,4 +90,4 @@ function cds_register_block() {
   }
 
 }
-add_action( 'init', 'cds_register_block' );
+add_action('init', 'cds_register_block');
