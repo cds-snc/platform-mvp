@@ -87,7 +87,8 @@ services:
       /bin/bash -c '
       sleep 10;
       wp core multisite-install --path="/var/www/html" --url="localhost:${WEB_PORT}" --title="CDS Wordpress Base" --admin_user=${ADMIN_USER} --admin_password=${ADMIN_PASSWORD} --admin_email=${ADMIN_EMAIL};
-      wp theme enable cds-default --activate
+      wp theme enable cds-default --activate;
+      wp plugin activate cds-base --network;
       '
     volumes:
       - wordpress:/var/www/html
