@@ -18,3 +18,7 @@ import './commands'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+import { registerWpTestCommands } from 'cypress-wp-test-utils';
+
+registerWpTestCommands();
