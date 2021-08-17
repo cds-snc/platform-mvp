@@ -1,6 +1,6 @@
 HERE=`dirname $0`
 ROOT="$HERE/../.."
-DOCKER_ROOT="/var/www/html/wp-content/plugins/cds"
+DOCKER_ROOT="/var/www/html/wp-content/plugins/cds-base"
 
 for file in `find "$ROOT/languages" -name "*.po"`
 do

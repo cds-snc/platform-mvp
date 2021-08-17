@@ -3,7 +3,7 @@ import { registerBlockType } from "@wordpress/blocks";
 import { useBlockProps, RichText } from "@wordpress/block-editor";
 
 registerBlockType("cds-snc/expander", {
-  title: __("Expander", "cds-snc-expander"),
+  title: __("Expander", "cds-snc"),
   icon: "megaphone",
   category: "layout",
   example: {},

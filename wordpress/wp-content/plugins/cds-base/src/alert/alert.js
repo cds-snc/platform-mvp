@@ -11,11 +11,11 @@ import { PanelBody, PanelRow, SelectControl } from "@wordpress/components";
 
 const AlertSettings = ({ alertType, setAttributes }) => (
   <InspectorControls>
-    <PanelBody title="Settings" initialOpen={true}>
+    <PanelBody title={__("Settings", "cds-snc")} initialOpen={true}>
       <PanelRow>
         <PanelRow>
           <SelectControl
-            label="Alert Type"
+            label={__("Alert Type", "cds-snc")}
             value={alertType}
             options={[
               { label: __("Info", "cds-snc"), value: "alert-info" },
@@ -32,7 +32,7 @@ const AlertSettings = ({ alertType, setAttributes }) => (
 );
 
 registerBlockType("cds-snc/alert", {
-  title: __("Alert", "cds-snc-alert"),
+  title: __("Alert", "cds-snc"),
   icon: "info-outline",
   category: "layout",
   example: {},
