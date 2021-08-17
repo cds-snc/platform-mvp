@@ -62,12 +62,9 @@ function cds_infinite_scroll_render(): void
     while (have_posts()) {
         the_post();
         if (is_search()) {
-            
             get_template_part('template-parts/content', 'search');
-        } else  {
-            
+        } else {
             get_template_part('template-parts/content', get_post_type());
         }
-    
     }
 }

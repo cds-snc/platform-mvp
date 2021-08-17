@@ -130,7 +130,6 @@ if (! function_exists('cds_post_thumbnail')) {
         }
 
         if (is_singular()) {
-            
             ?>
 
             <div class="post-thumbnail">
@@ -138,19 +137,19 @@ if (! function_exists('cds_post_thumbnail')) {
             </div><!-- .post-thumbnail -->
 
         <?php
-        } else  { ?>
+        } else { ?>
 
             <a class="post-thumbnail" href="<?php the_permalink(); ?>" aria-hidden="true" tabindex="-1">
                 <?php
                     the_post_thumbnail(
                 'post-thumbnail',
                 [
-                            'alt' => the_title_attribute(
-                                [
+                    'alt' => the_title_attribute(
+                        [
                                     'echo' => false,
                                 ]
-                            ),
-                        ]
+                    ),
+                ]
             );
                 ?>
             </a>
