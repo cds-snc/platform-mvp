@@ -31,8 +31,6 @@ get_header();
                 ]
             );
             */
-
-
         } // End of the loop.
         ?>
 

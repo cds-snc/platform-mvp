@@ -28,26 +28,26 @@ declare(strict_types=1);
     <div class="entry-content template-part-content">
         <?php
          if (is_singular()) {
-            the_content(
+             the_content(
                 sprintf(
-                        wp_kses(
+                    wp_kses(
                     /* translators: %s: Name of current post. Only visible to screen readers */
                     __('Continue reading<span class="screen-reader-text"> "%s"</span>', 'cds'),
-                    [
+                            [
                         'span' => [
                             'class' => [],
                         ],
                     ]
-                ),
-                        wp_kses_post(get_the_title())
-                    )
+                        ),
+                    wp_kses_post(get_the_title())
+                )
             );
-        }else{
-            wp_trim_excerpt(the_excerpt());
-        }
+         } else {
+             wp_trim_excerpt(the_excerpt());
+         }
 
         if (get_post_type() === 'post') {
-        ?>
+            ?>
              <div class="entry-meta">
                 [<?php cds_posted_on(); ?>]
             </div><!-- .entry-meta -->

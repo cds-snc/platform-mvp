@@ -38,12 +38,12 @@ declare(strict_types=1);
                 wp_kses(
                         /* translators: %s: Name of current post. Only visible to screen readers */
                         __('Edit <span class="screen-reader-text">%s</span>', 'cds'),
-                        [
+                    [
                             'span' => [
                                 'class' => [],
                             ],
                         ]
-                    ),
+                ),
                 wp_kses_post(get_the_title())
             ),
             '<span class="edit-link">',

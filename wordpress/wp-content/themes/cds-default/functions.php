@@ -74,11 +74,9 @@ if (! function_exists('cds_setup')) {
                 'script',
             ]
         );
-
     }
 }
 add_action('after_setup_theme', 'cds_setup');
-
 
 /**
  * Enqueue scripts and styles.
@@ -89,7 +87,6 @@ function cds_scripts(): void
 }
 add_action('wp_enqueue_scripts', 'cds_scripts');
 
-
 /**
  * Custom template tags for this theme.
  */
@@ -99,6 +96,3 @@ require get_template_directory() . '/inc/template-tags.php';
  * Functions which enhance the theme by hooking into WordPress.
  */
 require get_template_directory() . '/inc/template-functions.php';
-
-
-

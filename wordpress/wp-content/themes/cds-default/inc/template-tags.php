@@ -29,7 +29,7 @@ if (! function_exists('cds_posted_on')) {
             esc_html(get_the_modified_date())
         );
 
-        $posted_on =  $time_string;
+        $posted_on = $time_string;
 
         echo '<span class="posted-on">' . $posted_on . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     }
@@ -62,7 +62,7 @@ if (! function_exists('cds_entry_footer')) {
             $pId = get_the_ID();
             /* translators: used between list items, there is a space after the comma */
             // $categories_list = get_the_category_list(esc_html__(', ', 'cds'));
-            echo "<ul class='list-inline'>".cds_category_links($pId)."</ul>";
+            echo "<ul class='list-inline'>".cds_category_links($pId).'</ul>';
         }
 
         // edit_post_link(
@@ -114,8 +114,8 @@ if (! function_exists('cds_post_thumbnail')) {
                 [
                     'alt' => the_title_attribute(
                         [
-                                    'echo' => false,
-                                ]
+                            'echo' => false,
+                        ]
                     ),
                 ]
             );

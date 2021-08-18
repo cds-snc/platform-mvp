@@ -42,15 +42,14 @@ function cds_pingback_header(): void
 }
 add_action('wp_head', 'cds_pingback_header');
 
-function cds_prev_next_links() : void
+function cds_prev_next_links(): void
 {
     $prev_post = get_previous_post();
     $prev_id = $prev_post->ID;
     $prev_permalink = get_permalink($prev_id);
     $next_post = get_next_post();
     $next_id = $next_post->ID;
-    $next_permalink = get_permalink($next_id);
-    ?>
+    $next_permalink = get_permalink($next_id); ?>
 
     <nav class="mrgn-tp-xl">
         <h2 class="wb-inv"> <?php _e('Document navigation', 'cds'); ?> </h2>
@@ -67,24 +66,24 @@ function cds_prev_next_links() : void
     <?php
 }
 
-function cds_category_links($post_id, $separator = ",") : string
+function cds_category_links($post_id, $separator = ','): string
 {
     global $wp_rewrite;
-    $categories = apply_filters( 'the_category_list', get_the_category( $post_id ), $post_id );
+    $categories = apply_filters('the_category_list', get_the_category($post_id), $post_id);
 
-    $rel = ( is_object( $wp_rewrite ) && $wp_rewrite->using_permalinks() ) ? 'rel="category tag"' : 'rel="category"';
+    $rel = is_object($wp_rewrite) && $wp_rewrite->using_permalinks() ? 'rel="category tag"' : 'rel="category"';
 
     $list = '';
 
     $i = 0;
     /* https://wet-boew.github.io/GCWeb/templates/legislation/regulations-en.html */
-    foreach ( $categories as $category ) {
-        if ( 0 < $i )
+    foreach ($categories as $category) {
+        if (0 < $i) {
             $list .= $separator;
-            $list .= '<li><a href="' . get_category_link( $category->term_id ) . ' " class="'.$category->class. '" ' . $rel . '>[' . $category->name.']</a></li>';
-            ++$i;
+        }
+        $list .= '<li><a href="' . get_category_link($category->term_id) . ' " class="'.$category->class. '" ' . $rel . '>[' . $category->name.']</a></li>';
+        ++$i;
     }
 
-    return  $list;
-
+    return $list;
 }
