@@ -23,7 +23,7 @@ services:
     container_name: wordpress
     restart: always
     ports:
-      - ${WEB_PORT}:80
+      - 80:80
     env_file: .env
     environment:
       WORDPRESS_CONFIG_EXTRA: |
@@ -31,7 +31,7 @@ services:
         define('WP_ALLOW_MULTISITE', true );
         define('MULTISITE', true);
         define('SUBDOMAIN_INSTALL', false);
-        define('DOMAIN_CURRENT_SITE', 'localhost:${WEB_PORT}');
+        define('DOMAIN_CURRENT_SITE', 'localhost');
         define('PATH_CURRENT_SITE', '/');
         define('SITE_ID_CURRENT_SITE', 1);
         define('BLOG_ID_CURRENT_SITE', 1);
@@ -80,14 +80,14 @@ services:
         define('WP_ALLOW_MULTISITE', true );
         define('MULTISITE', true);
         define('SUBDOMAIN_INSTALL', false);
-        define('DOMAIN_CURRENT_SITE', 'localhost:${WEB_PORT}');
+        define('DOMAIN_CURRENT_SITE', 'localhost');
         define('PATH_CURRENT_SITE', '/');
         define('SITE_ID_CURRENT_SITE', 1);
         define('BLOG_ID_CURRENT_SITE', 1);
     command: >
       /bin/bash -c '
       sleep 10;
-      wp core multisite-install --path="/var/www/html" --url="localhost:${WEB_PORT}" --title="CDS Wordpress Base" --admin_user=${ADMIN_USER} --admin_password=${ADMIN_PASSWORD} --admin_email=${ADMIN_EMAIL};
+      wp core multisite-install --path="/var/www/html" --url="localhost" --title="CDS Wordpress Base" --admin_user=${ADMIN_USER} --admin_password=${ADMIN_PASSWORD} --admin_email=${ADMIN_EMAIL};
       wp option update permalink_structure "/%postname%/";
       wp theme enable cds-default --activate;
       wp plugin activate cds-base --network;
@@ -116,7 +116,7 @@ services:
         define('WP_ALLOW_MULTISITE', true );
         define('MULTISITE', true);
         define('SUBDOMAIN_INSTALL', false);
-        define('DOMAIN_CURRENT_SITE', 'localhost:${WEB_PORT}');
+        define('DOMAIN_CURRENT_SITE', 'localhost');
         define('PATH_CURRENT_SITE', '/');
         define('SITE_ID_CURRENT_SITE', 1);
         define('BLOG_ID_CURRENT_SITE', 1);
