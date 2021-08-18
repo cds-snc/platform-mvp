@@ -41,3 +41,28 @@ function cds_pingback_header(): void
     }
 }
 add_action('wp_head', 'cds_pingback_header');
+
+function cds_prev_next_links() : void
+{
+    $prev_post = get_previous_post();
+    $prev_id = $prev_post->ID;
+    $prev_permalink = get_permalink($prev_id);
+    $next_post = get_next_post();
+    $next_id = $next_post->ID;
+    $next_permalink = get_permalink($next_id);
+    ?>
+
+    <nav class="mrgn-tp-xl">
+        <h2 class="wb-inv"> <?php _e('Document navigation', 'cds'); ?> </h2>
+        <ul class="pager">
+            <li class="next">
+                <a href="<?php echo $next_permalink; ?>"><?php _e('Next blog post', 'cds'); ?> &nbsp;»</a>
+            </li>
+            <li class="previous">
+                <a  href="<?php echo $prev_permalink; ?>" rel="prev">«&nbsp;<?php  _e('Previous blog post', 'cds'); ?></a>
+            </li>
+        </ul>
+    </nav>
+
+    <?php
+}
