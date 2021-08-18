@@ -59,37 +59,28 @@ if (! function_exists('cds_entry_footer')) {
     {
         // Hide category and tag text for pages.
         if (get_post_type() === 'post') {
+            $pId = get_the_ID();
             /* translators: used between list items, there is a space after the comma */
-            $categories_list = get_the_category_list(esc_html__(', ', 'cds'));
-            if ($categories_list) {
-                /* translators: 1: list of categories. */
-                printf('<span class="cat-links">' . esc_html__('Posted in %1$s', 'cds') . '</span>', $categories_list); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-            }
-
-            /* translators: used between list items, there is a space after the comma */
-            $tags_list = get_the_tag_list('', esc_html_x(', ', 'list item separator', 'cds'));
-            if ($tags_list) {
-                /* translators: 1: list of tags. */
-                printf('<span class="tags-links">' . esc_html__('Tagged %1$s', 'cds') . '</span>', $tags_list); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-            }
+            // $categories_list = get_the_category_list(esc_html__(', ', 'cds'));
+            echo "<ul class='list-inline'>".cds_category_links($pId)."</ul>";
         }
 
-        edit_post_link(
-            sprintf(
-                wp_kses(
+        // edit_post_link(
+            // sprintf(
+                // wp_kses(
                     /* translators: %s: Name of current post. Only visible to screen readers */
-                    __('Edit <span class="screen-reader-text">%s</span>', 'cds'),
-                    [
-                        'span' => [
-                            'class' => [],
-                        ],
-                    ]
-                ),
-                wp_kses_post(get_the_title())
-            ),
-            '<span class="edit-link">',
-            '</span>'
-        );
+                    // __('Edit <span class="screen-reader-text">%s</span>', 'cds'),
+                    // [
+                        // 'span' => [
+                            // 'class' => [],
+                        // ],
+                    // ]
+                // ),
+                // wp_kses_post(get_the_title())
+            // ),
+            // '<span class="edit-link">',
+            // '</span>'
+        // );
     }
 }
 
