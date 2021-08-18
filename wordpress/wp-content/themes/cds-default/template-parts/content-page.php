@@ -17,7 +17,7 @@ declare(strict_types=1);
 
     <?php cds_post_thumbnail(); ?>
 
-    <div class="entry-content">
+    <div class="entry-content template-part-content-page">
         <?php
         the_content();
 

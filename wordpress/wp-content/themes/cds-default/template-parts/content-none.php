@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 ?>
 
-<section class="no-results not-found">
+<section class="no-results not-found template-part-content-none">
     <header class="page-header">
         <h1 class="gc-thickline"><?php esc_html_e('Nothing Found', 'cds'); ?></h1>
     </header><!-- .page-header -->

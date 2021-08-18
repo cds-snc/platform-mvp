@@ -13,7 +13,7 @@ declare(strict_types=1);
 get_header();
 ?>
 
-    <main property="mainContentOfPage" class="container" resource="#wb-main" typeof="WebPageElement">
+    <main property="mainContentOfPage" class="single container" resource="#wb-main" typeof="WebPageElement">
 
         <?php
         while (have_posts()) {
