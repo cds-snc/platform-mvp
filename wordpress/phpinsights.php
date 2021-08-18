@@ -58,6 +58,7 @@ return [
         'wp-content/plugins/akismet',
         'wp-content/plugins/wp-rest-api-v2-menus',
         'wp-content/plugins/hello.php',
+        'wp-content/plugins/oasis-workflow',
     ],
 
     'add' => [

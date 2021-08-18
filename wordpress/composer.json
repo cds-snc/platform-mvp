@@ -6,7 +6,8 @@
         }
     ],
     "require": {
-        "wpackagist-plugin/wp-rest-api-v2-menus": "^0.10.0"
+        "wpackagist-plugin/wp-rest-api-v2-menus": "^0.10.0",
+        "wpackagist-plugin/oasis-workflow": "^5.7"
     },
     "require-dev": {
         "nunomaduro/phpinsights": "^2.0"
