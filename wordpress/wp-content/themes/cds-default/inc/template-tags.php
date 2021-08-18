@@ -29,11 +29,7 @@ if (! function_exists('cds_posted_on')) {
             esc_html(get_the_modified_date())
         );
 
-        $posted_on = sprintf(
-            /* translators: %s: post date. */
-            esc_html_x('Posted on %s', 'post date', 'cds'),
-            '<a href="' . esc_url(get_permalink()) . '" rel="bookmark">' . $time_string . '</a>'
-        );
+        $posted_on =  $time_string;
 
         echo '<span class="posted-on">' . $posted_on . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     }
@@ -76,25 +72,6 @@ if (! function_exists('cds_entry_footer')) {
                 /* translators: 1: list of tags. */
                 printf('<span class="tags-links">' . esc_html__('Tagged %1$s', 'cds') . '</span>', $tags_list); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             }
-        }
-
-        if (! is_single() && ! post_password_required() && (comments_open() || get_comments_number())) {
-            echo '<span class="comments-link">';
-            comments_popup_link(
-                sprintf(
-                    wp_kses(
-                        /* translators: %s: post title */
-                        __('Leave a Comment<span class="screen-reader-text"> on %s</span>', 'cds'),
-                        [
-                            'span' => [
-                                'class' => [],
-                            ],
-                        ]
-                    ),
-                    wp_kses_post(get_the_title())
-                )
-            );
-            echo '</span>';
         }
 
         edit_post_link(
