@@ -60,6 +60,7 @@ return [
         'wp-content/plugins/hello.php',
         'wp-content/plugins/oasis-workflow',
         'wp-content/plugins/wp-mail-smtp',
+        'wp-content/plugins/wordpress-importer',
     ],
 
     'add' => [
