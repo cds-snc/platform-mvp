@@ -8,7 +8,8 @@
     "require": {
         "wpackagist-plugin/wp-rest-api-v2-menus": "^0.10.0",
         "wpackagist-plugin/oasis-workflow": "^5.7",
-        "wpackagist-plugin/wp-mail-smtp": "^3.0"
+        "wpackagist-plugin/wp-mail-smtp": "^3.0",
+        "wpackagist-plugin/wordpress-importer": "^0.7.0"
     },
     "require-dev": {
         "nunomaduro/phpinsights": "^2.0"
