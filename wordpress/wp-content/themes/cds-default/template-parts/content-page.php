@@ -13,13 +13,11 @@ declare(strict_types=1);
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-    <header class="entry-header">
-        <?php the_title('<h1 class="entry-title">', '</h1>'); ?>
-    </header><!-- .entry-header -->
+    <?php the_title('<h1 id="wb-cont" property="name" class="gc-thickline">', '</h1>'); ?>
 
     <?php cds_post_thumbnail(); ?>
 
-    <div class="entry-content">
+    <div class="entry-content template-part-content-page">
         <?php
         the_content();
 
@@ -40,12 +38,12 @@ declare(strict_types=1);
                 wp_kses(
                         /* translators: %s: Name of current post. Only visible to screen readers */
                         __('Edit <span class="screen-reader-text">%s</span>', 'cds'),
-                        [
+                    [
                             'span' => [
                                 'class' => [],
                             ],
                         ]
-                    ),
+                ),
                 wp_kses_post(get_the_title())
             ),
             '<span class="edit-link">',
