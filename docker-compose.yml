@@ -38,6 +38,7 @@ services:
     volumes:
       - wordpress:/var/www/html
       - ./wordpress/wp-content:/var/www/html/wp-content
+      - ./wordpress/.htaccess-multisite:/var/www/html/.htaccess
     networks:
       - app-network
 
