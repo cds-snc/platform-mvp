@@ -90,6 +90,7 @@ services:
       wp theme enable cds-default --activate;
       wp plugin activate cds-base --network;
       wp plugin activate oasis-workflow --network;
+      wp plugin activate wp-mail-smtp --network;
       '
     volumes:
       - wordpress:/var/www/html
