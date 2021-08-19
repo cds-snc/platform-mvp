@@ -7,6 +7,7 @@ USER root
 RUN apk add sudo --no-cache \
     nano \
     openssh \
+    rsync \
     git \
     composer \
     nodejs \
