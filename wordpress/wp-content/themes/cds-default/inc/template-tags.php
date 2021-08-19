@@ -101,7 +101,7 @@ if (! function_exists('cds_post_thumbnail')) {
             ?>
 
             <div class="post-thumbnail">
-                <?php the_post_thumbnail("full",  ['class' => 'img-responsive full-width']); ?>
+                <?php the_post_thumbnail('full', ['class' => 'img-responsive full-width']); ?>
             </div><!-- .post-thumbnail -->
 
         <?php
@@ -117,7 +117,7 @@ if (! function_exists('cds_post_thumbnail')) {
                             'echo' => false,
                         ]
                     ),
-                    'class' => 'img-responsive thumbnail'
+                    'class' => 'img-responsive thumbnail',
                 ]
             );
                 ?>

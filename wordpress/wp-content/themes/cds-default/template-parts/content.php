@@ -29,19 +29,19 @@ declare(strict_types=1);
         <?php
          if (is_singular()) {
              the_content(
-                sprintf(
+                 sprintf(
                     wp_kses(
                     /* translators: %s: Name of current post. Only visible to screen readers */
                     __('Continue reading<span class="screen-reader-text"> "%s"</span>', 'cds'),
-                            [
-                        'span' => [
-                            'class' => [],
-                        ],
-                    ]
-                        ),
+                        [
+                                'span' => [
+                                    'class' => [],
+                                ],
+                            ]
+                    ),
                     wp_kses_post(get_the_title())
                 )
-            );
+             );
          } else {
              wp_trim_excerpt(the_excerpt());
          }
