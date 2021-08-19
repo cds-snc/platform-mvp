@@ -87,3 +87,42 @@ function cds_category_links($post_id, $separator = ','): string
 
     return $list;
 }
+
+function cds_the_posts_navigation($args = []): void
+{
+    $navigation = '';
+
+    // Don't print empty markup if there's only one page.
+    if ($GLOBALS['wp_query']->max_num_pages > 1) {
+        // Make sure the nav element has an aria-label attribute: fallback to the screen reader text.
+        if (! empty($args['screen_reader_text']) && empty($args['aria_label'])) {
+            $args['aria_label'] = $args['screen_reader_text'];
+        }
+
+        $args = wp_parse_args(
+            $args,
+            [
+                'prev_text' => __('Older posts'),
+                'next_text' => __('Newer posts'),
+                'screen_reader_text' => __('Posts navigation'),
+                'aria_label' => __('Posts'),
+                'class' => 'posts-navigation',
+            ]
+        );
+
+        $next_link = get_previous_posts_link($args['next_text']);
+        $prev_link = get_next_posts_link($args['prev_text']);
+
+        if ($prev_link) {
+            $navigation .= '<li class="previous">' . $prev_link . '</li>';
+        }
+
+        if ($next_link) {
+            $navigation .= '<li class="next">' . $next_link . '</li>';
+        }
+
+        $navigation = _navigation_markup($navigation, $args['class'], $args['screen_reader_text'], $args['aria_label']);
+    }
+
+    echo $navigation;
+}
