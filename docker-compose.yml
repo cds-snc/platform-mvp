@@ -86,7 +86,7 @@ services:
         define('BLOG_ID_CURRENT_SITE', 1);
     command: >
       /bin/bash -c '
-      sleep 10;
+      /wait-for-it.sh db:3306;
       wp core multisite-install --path="/var/www/html" --url="localhost" --title="CDS Wordpress Base" --admin_user=${ADMIN_USER} --admin_password=${ADMIN_PASSWORD} --admin_email=${ADMIN_EMAIL};
       wp option update permalink_structure "/%postname%/";
       wp theme enable cds-default --activate;
@@ -94,10 +94,12 @@ services:
       wp plugin activate oasis-workflow --network;
       wp plugin activate wp-mail-smtp --network;
       wp plugin activate wordpress-importer --network;
+      wp plugin activate wordpress-seo --network;
       '
     volumes:
       - wordpress:/var/www/html
       - ./wordpress/wp-content:/var/www/html/wp-content
+      - ./wait-for-it.sh:/wait-for-it.sh
     networks:
       - app-network
 
@@ -124,20 +126,11 @@ services:
       - wordpress:/var/www/html
       - ./wordpress/wp-content:/var/www/html/wp-content
       - ./:/home/default/project
+      - ~/.ssh:/home/default/.ssh
+      - ~/.gitconfig:/home/default/.gitconfig
     restart: unless-stopped
     networks:
       - app-network
-
-  build-plugin:
-    container_name: build-plugin
-    restart: 'no'
-    image: node:slim
-    volumes:
-      - ./:/home/default/project
-    working_dir: /home/default/project/wordpress/wp-content/plugins/cds-base
-    command: >
-      bash -c "npm i
-      && npm run build"
 
 volumes:
   wordpress:

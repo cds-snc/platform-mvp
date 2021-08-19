@@ -10,6 +10,12 @@
         "wpackagist-plugin/oasis-workflow": "^5.7",
         "wpackagist-plugin/wp-mail-smtp": "^3.0",
         "wpackagist-plugin/wordpress-importer": "^0.7.0",
+        "wpackagist-plugin/wordpress-seo": "^16.9"
+    },
+    "require-dev": {
         "nunomaduro/phpinsights": "^2.0"
+    },
+    "scripts": {
+        "post-install-cmd": "cd wp-content/themes/cds-default && composer install"
     }
 }
