@@ -1,7 +1,5 @@
 # platform-mvp
 
-Stay tuned ...
-
 ## Local dev
 
 Docker-compose and VS Code Remote Container environment featuring:
@@ -12,9 +10,10 @@ Docker-compose and VS Code Remote Container environment featuring:
   - phpmyadmin (db admin)
 
 ## Requirements
+- NPM
 - Docker
 - Docker-compose
-- VS Code w/ Remote Containers extension
+- VS Code w/ Remote Containers extension (optional)
 
 ## Config
 
@@ -26,10 +25,38 @@ cp .env.example .env
 
 ## Usage
 
+To start, clone the repo and then run NPM install:
+
+```
+git clone git@github.com:cds-snc/platform-mvp.git
+cd platform-mvp
+npm i
+```
+
+Then you can bring up the environment using docker-compose:
+
+```
+docker-compose up
+```
+
+Once the services are running, you can access a cli environment preconfigured with all the tools needed for development:
+
+```
+npm run cli
+```
+
+Alternatively, you can open the project in VS Code Remote Containers:
+
 - Open the project in VS Code
 - When prompted "Reopen in container" or press F1 -> Remote-Containers: Open folder in container
-- Visit `localhost:8000` to see your new WordPress install
-- Visit `localhost:8000/wp-admin` to see the admin interface
+- VS Code will open a devcontainer terminal environment
+
+### Access WordPress
+
+Either way, once the environment is up, the site will be available on `localhost`:
+
+- Visit `localhost` to see your new WordPress install
+- Visit `localhost/wp-admin` to see the admin interface
 
 Wordpress will be installed with some pre-configured plugins and themes, and will be configured as a multi-site install. There will also be a default administrator account, with the following credentials:
 
@@ -51,6 +78,12 @@ Web interface: `localhost:8080`
 
 ## Plugins and Themes
 
+Pre-installed plugins:
+- [oasis-workflow](https://www.oasisworkflow.com/)
+- [wordpress-importer](https://wordpress.org/plugins/wordpress-importer/)
+- [wp-mail-smtp](https://wordpress.org/plugins/wp-mail-smtp/)
+- [wp-rest-api-v2-menus](https://wordpress.org/plugins/wp-rest-api-v2-menus/)
+
 ### Installing
 This project is configured to use [Composer](https://getcomposer.org/) to manage [WordPress Themes and Plugins](https://www.smashingmagazine.com/2019/03/composer-wordpress/). 
 
@@ -60,4 +93,4 @@ Note: when starting up the devcontainer or docker-compose, `composer install` is
 
 ### Creating
 
-When creating a custom plugin or theme, you should prefix the folder name with `cds-`.
+When creating a custom plugin or theme, you should prefix the folder name with `cds-`. This will ensure the code is included in git and code quality scans.
