@@ -13,5 +13,8 @@
     },
     "require-dev": {
         "nunomaduro/phpinsights": "^2.0"
+    },
+    "scripts": {
+        "post-install-cmd": "cd wp-content/themes/cds-default && composer install"
     }
 }
