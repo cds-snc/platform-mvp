@@ -65,17 +65,17 @@ function cds_register_block(): void
     register_block_style(
         'core/table',
         [
-              'name' => 'filterable',
-              'label' => 'Filterable Table',
-          ]
+            'name' => 'filterable',
+            'label' => 'Filterable Table',
+        ]
     );
 
     register_block_style(
         'core/table',
         [
-              'name' => 'responsive-cards',
-              'label' => 'Responsive Cards Table',
-          ]
+            'name' => 'responsive-cards',
+            'label' => 'Responsive Cards Table',
+        ]
     );
 
     if (function_exists('wp_set_script_translations')) {
