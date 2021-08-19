@@ -124,6 +124,8 @@ services:
       - wordpress:/var/www/html
       - ./wordpress/wp-content:/var/www/html/wp-content
       - ./:/home/default/project
+      - ~/.ssh:/home/default/.ssh
+      - ~/.gitconfig:/home/default/.gitconfig
     restart: unless-stopped
     networks:
       - app-network
