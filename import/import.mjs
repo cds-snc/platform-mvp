@@ -3,8 +3,7 @@
 import { readFileSync } from 'fs';
 import { spawn } from 'child_process';
 
-importNotifyTemplates('./imports/export_public_templates.json')
-
+importNotifyTemplates(process.env.npm_config_file)
 /**
  * Create posts from a json formatted notify template
  * @param filename 
