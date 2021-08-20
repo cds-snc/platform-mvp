@@ -116,3 +116,5 @@ dist
 wordpress/wp-content/uploads
 
 .idea
+
+.phpunit.result.cache
