@@ -2,7 +2,8 @@
     "name": "deploy",
     "scripts": {
       "deploy-plugin": "./deploy/plugin",
-      "deploy-theme": "./deploy/theme"
+      "deploy-theme": "./deploy/theme",
+      "import": "./import/notify-templates"
     }
   }
   
