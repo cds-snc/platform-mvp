@@ -55,10 +55,10 @@ function cds_prev_next_links(): void
         <h2 class="wb-inv"> <?php _e('Document navigation', 'cds'); ?> </h2>
         <ul class="pager">
             <li class="next">
-                <a href="<?php echo $next_permalink; ?>"><?php _e('Next blog post', 'cds'); ?> &nbsp;»</a>
+                <a id="<?php echo $prev_id ?>" href="<?php echo $next_permalink; ?>"><?php _e('Next blog post', 'cds'); ?> &nbsp;»</a>
             </li>
             <li class="previous">
-                <a  href="<?php echo $prev_permalink; ?>" rel="prev">«&nbsp;<?php  _e('Previous blog post', 'cds'); ?></a>
+                <a id="<?php echo $next_id ?>" href="<?php echo $prev_permalink; ?>" rel="prev">«&nbsp;<?php  _e('Previous blog post', 'cds'); ?></a>
             </li>
         </ul>
     </nav>

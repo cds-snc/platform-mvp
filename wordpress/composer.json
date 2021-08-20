@@ -14,7 +14,8 @@
     },
     "require-dev": {
         "nunomaduro/phpinsights": "^2.0",
-        "pestphp/pest": "^1.16"
+        "pestphp/pest": "^1.16",
+        "10up/wp_mock": "0.4.2"
     },
     "scripts": {
         "post-install-cmd": "cd wp-content/themes/cds-default && composer install"
