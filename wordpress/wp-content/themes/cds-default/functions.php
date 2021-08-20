@@ -3,7 +3,9 @@
 declare(strict_types=1);
 
 require __DIR__ . '/vendor/autoload.php';
+require_once __DIR__. '/inc/template-functions.php';
 require_once __DIR__.'/inc/template-filters.php';
+
 
 /**
  * cds-default functions and definitions
@@ -94,30 +96,3 @@ add_action('wp_enqueue_scripts', 'cds_scripts');
  * Custom template tags for this theme.
  */
 require get_template_directory() . '/inc/template-tags.php';
-
-/**
- * Functions which enhance the theme by hooking into WordPress.
- */
-require get_template_directory() . '/inc/template-functions.php';
-
-function the_crumb($crumb, $sep = "")
-{
-    //if (preg_match('/\\<span\\40class=\\"breadcrumb_last\\"/\', $crumb)) {
-        
-    //}
-
-    return '<li>' . $crumb . ' <span class="divider">' . $sep . '</span></li>';
-}
-
-function the_breadcrumbs($sep = '')
-{
-    if (!function_exists('yoast_breadcrumb')) {
-        return null;
-    }
-    // Default Yoast Breadcrumbs Separator
-    //  $old_sep = '\&raquo\;';
-    $old_sep = '»';
-    // Get the crumbs
-    echo $crumbs = yoast_breadcrumb( '<div id="breadcrumbs">','</div>' );
-    
-}
