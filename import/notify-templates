@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker exec -it cli /usr/local/bin/wp --path=/var/www/html post list
