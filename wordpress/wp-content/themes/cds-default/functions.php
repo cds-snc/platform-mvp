@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 require __DIR__ . '/vendor/autoload.php';
+require_once __DIR__. '/inc/template-functions.php';
 require_once __DIR__.'/inc/template-filters.php';
 
 /**
@@ -94,8 +95,3 @@ add_action('wp_enqueue_scripts', 'cds_scripts');
  * Custom template tags for this theme.
  */
 require get_template_directory() . '/inc/template-tags.php';
-
-/**
- * Functions which enhance the theme by hooking into WordPress.
- */
-require get_template_directory() . '/inc/template-functions.php';

@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use PHPHtmlParser\Dom;
+
 /**
  * Functions which enhance the theme by hooking into WordPress
  *
@@ -91,4 +93,42 @@ function cds_the_posts_navigation($args = []): void
     }
 
     echo $navigation;
+}
+
+/* https://wet-boew.github.io/GCWeb/sites/breadcrumbs/breadcrumbs-en.html */
+
+function cds_breadcrumb($sep = '') : string
+{
+    if (! function_exists('yoast_breadcrumb')) {
+        return "";
+    }
+
+    try {
+        $crumbs = yoast_breadcrumb('<div class="breadcrumbs">', '</div>', false);
+        $dom = new Dom();
+        $dom->loadStr($crumbs);
+        $node = $dom->find('.breadcrumbs');
+        $child = $node->firstChild();
+        $html = $child->firstChild()->innerHtml;
+        $parts = explode('|', $html);
+
+        $output = '<nav id="wb-bc" property="breadcrumb">';
+        $output .= '<div class="container">';
+        $output .= '<h2><?php _e("You are here:"); ?></h2>';
+        $output .= '<ol class="breadcrumb">';
+        // note this will need to point to the correct language
+        $output .= '<li><a href="https://www.canada.ca/en.html">Canada.ca</a></li>';
+        foreach ($parts as $part) {
+            $output .= '<li>';
+            $output .= $part;
+            $output .= '</li>';
+        }
+
+        $output .= '</ol>';
+        $output .= '</div>';
+        $output .= '</nav>';
+        return $output;
+    } catch (Exception $e) {
+        return yoast_breadcrumb('<div class="breadcrumbs">', '</div>', false);
+    }
 }

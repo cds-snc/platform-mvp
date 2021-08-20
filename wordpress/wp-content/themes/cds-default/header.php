@@ -96,12 +96,9 @@ declare(strict_types=1);
                 </ul>
             </div>
         </nav>
-        <nav id="wb-bc" property="breadcrumb">
-            <h2>You are here:</h2>
-            <div class="container">
-                <ol class="breadcrumb">
-                    <li><a href="https://www.canada.ca/en.html">Canada.ca</a></li>
-                </ol>
-            </div>
-        </nav>
+       
+       
+        <?php
+            echo cds_breadcrumb();
+        ?>
     </header>
