@@ -8,40 +8,6 @@ declare(strict_types=1);
  * @package cds-default
  */
 
-/**
- * Adds custom classes to the array of body classes.
- *
- * @param array $classes Classes for the body element.
- *
- * @return array
- */
-function cds_body_classes(array $classes): array
-{
-    // Adds a class of hfeed to non-singular pages.
-    if (! is_singular()) {
-        $classes[] = 'hfeed';
-    }
-
-    // Adds a class of no-sidebar when there is no sidebar present.
-    if (! is_active_sidebar('sidebar-1')) {
-        $classes[] = 'no-sidebar';
-    }
-
-    return $classes;
-}
-add_filter('body_class', 'cds_body_classes');
-
-/**
- * Add a pingback url auto-discovery header for single posts, pages, or attachments.
- */
-function cds_pingback_header(): void
-{
-    if (is_singular() && pings_open()) {
-        printf('<link rel="pingback" href="%s">', esc_url(get_bloginfo('pingback_url')));
-    }
-}
-add_action('wp_head', 'cds_pingback_header');
-
 function cds_prev_next_links(): void
 {
     $prev_post = get_previous_post();
@@ -55,10 +21,10 @@ function cds_prev_next_links(): void
         <h2 class="wb-inv"> <?php _e('Document navigation', 'cds'); ?> </h2>
         <ul class="pager">
             <li class="next">
-                <a href="<?php echo $next_permalink; ?>"><?php _e('Next blog post', 'cds'); ?> &nbsp;»</a>
+                <a id="<?php echo $prev_id ?>" href="<?php echo $next_permalink; ?>"><?php _e('Next blog post', 'cds'); ?> &nbsp;»</a>
             </li>
             <li class="previous">
-                <a  href="<?php echo $prev_permalink; ?>" rel="prev">«&nbsp;<?php  _e('Previous blog post', 'cds'); ?></a>
+                <a id="<?php echo $next_id ?>" href="<?php echo $prev_permalink; ?>" rel="prev">«&nbsp;<?php  _e('Previous blog post', 'cds'); ?></a>
             </li>
         </ul>
     </nav>
