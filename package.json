@@ -1,9 +1,8 @@
 {
     "name": "deploy",
     "scripts": {
-      "deploy-plugin": "./deploy/plugin",
-      "deploy-theme": "./deploy/theme",
-      "import": "./import/notify-templates"
+        "deploy-plugin": "./deploy/plugin",
+        "deploy-theme": "./deploy/theme",
+        "import": "node ./import/import.mjs"
     }
-  }
-  
+}
