@@ -9,9 +9,15 @@
         "wpackagist-plugin/wp-rest-api-v2-menus": "^0.10.0",
         "wpackagist-plugin/oasis-workflow": "^5.7",
         "wpackagist-plugin/wp-mail-smtp": "^3.0",
-        "wpackagist-plugin/wordpress-importer": "^0.7.0"
+        "wpackagist-plugin/wordpress-importer": "^0.7.0",
+        "wpackagist-plugin/wordpress-seo": "^16.9"
     },
     "require-dev": {
-        "nunomaduro/phpinsights": "^2.0"
+        "nunomaduro/phpinsights": "^2.0",
+        "pestphp/pest": "^1.16",
+        "10up/wp_mock": "0.4.2"
+    },
+    "scripts": {
+        "post-install-cmd": "cd wp-content/themes/cds-default && composer install"
     }
 }

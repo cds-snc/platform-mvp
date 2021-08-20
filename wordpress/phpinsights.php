@@ -51,16 +51,7 @@ return [
     */
 
     'exclude' => [
-        'wp-content/themes/cds-platform-default',
-        'wp-content/themes/twentynineteen',
-        'wp-content/themes/twentytwenty',
-        'wp-content/themes/twentytwentyone',
-        'wp-content/plugins/akismet',
-        'wp-content/plugins/wp-rest-api-v2-menus',
-        'wp-content/plugins/hello.php',
-        'wp-content/plugins/oasis-workflow',
-        'wp-content/plugins/wp-mail-smtp',
-        'wp-content/plugins/wordpress-importer',
+
     ],
 
     'add' => [

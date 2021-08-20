@@ -1,8 +1,10 @@
 {
-    "name": "deploy",
+    "name": "platform-mvp",
     "scripts": {
-        "deploy-plugin": "./deploy/plugin",
-        "deploy-theme": "./deploy/theme",
-        "import": "node ./import/import.mjs"
+      "deploy-plugin": "./deploy/plugin",
+      "deploy-theme": "./deploy/theme",
+      "cli": "docker exec -it cli /bin/zsh",
+      "postinstall": "cd wordpress/wp-content/plugins/cds-base && npm install && npm run build",
+      "import": "node ./import/import.mjs"
     }
 }
