@@ -34,10 +34,10 @@ declare(strict_types=1);
                     /* translators: %s: Name of current post. Only visible to screen readers */
                     __('Continue reading<span class="screen-reader-text"> "%s"</span>', 'cds'),
                          [
-                            'span' => [
-                                'class' => [],
-                            ],
-                        ]
+                             'span' => [
+                                 'class' => [],
+                             ],
+                         ]
                      ),
                      wp_kses_post(get_the_title())
                  )
@@ -53,16 +53,6 @@ declare(strict_types=1);
             </div><!-- .entry-meta -->
         <?php
         }
-        ?>
-      <?php
-        /*
-        wp_link_pages(
-            [
-                'before' => '<div class="page-links">' . esc_html__('Pages:', 'cds'),
-                'after' => '</div>',
-            ]
-        );
-        */
         ?>
     </div><!-- .entry-content -->
 

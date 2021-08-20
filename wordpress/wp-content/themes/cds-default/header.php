@@ -99,6 +99,6 @@ declare(strict_types=1);
        
        
         <?php
-            cds_breadcrumb();
+            echo cds_breadcrumb();
         ?>
     </header>

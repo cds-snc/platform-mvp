@@ -6,7 +6,6 @@ require __DIR__ . '/vendor/autoload.php';
 require_once __DIR__. '/inc/template-functions.php';
 require_once __DIR__.'/inc/template-filters.php';
 
-
 /**
  * cds-default functions and definitions
  *
