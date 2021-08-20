@@ -1,4 +1,4 @@
-FROM wordpress:cli
+FROM wordpress:cli-php8.0
 
 # ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 USER root

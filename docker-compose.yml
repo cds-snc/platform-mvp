@@ -19,7 +19,9 @@ services:
   wordpress:
     depends_on:
       - db
-    image: wordpress:latest
+    build:
+      dockerfile: Dockerfile
+      context: ./wordpress/docker
     container_name: wordpress
     restart: always
     ports:
@@ -39,6 +41,8 @@ services:
       - wordpress:/var/www/html
       - ./wordpress/wp-content:/var/www/html/wp-content
       - ./wordpress/.htaccess-multisite:/var/www/html/.htaccess
+      - ./wordpress/docker/php/conf.d/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+      - ./wordpress/docker/php/conf.d/error_reporting.ini:/usr/local/etc/php/conf.d/error_reporting.ini
     networks:
       - app-network
 
@@ -72,7 +76,7 @@ services:
     depends_on:
       - db
       - wordpress
-    image: wordpress:cli
+    image: wordpress:cli-php8.0
     env_file: .env
     environment:
       WORDPRESS_CONFIG_EXTRA: |
