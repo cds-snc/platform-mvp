@@ -46,7 +46,5 @@ function importNotifyTemplates(filename) {
             console.error("ERROR", data.toString());
         });
 
-        // console.log("Post created")
-
     })
 }
