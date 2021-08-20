@@ -7,6 +7,7 @@
     <testsuites>
         <testsuite name="Test Suite">
             <directory suffix="Test.php">./tests</directory>
+            <directory suffix="Test.php">./wp-content/themes/cds-default/tests</directory>
         </testsuite>
     </testsuites>
     <coverage processUncoveredFiles="true">
