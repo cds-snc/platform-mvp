@@ -139,7 +139,7 @@ function cds_breadcrumb($sep = ''): string
 
 function get_language_text($lang = ''): array
 {
-    if (strtolower($lang) === 'french') {
+    if (strtolower($lang) === 'french' || strtolower($lang) === 'fr') {
         return ['full' => 'Français', 'abbr' => 'fr'];
     }
 
