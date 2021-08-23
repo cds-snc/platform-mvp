@@ -27,7 +27,7 @@ declare(strict_types=1);
     ></link>
     <?php $cds_description = get_bloginfo('description', 'display'); ?>
     <meta name="description" content="<?php echo $cds_description; ?>">
-    <link href="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/assets/favicon.ico" rel="icon" type="image/x-icon">
+    <link href="https://www.canada.ca/etc/designs/canada/wet-boew/assets/favicon.ico" rel="icon" type="image/x-icon">
     <noscript>
         <link rel="stylesheet" href="https://www.canada.ca/etc/designs/canada/wet-boew/css/noscript.min.css"/>
     </noscript>
@@ -54,23 +54,22 @@ declare(strict_types=1);
             ?>
             <div class="brand col-xs-9 col-sm-5 col-md-4" property="publisher" resource="#wb-publisher"
                  typeof="GovernmentOrganization">
-                <a href="https://www.canada.ca/en.html" property="url">
-
+                <a href="https://www.canada.ca/<?php echo get_active_language(); ?>.html" property="url">
                     <?php if (get_active_language() == "fr"): ?>
-                        <img src="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/assets/sig-blk-fr.svg"
+                        <img src="https://canada.ca/etc/designs/canada/wet-boew/assets/sig-blk-fr.svg"
                              alt="Gouvernement du Canada" property="logo">
                     <?php else: ?>
-                        <img src="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/assets/sig-blk-en.svg" alt=""
+                        <img src="https://canada.ca/etc/designs/canada/wet-boew/assets/sig-blk-en.svg" alt=""
                              property="logo">
                     <?php endif; ?>
                     <span class="wb-inv" property="name"> Government of Canada / <span
                                 lang="fr">Gouvernement du Canada</span></span>
                 </a>
                 <meta property="areaServed" typeof="Country" content="Canada">
-                <link property="logo" href="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/assets/wmms-blk.svg">
+                <link property="logo" href="https://canada.ca/etc/designs/canada/wet-boew/assets/wmms-blk.svg">
             </div>
             <section id="wb-srch" class="col-lg-offset-4 col-md-offset-4 col-sm-offset-2 col-xs-12 col-sm-5 col-md-4">
-                <h2>Search</h2>
+                <h2><?php _e("Search", "cds"); ?></h2>
                 <form action="/<?php echo $langText["abbr"]; ?>/sr/srb.html" method="post" name="cse-search-box"
                       role="search">
                     <div class="form-group wb-srch-qry">
@@ -95,39 +94,11 @@ declare(strict_types=1);
             <button type="button" aria-haspopup="true" aria-expanded="false"><span
                         class="wb-inv"><?php _e("Main", "cds"); ?> </span><?php _e("Menu", "cds"); ?> <span
                         class="expicon glyphicon glyphicon-chevron-down"></span></button>
-            <ul role="menu" aria-orientation="vertical"
-                data-ajax-replace="https://www.canada.ca/content/dam/canada/sitemenu/sitemenu-v2-en.html">
-                <li role="presentation"><a role="menuitem" href="https://www.canada.ca/en/services/jobs.html">Jobs and
-                        the workplace</a></li>
-                <li role="presentation"><a role="menuitem"
-                                           href="https://www.canada.ca/en/services/immigration-citizenship.html">Immigration
-                        and citizenship</a></li>
-                <li role="presentation"><a role="menuitem" href="https://travel.gc.ca/">Travel and tourism</a></li>
-                <li role="presentation"><a role="menuitem" href="https://www.canada.ca/en/services/business.html">Business
-                        and industry</a></li>
-                <li role="presentation"><a role="menuitem" href="https://www.canada.ca/en/services/benefits.html">Benefits</a>
-                </li>
-                <li role="presentation"><a role="menuitem"
-                                           href="https://www.canada.ca/en/services/health.html">Health</a></li>
-                <li role="presentation"><a role="menuitem" href="https://www.canada.ca/en/services/taxes.html">Taxes</a>
-                </li>
-                <li role="presentation"><a role="menuitem" href="https://www.canada.ca/en/services/environment.html">Environment
-                        and natural resources</a></li>
-                <li role="presentation"><a role="menuitem" href="https://www.canada.ca/en/services/defence.html">National
-                        security and defence</a></li>
-                <li role="presentation"><a role="menuitem" href="https://www.canada.ca/en/services/culture.html">Culture,
-                        history and sport</a></li>
-                <li role="presentation"><a role="menuitem" href="https://www.canada.ca/en/services/policing.html">Policing,
-                        justice and emergencies</a></li>
-                <li role="presentation"><a role="menuitem" href="https://www.canada.ca/en/services/transport.html">Transport
-                        and infrastructure</a></li>
-                <li role="presentation"><a role="menuitem"
-                                           href="https://international.gc.ca/world-monde/index.aspx?lang=eng">Canada and
-                        the world</a></li>
-                <li role="presentation"><a role="menuitem" href="https://www.canada.ca/en/services/finance.html">Money
-                        and finances</a></li>
-                <li role="presentation"><a role="menuitem" href="https://www.canada.ca/en/services/science.html">Science
-                        and innovation</a></li>
+            <ul role="menu" aria-orientation="vertical">
+                <?php
+                // pulls in menu items from Canada.ca endpoint
+                echo file_get_contents("https://www.canada.ca/content/dam/canada/sitemenu/sitemenu-v2-" . get_active_language() . ".html");
+                ?>
             </ul>
         </div>
     </nav>
