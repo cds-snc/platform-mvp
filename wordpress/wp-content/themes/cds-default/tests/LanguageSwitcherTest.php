@@ -66,8 +66,8 @@ class LanguageSwitcherTest extends \WP_Mock\Tools\TestCase
         $nav = language_switcher();
 
         expect($this->containsString($nav, $langs["fr"]["url"]))->toBeTrue();
-        expect($this->containsString($nav, $langs["fr"]["native_name"]))->toBeTrue();
-
-        
+        expect(
+            $this->containsString($nav, $langs["fr"]["native_name"])
+        )->toBeTrue();
     }
 }
