@@ -118,3 +118,5 @@ wordpress/wp-content/uploads
 .idea
 
 .phpunit.result.cache
+
+wordpress/wp-content/languages
