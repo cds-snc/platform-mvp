@@ -49,28 +49,41 @@ declare(strict_types=1);
                     </li>
                 </ul>
             </section>
+            <?php
+            $langText = get_language_text()
+            ?>
             <div class="brand col-xs-9 col-sm-5 col-md-4" property="publisher" resource="#wb-publisher"
                  typeof="GovernmentOrganization">
                 <a href="https://www.canada.ca/en.html" property="url">
-                    <img src="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/assets/sig-blk-en.svg" alt=""
-                         property="logo"><span class="wb-inv" property="name"> Government of Canada / <span lang="fr">Gouvernement du Canada</span></span>
+
+                    <?php if (get_active_language() == "fr"): ?>
+                        <img src="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/assets/sig-blk-fr.svg"
+                             alt="Gouvernement du Canada" property="logo">
+                    <?php else: ?>
+                        <img src="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/assets/sig-blk-en.svg" alt=""
+                             property="logo">
+                    <?php endif; ?>
+                    <span class="wb-inv" property="name"> Government of Canada / <span
+                                lang="fr">Gouvernement du Canada</span></span>
                 </a>
                 <meta property="areaServed" typeof="Country" content="Canada">
                 <link property="logo" href="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/assets/wmms-blk.svg">
             </div>
             <section id="wb-srch" class="col-lg-offset-4 col-md-offset-4 col-sm-offset-2 col-xs-12 col-sm-5 col-md-4">
                 <h2>Search</h2>
-                <form action="#" method="post" name="cse-search-box" role="search">
+                <form action="/<?php echo $langText["abbr"]; ?>/sr/srb.html" method="post" name="cse-search-box"
+                      role="search">
                     <div class="form-group wb-srch-qry">
                         <label for="wb-srch-q" class="wb-inv"><?php _e("Search Canada.ca", "cds") ?></label>
                         <input id="wb-srch-q" list="wb-srch-q-ac" class="wb-srch-q form-control" name="q" type="search"
-                               value="" size="34" maxlength="170" placeholder="Search Canada.ca">
+                               value="" size="34" maxlength="170" placeholder="<?php _e("Search Canada.ca", "cds") ?>">
                         <datalist id="wb-srch-q-ac">
                         </datalist>
                     </div>
                     <div class="form-group submit">
                         <button type="submit" id="wb-srch-sub" class="btn btn-primary btn-small" name="wb-srch-sub">
-                            <span class="glyphicon-search glyphicon"></span><span class="wb-inv">Search</span></button>
+                            <span class="glyphicon-search glyphicon"></span><span class="wb-inv"><?php _e("Search",
+                                    "cds"); ?></span></button>
                     </div>
                 </form>
             </section>
@@ -78,9 +91,9 @@ declare(strict_types=1);
     </div>
     <nav class="gcweb-menu" typeof="SiteNavigationElement">
         <div class="container">
-            <h2 class="wb-inv"><?php _e("Menu"); ?></h2>
+            <h2 class="wb-inv"><?php _e("Menu", "cds"); ?></h2>
             <button type="button" aria-haspopup="true" aria-expanded="false"><span
-                        class="wb-inv"><?php _e("Main"); ?> </span><?php _e("Menu"); ?> <span
+                        class="wb-inv"><?php _e("Main", "cds"); ?> </span><?php _e("Menu", "cds"); ?> <span
                         class="expicon glyphicon glyphicon-chevron-down"></span></button>
             <ul role="menu" aria-orientation="vertical"
                 data-ajax-replace="https://www.canada.ca/content/dam/canada/sitemenu/sitemenu-v2-en.html">

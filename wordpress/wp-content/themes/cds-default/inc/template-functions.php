@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use JetBrains\PhpStorm\ArrayShape;
 use PHPHtmlParser\Dom;
 
 /**
@@ -136,7 +135,7 @@ function cds_breadcrumb($sep = ''): string
     }
 }
 
-#[ArrayShape(["full" => "string", "abbr" => "string"])] function get_language_text($lang): array
+function get_language_text($lang = ""): array
 {
     if ('french' == strtolower($lang)) {
         return array("full" => 'Français', "abbr" => "fr");
@@ -145,10 +144,19 @@ function cds_breadcrumb($sep = ''): string
     return array("full" => 'English', "abbr" => "en");
 }
 
+function get_active_language(): string
+{
+    if (ICL_LANGUAGE_CODE) {
+        return ICL_LANGUAGE_CODE;
+    }
+
+    return "en";
+}
+
 function language_switcher()
 {
     if (function_exists('icl_get_languages')) {
-        $languages = apply_filters( 'wpml_active_languages', NULL, 'orderby=id&order=desc' );
+        $languages = apply_filters('wpml_active_languages', null, 'orderby=id&order=desc');
         if (1 < count($languages)) {
             foreach ($languages as $language) {
                 $text = get_language_text($language['translated_name']);
