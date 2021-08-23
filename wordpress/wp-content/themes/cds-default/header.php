@@ -42,7 +42,7 @@ declare(strict_types=1);
     <div id="wb-bnr" class="container">
         <div class="row">
             <section id="wb-lng" class="col-xs-3 col-sm-12 pull-right text-right">
-                <h2 class="wb-inv">Language selection</h2>
+                <h2 class="wb-inv"><?php _e("Language selection"); ?></h2>
                 <ul class="list-inline mrgn-bttm-0">
                     <li>
                         <?php echo language_switcher(); ?>
@@ -62,7 +62,7 @@ declare(strict_types=1);
                 <h2>Search</h2>
                 <form action="#" method="post" name="cse-search-box" role="search">
                     <div class="form-group wb-srch-qry">
-                        <label for="wb-srch-q" class="wb-inv">Search Canada.ca</label>
+                        <label for="wb-srch-q" class="wb-inv"><?php _e("Search Canada.ca", "cds") ?></label>
                         <input id="wb-srch-q" list="wb-srch-q-ac" class="wb-srch-q form-control" name="q" type="search"
                                value="" size="34" maxlength="170" placeholder="Search Canada.ca">
                         <datalist id="wb-srch-q-ac">
@@ -78,8 +78,9 @@ declare(strict_types=1);
     </div>
     <nav class="gcweb-menu" typeof="SiteNavigationElement">
         <div class="container">
-            <h2 class="wb-inv">Menu</h2>
-            <button type="button" aria-haspopup="true" aria-expanded="false"><span class="wb-inv">Main </span>Menu <span
+            <h2 class="wb-inv"><?php _e("Menu"); ?></h2>
+            <button type="button" aria-haspopup="true" aria-expanded="false"><span
+                        class="wb-inv"><?php _e("Main"); ?> </span><?php _e("Menu"); ?> <span
                         class="expicon glyphicon glyphicon-chevron-down"></span></button>
             <ul role="menu" aria-orientation="vertical"
                 data-ajax-replace="https://www.canada.ca/content/dam/canada/sitemenu/sitemenu-v2-en.html">
@@ -117,9 +118,5 @@ declare(strict_types=1);
             </ul>
         </div>
     </nav>
-
-
-    <?php
-    echo cds_breadcrumb();
-    ?>
+    <?php echo cds_breadcrumb(); ?>
 </header>
