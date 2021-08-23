@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-return [
+use PHP_CodeSniffer\Standards\Generic\Sniffs\Formatting\SpaceAfterNotSniff;
 
+return [
     /*
     |--------------------------------------------------------------------------
     | Default Preset
@@ -50,9 +51,7 @@ return [
     |
     */
 
-    'exclude' => [
-
-    ],
+    'exclude' => [],
 
     'add' => [
         //  ExampleMetric::class => [
@@ -60,9 +59,7 @@ return [
         //  ]
     ],
 
-    'remove' => [
-        //  ExampleInsight::class,
-    ],
+    'remove' => [SpaceAfterNotSniff::class],
 
     'config' => [
         //  ExampleInsight::class => [
@@ -101,5 +98,4 @@ return [
     */
 
     'threads' => null,
-
 ];
