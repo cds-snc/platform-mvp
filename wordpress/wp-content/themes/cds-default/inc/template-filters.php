@@ -16,7 +16,7 @@ function cds_date_block($block_content, $block)
         $dom = new Dom();
         $dom->loadStr($block_content);
         $time = $dom->find('time')[0];
-        // return str_replace($time, '['.$time.']', $block_content);
+        return str_replace($time, '['.$time.']', $block_content);
     } catch (Exception $e) {
         return $block_content;
     }
