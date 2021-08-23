@@ -27,7 +27,7 @@
     "scripts": {
         "lint:wpcs": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs",
         "lint:php": "@php ./vendor/bin/parallel-lint --exclude .git --exclude vendor .",
-        "make-pot": "wp i18n make-pot . languages/_s.pot"
+        "make-pot": "wp i18n make-pot --domain=cds . languages/cds.pot"
     },
     "support": {
         "issues": "https://github.com/Automattic/_s/issues",
