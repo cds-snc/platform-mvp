@@ -16,7 +16,7 @@ function cds_date_block($block_content, $block)
         $dom = new Dom();
         $dom->loadStr($block_content);
         $time = $dom->find('time')[0];
-        return str_replace($time, '['.$time.']', $block_content);
+        // return str_replace($time, '['.$time.']', $block_content);
     } catch (Exception $e) {
         return $block_content;
     }
@@ -42,16 +42,17 @@ function filter_navigation_markup_template($template, $class)
 function cds_body_classes(array $classes): array
 {
     // Adds a class of hfeed to non-singular pages.
-    if (! is_singular()) {
+    if (!is_singular()) {
         $classes[] = 'hfeed';
     }
 
     // Adds a class of no-sidebar when there is no sidebar present.
-    if (! is_active_sidebar('sidebar-1')) {
+    if (!is_active_sidebar('sidebar-1')) {
         $classes[] = 'no-sidebar';
     }
 
     return $classes;
 }
+
 add_filter('body_class', 'cds_body_classes');
 

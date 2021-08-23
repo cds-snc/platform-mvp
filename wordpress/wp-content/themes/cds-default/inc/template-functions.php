@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use JetBrains\PhpStorm\ArrayShape;
 use PHPHtmlParser\Dom;
 
 /**
@@ -23,10 +24,12 @@ function cds_prev_next_links(): void
         <h2 class="wb-inv"> <?php _e('Document navigation', 'cds'); ?> </h2>
         <ul class="pager">
             <li class="next">
-                <a id="<?php echo $prev_id ?>" href="<?php echo $next_permalink; ?>"><?php _e('Next blog post', 'cds'); ?> &nbsp;»</a>
+                <a id="<?php echo $prev_id ?>" href="<?php echo $next_permalink; ?>"><?php _e('Next blog post',
+                        'cds'); ?> &nbsp;»</a>
             </li>
             <li class="previous">
-                <a id="<?php echo $next_id ?>" href="<?php echo $prev_permalink; ?>" rel="prev">«&nbsp;<?php  _e('Previous blog post', 'cds'); ?></a>
+                <a id="<?php echo $next_id ?>" href="<?php echo $prev_permalink; ?>"
+                   rel="prev">«&nbsp;<?php _e('Previous blog post', 'cds'); ?></a>
             </li>
         </ul>
     </nav>
@@ -49,7 +52,7 @@ function cds_category_links($post_id, $separator = ','): string
         if (0 < $i) {
             $list .= $separator;
         }
-        $list .= '<li><a href="' . get_category_link($category->term_id) . ' " class="'.$category->class. '" ' . $rel . '>[' . $category->name.']</a></li>';
+        $list .= '<li><a href="' . get_category_link($category->term_id) . ' " class="' . $category->class . '" ' . $rel . '>[' . $category->name . ']</a></li>';
         ++$i;
     }
 
@@ -63,7 +66,7 @@ function cds_the_posts_navigation($args = []): void
     // Don't print empty markup if there's only one page.
     if ($GLOBALS['wp_query']->max_num_pages > 1) {
         // Make sure the nav element has an aria-label attribute: fallback to the screen reader text.
-        if (! empty($args['screen_reader_text']) && empty($args['aria_label'])) {
+        if (!empty($args['screen_reader_text']) && empty($args['aria_label'])) {
             $args['aria_label'] = $args['screen_reader_text'];
         }
 
@@ -97,9 +100,9 @@ function cds_the_posts_navigation($args = []): void
 
 /* https://wet-boew.github.io/GCWeb/sites/breadcrumbs/breadcrumbs-en.html */
 
-function cds_breadcrumb($sep = '') : string
+function cds_breadcrumb($sep = ''): string
 {
-    if (! function_exists('yoast_breadcrumb')) {
+    if (!function_exists('yoast_breadcrumb')) {
         return "";
     }
 
@@ -130,5 +133,37 @@ function cds_breadcrumb($sep = '') : string
         return $output;
     } catch (Exception $e) {
         return yoast_breadcrumb('<div class="breadcrumbs">', '</div>', false);
+    }
+}
+
+#[ArrayShape(["full" => "string", "abbr" => "string"])] function get_language_text($lang): array
+{
+    if ('french' == strtolower($lang)) {
+        return array("full" => 'Français', "abbr" => "fr");
+    }
+
+    return array("full" => 'English', "abbr" => "en");
+}
+
+function language_switcher()
+{
+    if (function_exists('icl_get_languages')) {
+        $languages = apply_filters( 'wpml_active_languages', NULL, 'orderby=id&order=desc' );
+        if (1 < count($languages)) {
+            foreach ($languages as $language) {
+                $text = get_language_text($language['translated_name']);
+                if (!$language['active']) {
+                    $link = '<a lang="' . $text["abbr"] . '" hreflang="' . $text["abbr"] . '" href="' . $language['url'] . '">';
+                    $link .= '<span class="hidden-xs">' . $text["full"] . '</span>';
+                    $link .= '<abbr title="' . $text["full"] . '" class="visible-xs h3 mrgn-tp-sm mrgn-bttm-0 text-uppercase">';
+                    $link .= $text["abbr"];
+                    $link .= '</abbr>';
+                    $link .= '</a>';
+
+                    $langs[] = $link;
+                }
+            }
+            return join(', ', $langs);
+        }
     }
 }
