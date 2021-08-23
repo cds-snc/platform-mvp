@@ -146,8 +146,10 @@ function get_language_text($lang = ""): array
 
 function get_active_language(): string
 {
-    if (ICL_LANGUAGE_CODE) {
-        return ICL_LANGUAGE_CODE;
+    if (function_exists('icl_get_languages')) {
+        if (ICL_LANGUAGE_CODE !== null) {
+            return ICL_LANGUAGE_CODE;
+        }
     }
 
     return "en";
