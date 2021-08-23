@@ -28,6 +28,20 @@ class LanguageSwitcherTest extends \WP_Mock\Tools\TestCase
         return false;
     }
 
+    public function test_default_language_text()
+    {
+        $text = get_language_text();
+
+        $this->assertEquals(["full" => "English", "abbr" => "en"], $text);
+    }
+
+    public function test_fr_language_text()
+    {
+        $text = get_language_text("fr");
+
+        $this->assertEquals(["full" => "Français", "abbr" => "fr"], $text);
+    }
+
     public function test_language_switcher()
     {
         $langs = [
