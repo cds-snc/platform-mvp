@@ -23,8 +23,10 @@ function cds_prev_next_links(): void
         <h2 class="wb-inv"> <?php _e('Document navigation', 'cds'); ?> </h2>
         <ul class="pager">
             <li class="next">
-                <a id="<?php echo $prev_id ?>" href="<?php echo $next_permalink; ?>"><?php _e('Next blog post',
-                        'cds'); ?> &nbsp;»</a>
+                <a id="<?php echo $prev_id ?>" href="<?php echo $next_permalink; ?>"><?php _e(
+        'Next blog post',
+        'cds'
+    ); ?> &nbsp;»</a>
             </li>
             <li class="previous">
                 <a id="<?php echo $next_id ?>" href="<?php echo $prev_permalink; ?>"
@@ -65,7 +67,7 @@ function cds_the_posts_navigation($args = []): void
     // Don't print empty markup if there's only one page.
     if ($GLOBALS['wp_query']->max_num_pages > 1) {
         // Make sure the nav element has an aria-label attribute: fallback to the screen reader text.
-        if (!empty($args['screen_reader_text']) && empty($args['aria_label'])) {
+        if (! empty($args['screen_reader_text']) && empty($args['aria_label'])) {
             $args['aria_label'] = $args['screen_reader_text'];
         }
 
@@ -101,8 +103,8 @@ function cds_the_posts_navigation($args = []): void
 
 function cds_breadcrumb($sep = ''): string
 {
-    if (!function_exists('yoast_breadcrumb')) {
-        return "";
+    if (! function_exists('yoast_breadcrumb')) {
+        return '';
     }
 
     try {
@@ -135,13 +137,13 @@ function cds_breadcrumb($sep = ''): string
     }
 }
 
-function get_language_text($lang = ""): array
+function get_language_text($lang = ''): array
 {
-    if ('french' == strtolower($lang)) {
-        return array("full" => 'Français', "abbr" => "fr");
+    if (strtolower($lang) === 'french') {
+        return ['full' => 'Français', 'abbr' => 'fr'];
     }
 
-    return array("full" => 'English', "abbr" => "en");
+    return ['full' => 'English', 'abbr' => 'en'];
 }
 
 function get_active_language(): string
@@ -152,7 +154,7 @@ function get_active_language(): string
         }
     }
 
-    return "en";
+    return 'en';
 }
 
 function language_switcher()
@@ -162,11 +164,11 @@ function language_switcher()
         if (1 < count($languages)) {
             foreach ($languages as $language) {
                 $text = get_language_text($language['translated_name']);
-                if (!$language['active']) {
-                    $link = '<a lang="' . $text["abbr"] . '" hreflang="' . $text["abbr"] . '" href="' . $language['url'] . '">';
-                    $link .= '<span class="hidden-xs">' . $text["full"] . '</span>';
-                    $link .= '<abbr title="' . $text["full"] . '" class="visible-xs h3 mrgn-tp-sm mrgn-bttm-0 text-uppercase">';
-                    $link .= $text["abbr"];
+                if (! $language['active']) {
+                    $link = '<a lang="' . $text['abbr'] . '" hreflang="' . $text['abbr'] . '" href="' . $language['url'] . '">';
+                    $link .= '<span class="hidden-xs">' . $text['full'] . '</span>';
+                    $link .= '<abbr title="' . $text['full'] . '" class="visible-xs h3 mrgn-tp-sm mrgn-bttm-0 text-uppercase">';
+                    $link .= $text['abbr'];
                     $link .= '</abbr>';
                     $link .= '</a>';
 

@@ -42,7 +42,7 @@ declare(strict_types=1);
     <div id="wb-bnr" class="container">
         <div class="row">
             <section id="wb-lng" class="col-xs-3 col-sm-12 pull-right text-right">
-                <h2 class="wb-inv"><?php _e("Language selection"); ?></h2>
+                <h2 class="wb-inv"><?php _e('Language selection'); ?></h2>
                 <ul class="list-inline mrgn-bttm-0">
                     <li>
                         <?php echo language_switcher(); ?>
@@ -55,13 +55,13 @@ declare(strict_types=1);
             <div class="brand col-xs-9 col-sm-5 col-md-4" property="publisher" resource="#wb-publisher"
                  typeof="GovernmentOrganization">
                 <a href="https://www.canada.ca/<?php echo get_active_language(); ?>.html" property="url">
-                    <?php if (get_active_language() == "fr"): ?>
+                    <?php if (get_active_language() === 'fr') { ?>
                         <img src="https://canada.ca/etc/designs/canada/wet-boew/assets/sig-blk-fr.svg"
                              alt="Gouvernement du Canada" property="logo">
-                    <?php else: ?>
+                    <?php } else { ?>
                         <img src="https://canada.ca/etc/designs/canada/wet-boew/assets/sig-blk-en.svg" alt=""
                              property="logo">
-                    <?php endif; ?>
+                    <?php } ?>
                     <span class="wb-inv" property="name"> Government of Canada / <span
                                 lang="fr">Gouvernement du Canada</span></span>
                 </a>
@@ -69,20 +69,22 @@ declare(strict_types=1);
                 <link property="logo" href="https://canada.ca/etc/designs/canada/wet-boew/assets/wmms-blk.svg">
             </div>
             <section id="wb-srch" class="col-lg-offset-4 col-md-offset-4 col-sm-offset-2 col-xs-12 col-sm-5 col-md-4">
-                <h2><?php _e("Search", "cds"); ?></h2>
-                <form action="/<?php echo $langText["abbr"]; ?>/sr/srb.html" method="post" name="cse-search-box"
+                <h2><?php _e('Search', 'cds'); ?></h2>
+                <form action="/<?php echo $langText['abbr']; ?>/sr/srb.html" method="post" name="cse-search-box"
                       role="search">
                     <div class="form-group wb-srch-qry">
-                        <label for="wb-srch-q" class="wb-inv"><?php _e("Search Canada.ca", "cds") ?></label>
+                        <label for="wb-srch-q" class="wb-inv"><?php _e('Search Canada.ca', 'cds') ?></label>
                         <input id="wb-srch-q" list="wb-srch-q-ac" class="wb-srch-q form-control" name="q" type="search"
-                               value="" size="34" maxlength="170" placeholder="<?php _e("Search Canada.ca", "cds") ?>">
+                               value="" size="34" maxlength="170" placeholder="<?php _e('Search Canada.ca', 'cds') ?>">
                         <datalist id="wb-srch-q-ac">
                         </datalist>
                     </div>
                     <div class="form-group submit">
                         <button type="submit" id="wb-srch-sub" class="btn btn-primary btn-small" name="wb-srch-sub">
-                            <span class="glyphicon-search glyphicon"></span><span class="wb-inv"><?php _e("Search",
-                                    "cds"); ?></span></button>
+                            <span class="glyphicon-search glyphicon"></span><span class="wb-inv"><?php _e(
+                'Search',
+                'cds'
+            ); ?></span></button>
                     </div>
                 </form>
             </section>
@@ -90,14 +92,14 @@ declare(strict_types=1);
     </div>
     <nav class="gcweb-menu" typeof="SiteNavigationElement">
         <div class="container">
-            <h2 class="wb-inv"><?php _e("Menu", "cds"); ?></h2>
+            <h2 class="wb-inv"><?php _e('Menu', 'cds'); ?></h2>
             <button type="button" aria-haspopup="true" aria-expanded="false"><span
-                        class="wb-inv"><?php _e("Main", "cds"); ?> </span><?php _e("Menu", "cds"); ?> <span
+                        class="wb-inv"><?php _e('Main', 'cds'); ?> </span><?php _e('Menu', 'cds'); ?> <span
                         class="expicon glyphicon glyphicon-chevron-down"></span></button>
             <ul role="menu" aria-orientation="vertical">
                 <?php
                 // pulls in menu items from Canada.ca endpoint
-                echo file_get_contents("https://www.canada.ca/content/dam/canada/sitemenu/sitemenu-v2-" . get_active_language() . ".html");
+                echo file_get_contents('https://www.canada.ca/content/dam/canada/sitemenu/sitemenu-v2-' . get_active_language() . '.html');
                 ?>
             </ul>
         </div>
