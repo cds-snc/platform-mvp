@@ -37,7 +37,7 @@ declare(strict_types=1);
 <body <?php body_class(); ?> vocab="http://schema.org/" resource="#wb-webpage" typeof="WebPage">
 <?php wp_body_open(); ?>
 
-<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e('Skip to content', 'cds'); ?></a>
+<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e('Skip to content', 'cds-snc'); ?></a>
 <header>
     <div id="wb-bnr" class="container">
         <div class="row">
@@ -69,13 +69,13 @@ declare(strict_types=1);
                 <link property="logo" href="https://canada.ca/etc/designs/canada/wet-boew/assets/wmms-blk.svg">
             </div>
             <section id="wb-srch" class="col-lg-offset-4 col-md-offset-4 col-sm-offset-2 col-xs-12 col-sm-5 col-md-4">
-                <h2><?php _e('Search', 'cds'); ?></h2>
+                <h2><?php _e('Search', 'cds-snc'); ?></h2>
                 <form action="/<?php echo $langText['abbr']; ?>/sr/srb.html" method="post" name="cse-search-box"
                       role="search">
                     <div class="form-group wb-srch-qry">
-                        <label for="wb-srch-q" class="wb-inv"><?php _e('Search Canada.ca', 'cds') ?></label>
+                        <label for="wb-srch-q" class="wb-inv"><?php _e('Search Canada.ca', 'cds-snc') ?></label>
                         <input id="wb-srch-q" list="wb-srch-q-ac" class="wb-srch-q form-control" name="q" type="search"
-                               value="" size="34" maxlength="170" placeholder="<?php _e('Search Canada.ca', 'cds') ?>">
+                               value="" size="34" maxlength="170" placeholder="<?php _e('Search Canada.ca', 'cds-snc') ?>">
                         <datalist id="wb-srch-q-ac">
                         </datalist>
                     </div>
@@ -83,7 +83,7 @@ declare(strict_types=1);
                         <button type="submit" id="wb-srch-sub" class="btn btn-primary btn-small" name="wb-srch-sub">
                             <span class="glyphicon-search glyphicon"></span><span class="wb-inv"><?php _e(
                 'Search',
-                'cds'
+                'cds-snc'
             ); ?></span></button>
                     </div>
                 </form>
@@ -92,9 +92,9 @@ declare(strict_types=1);
     </div>
     <nav class="gcweb-menu" typeof="SiteNavigationElement">
         <div class="container">
-            <h2 class="wb-inv"><?php _e('Menu', 'cds'); ?></h2>
+            <h2 class="wb-inv"><?php _e('Menu', 'cds-snc'); ?></h2>
             <button type="button" aria-haspopup="true" aria-expanded="false"><span
-                        class="wb-inv"><?php _e('Main', 'cds'); ?> </span><?php _e('Menu', 'cds'); ?> <span
+                        class="wb-inv"><?php _e('Main', 'cds-snc'); ?> </span><?php _e('Menu', 'cds-snc'); ?> <span
                         class="expicon glyphicon glyphicon-chevron-down"></span></button>
             <ul role="menu" aria-orientation="vertical">
                 <?php

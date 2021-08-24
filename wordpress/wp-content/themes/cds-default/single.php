@@ -26,8 +26,8 @@ get_header();
             /*
             the_post_navigation(
                 [
-                    'prev_text' => '<span class="nav-subtitle">' . esc_html__('Previous:', 'cds') . '</span> <span class="nav-title">%title</span>',
-                    'next_text' => '<span class="nav-subtitle">' . esc_html__('Next:', 'cds') . '</span> <span class="nav-title">%title</span>',
+                    'prev_text' => '<span class="nav-subtitle">' . esc_html__('Previous:', 'cds-snc') . '</span> <span class="nav-title">%title</span>',
+                    'next_text' => '<span class="nav-subtitle">' . esc_html__('Next:', 'cds-snc') . '</span> <span class="nav-title">%title</span>',
                 ]
             );
             */
