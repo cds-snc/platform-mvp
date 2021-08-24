@@ -6,5 +6,8 @@
       "cli": "docker exec -it cli /bin/zsh",
       "postinstall": "cd wordpress/wp-content/plugins/cds-base && npm install && npm run build",
       "import": "node ./import/import.mjs"
+    },
+    "devDependencies": {
+        "showdown": "^1.9.1"
     }
 }
