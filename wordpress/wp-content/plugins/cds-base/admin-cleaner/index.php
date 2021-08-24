@@ -98,5 +98,13 @@ add_action('admin_bar_menu', 'remove_from_admin_bar', 999);
 add_filter( 'wp_mail_smtp_admin_adminbarmenu_has_access', '__return_false' );
 
 
-
-
+function my_login_logo() { ?>
+    <style type="text/css">
+        body.login div#login h1 a {
+            background-image: url(<?php echo get_template_directory_uri(); ?>/images/site-login-logo.png);
+            width: 300px;
+            background-size: contain;
+        }
+    </style>
+<?php }
+add_action( 'login_enqueue_scripts', 'my_login_logo' );
