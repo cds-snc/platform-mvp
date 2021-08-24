@@ -21,7 +21,7 @@ if (!defined('_S_VERSION')) {
 
 if (!defined('THEME_NAMESPACE')) {
     // Replace the version number of the theme on each release.
-    define('THEME_NAMESPACE', THEME_NAMESPACE);
+    define('THEME_NAMESPACE', 'cds-snc');
 }
 
 if (!function_exists('cds_setup')) {
@@ -34,7 +34,7 @@ if (!function_exists('cds_setup')) {
      */
     function load_translations()
     {
-        $domain = THEME_NAMESPACE;
+        $domain = 'cds-snc';
         $locale = apply_filters('theme_locale', determine_locale(), $domain);
         $mo = $domain . '-' . $locale . '.mo';
         load_textdomain(
@@ -49,7 +49,7 @@ if (!function_exists('cds_setup')) {
          * Make theme available for translation.
          * Translations can be filed in the /languages/ directory.
          * If you're building a theme based on cds-default, use a find and replace
-         * to change THEME_NAMESPACE to the name of your theme in all the template files.
+         * to change 'cds-snc' to the name of your theme in all the template files.
          */
         load_translations();
 
@@ -73,7 +73,7 @@ if (!function_exists('cds_setup')) {
 
         // This theme uses wp_nav_menu() in one location.
         register_nav_menus([
-            'menu-1' => esc_html__('Primary', THEME_NAMESPACE),
+            'menu-1' => esc_html__('Primary', 'cds-snc'),
         ]);
 
         /*

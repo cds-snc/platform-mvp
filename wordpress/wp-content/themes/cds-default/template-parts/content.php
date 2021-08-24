@@ -32,7 +32,7 @@ declare(strict_types=1);
                  sprintf(
                      wp_kses(
                     /* translators: %s: Name of current post. Only visible to screen readers */
-                    __('Continue reading<span class="screen-reader-text"> "%s"</span>', THEME_NAMESPACE),
+                    __('Continue reading<span class="screen-reader-text"> "%s"</span>', 'cds-snc'),
                          [
                              'span' => [
                                  'class' => [],
