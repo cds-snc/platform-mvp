@@ -41,7 +41,7 @@ declare(strict_types=1);
         } else {
             ?>
 
-            <p><?php esc_html_e('It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'cds-snc'); ?></p>
+            <p><?php esc_html_e('Nothing found! Perhaps searching can help.', 'cds-snc'); ?></p>
             <?php
             get_search_form();
         }
