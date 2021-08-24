@@ -100,3 +100,6 @@ Note: when starting up the devcontainer or docker-compose, `composer install` is
 ### Creating
 
 When creating a custom plugin or theme, you should prefix the folder name with `cds-`. This will ensure the code is included in git and code quality scans.
+
+### Theme translation 
+See: https://github.com/cds-snc/platform-mvp/pull/95#issuecomment-904688973
