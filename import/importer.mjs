@@ -6,10 +6,18 @@ export default class Importer {
     static processNotifyTemplate = (filename) => {
         let rawdata = readFileSync(filename);
         let contents = JSON.parse(rawdata);
+
+        const getTitle = (title) => {
+            // Title sometimes starts with '# ', so we clean it up
+            if(title.startsWith("# ")){
+                return title.substring(2)
+            }
+            return title
+        }
     
         contents.forEach(item => {
             const post = {
-                title: markdownConverter(item.subject),
+                title: getTitle(item.subject),
                 body: markdownConverter(item.content),
                 name: item.name,
                 createDate: item.created_at
