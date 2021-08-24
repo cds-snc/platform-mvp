@@ -19,6 +19,11 @@ if (!defined('_S_VERSION')) {
     define('_S_VERSION', '1.0.0');
 }
 
+if (!defined('THEME_NAMESPACE')) {
+    // Replace the version number of the theme on each release.
+    define('THEME_NAMESPACE', THEME_NAMESPACE);
+}
+
 if (!function_exists('cds_setup')) {
     /**
      * Sets up theme defaults and registers support for various WordPress features.
@@ -27,21 +32,26 @@ if (!function_exists('cds_setup')) {
      * runs before the init hook. The init hook is too late for some features, such
      * as indicating support for post thumbnails.
      */
+    function load_translations()
+    {
+        $domain = THEME_NAMESPACE;
+        $locale = apply_filters('theme_locale', determine_locale(), $domain);
+        $mo = $domain . '-' . $locale . '.mo';
+        load_textdomain(
+            $domain,
+            get_template_directory() . '/languages/' . $mo,
+        );
+    }
+
     function cds_setup(): void
     {
         /*
          * Make theme available for translation.
          * Translations can be filed in the /languages/ directory.
          * If you're building a theme based on cds-default, use a find and replace
-         * to change 'cds' to the name of your theme in all the template files.
+         * to change THEME_NAMESPACE to the name of your theme in all the template files.
          */
-        $domain = 'cds';
-        $locale = apply_filters('theme_locale', determine_locale(), $domain);
-        $mofile = $domain . '-' . $locale . '.mo';
-        load_textdomain(
-            $domain,
-            get_template_directory() . '/languages/' . $mofile,
-        );
+        load_translations();
 
         // Add default posts and comments RSS feed links to head.
         add_theme_support('automatic-feed-links');
@@ -63,7 +73,7 @@ if (!function_exists('cds_setup')) {
 
         // This theme uses wp_nav_menu() in one location.
         register_nav_menus([
-            'menu-1' => esc_html__('Primary', 'cds'),
+            'menu-1' => esc_html__('Primary', THEME_NAMESPACE),
         ]);
 
         /*

@@ -20,17 +20,17 @@ function cds_prev_next_links(): void
     $next_permalink = get_permalink($next_id); ?>
 
     <nav class="mrgn-tp-xl">
-        <h2 class="wb-inv"> <?php _e('Document navigation', 'cds'); ?> </h2>
+        <h2 class="wb-inv"> <?php _e('Document navigation', THEME_NAMESPACE); ?> </h2>
         <ul class="pager">
             <li class="next">
                 <a id="<?php echo $prev_id ?>" href="<?php echo $next_permalink; ?>"><?php _e(
         'Next blog post',
-        'cds'
+        THEME_NAMESPACE
     ); ?> &nbsp;»</a>
             </li>
             <li class="previous">
                 <a id="<?php echo $next_id ?>" href="<?php echo $prev_permalink; ?>"
-                   rel="prev">«&nbsp;<?php _e('Previous blog post', 'cds'); ?></a>
+                   rel="prev">«&nbsp;<?php _e('Previous blog post', THEME_NAMESPACE); ?></a>
             </li>
         </ul>
     </nav>

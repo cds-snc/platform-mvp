@@ -43,7 +43,7 @@ if (! function_exists('cds_posted_by')) {
     {
         $byline = sprintf(
             /* translators: %s: post author. */
-            esc_html_x('by %s', 'post author', 'cds'),
+            esc_html_x('by %s', 'post author', THEME_NAMESPACE),
             '<span class="author vcard"><a class="url fn n" href="' . esc_url(get_author_posts_url(get_the_author_meta('ID'))) . '">' . esc_html(get_the_author()) . '</a></span>'
         );
 
@@ -61,7 +61,7 @@ if (! function_exists('cds_entry_footer')) {
         if (get_post_type() === 'post') {
             $pId = get_the_ID();
             /* translators: used between list items, there is a space after the comma */
-            // $categories_list = get_the_category_list(esc_html__(', ', 'cds'));
+            // $categories_list = get_the_category_list(esc_html__(', ', THEME_NAMESPACE));
             echo "<ul class='list-inline'>".cds_category_links($pId).'</ul>';
         }
 
@@ -69,7 +69,7 @@ if (! function_exists('cds_entry_footer')) {
             // sprintf(
                 // wp_kses(
                     /* translators: %s: Name of current post. Only visible to screen readers */
-                    // __('Edit <span class="screen-reader-text">%s</span>', 'cds'),
+                    // __('Edit <span class="screen-reader-text">%s</span>', THEME_NAMESPACE),
                     // [
                         // 'span' => [
                             // 'class' => [],
