@@ -1,30 +1,21 @@
 import { readFileSync } from 'fs';
 import { spawn } from 'child_process';
 import markdownConverter from "./markdown-converter.mjs";
-import { exit } from 'process';
-import { create } from 'domain';
 
 export default class Importer {
     static processNotifyTemplate = (filename) => {
         let rawdata = readFileSync(filename);
         let contents = JSON.parse(rawdata);
     
-        let i = 0
         contents.forEach(item => {
-            
             const convertedBody = markdownConverter(item.content)
             const post = {
                 title: markdownConverter(item.subject),
                 body: markdownConverter(item.content),
                 name: item.name,
                 createDate: item.created_at
-            }
-            // console.log('--------------\n', postBody, convertedBody, '\n<<<<<<<<<<<<')
-    
-            if(i>10 && i<20){
-                Importer.wpPostCreate(post)
-            }
-            i++
+            }    
+            Importer.wpPostCreate(post)
         })
     }
 
@@ -61,6 +52,3 @@ export default class Importer {
         });
     }
 }
-
-// const importer = new Importer()
-// export default importer
