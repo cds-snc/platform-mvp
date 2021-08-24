@@ -8,7 +8,6 @@ export default class Importer {
         let contents = JSON.parse(rawdata);
     
         contents.forEach(item => {
-            const convertedBody = markdownConverter(item.content)
             const post = {
                 title: markdownConverter(item.subject),
                 body: markdownConverter(item.content),
