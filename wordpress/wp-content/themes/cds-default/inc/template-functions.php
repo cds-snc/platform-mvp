@@ -20,13 +20,17 @@ function cds_prev_next_links(): void
     $next_permalink = get_permalink($next_id); ?>
 
     <nav class="mrgn-tp-xl">
-        <h2 class="wb-inv"> <?php _e('Document navigation', 'cds'); ?> </h2>
+        <h2 class="wb-inv"> <?php _e('Document navigation', 'cds-snc'); ?> </h2>
         <ul class="pager">
             <li class="next">
-                <a id="<?php echo $prev_id ?>" href="<?php echo $next_permalink; ?>"><?php _e('Next blog post', 'cds'); ?> &nbsp;»</a>
+                <a id="<?php echo $prev_id ?>" href="<?php echo $next_permalink; ?>"><?php _e(
+        'Next blog post',
+        'cds-snc'
+    ); ?> &nbsp;»</a>
             </li>
             <li class="previous">
-                <a id="<?php echo $next_id ?>" href="<?php echo $prev_permalink; ?>" rel="prev">«&nbsp;<?php  _e('Previous blog post', 'cds'); ?></a>
+                <a id="<?php echo $next_id ?>" href="<?php echo $prev_permalink; ?>"
+                   rel="prev">«&nbsp;<?php _e('Previous blog post', 'cds-snc'); ?></a>
             </li>
         </ul>
     </nav>
@@ -49,7 +53,7 @@ function cds_category_links($post_id, $separator = ','): string
         if (0 < $i) {
             $list .= $separator;
         }
-        $list .= '<li><a href="' . get_category_link($category->term_id) . ' " class="'.$category->class. '" ' . $rel . '>[' . $category->name.']</a></li>';
+        $list .= '<li><a href="' . get_category_link($category->term_id) . ' " class="' . $category->class . '" ' . $rel . '>[' . $category->name . ']</a></li>';
         ++$i;
     }
 
@@ -97,10 +101,10 @@ function cds_the_posts_navigation($args = []): void
 
 /* https://wet-boew.github.io/GCWeb/sites/breadcrumbs/breadcrumbs-en.html */
 
-function cds_breadcrumb($sep = '') : string
+function cds_breadcrumb($sep = ''): string
 {
     if (! function_exists('yoast_breadcrumb')) {
-        return "";
+        return '';
     }
 
     try {
@@ -130,5 +134,48 @@ function cds_breadcrumb($sep = '') : string
         return $output;
     } catch (Exception $e) {
         return yoast_breadcrumb('<div class="breadcrumbs">', '</div>', false);
+    }
+}
+
+function get_language_text($lang = ''): array
+{
+    if (strtolower($lang) === 'french' || strtolower($lang) === 'fr') {
+        return ['full' => 'Français', 'abbr' => 'fr'];
+    }
+
+    return ['full' => 'English', 'abbr' => 'en'];
+}
+
+function get_active_language(): string
+{
+    if (function_exists('icl_get_languages')) {
+        if (ICL_LANGUAGE_CODE !== null) {
+            return ICL_LANGUAGE_CODE;
+        }
+    }
+
+    return 'en';
+}
+
+function language_switcher()
+{
+    if (function_exists('icl_get_languages')) {
+        $languages = apply_filters('wpml_active_languages', null, 'orderby=id&order=desc');
+        if (1 < count($languages)) {
+            foreach ($languages as $language) {
+                $text = get_language_text($language['translated_name']);
+                if (! $language['active']) {
+                    $link = '<a lang="' . $text['abbr'] . '" hreflang="' . $text['abbr'] . '" href="' . $language['url'] . '">';
+                    $link .= '<span class="hidden-xs">' . $text['full'] . '</span>';
+                    $link .= '<abbr title="' . $text['full'] . '" class="visible-xs h3 mrgn-tp-sm mrgn-bttm-0 text-uppercase">';
+                    $link .= $text['abbr'];
+                    $link .= '</abbr>';
+                    $link .= '</a>';
+
+                    $langs[] = $link;
+                }
+            }
+            return join(', ', $langs);
+        }
     }
 }
