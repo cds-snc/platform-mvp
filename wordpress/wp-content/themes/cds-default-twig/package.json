@@ -1,0 +1,20 @@
+{
+  "name": "cds-default-twig",
+  "version": "1.0.0",
+  "description": "The \"_s\" for Timber: a dead-simple theme that you can build from. The primary purpose of this theme is to provide a file structure rather than a framework for markup or styles. Configure your Sass, scripts, and task runners however you would like!",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "make-pot": "node ./scripts/extract-strings.js && wp i18n make-pot --domain=cds-snc ./tmp ./languages/cds-snc.pot"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@dreamproduction/gettext-twig-parser": "^0.1.5"
+  },
+  "dependencies": {
+    "glob": "^7.1.7"
+  }
+}
