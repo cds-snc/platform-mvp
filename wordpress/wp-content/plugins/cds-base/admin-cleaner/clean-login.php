@@ -7,11 +7,7 @@ function cds_login_logo()
             width: 300px;
             height: 59px;
             background-size: contain;
-            margin-bottom: 0;
-        }
-
-        body.login div#login_error {
-            margin-top: 10px;
+            margin-bottom: 10px;
         }
 
         .wp-core-ui .button-primary, .wp-core-ui .button-primary:focus {

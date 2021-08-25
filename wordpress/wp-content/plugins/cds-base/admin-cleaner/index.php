@@ -3,6 +3,9 @@
 require_once(__DIR__ . "/util.php");
 require_once(__DIR__ . "/wp-mail-smtp.php");
 require_once(__DIR__ . "/clean-login.php");
+require_once(__DIR__ . "/post-rename.php");
+require_once(__DIR__ . "/notices.php");
+require_once(__DIR__ . "/profile.php");
 
 /*--------------------------------------------*
  * Menu Pages
@@ -17,7 +20,7 @@ function remove_menu_pages()
     global $menu, $submenu;
 
     /* add items to keep here */
-    $allowed = [__('Pages'), __('Posts')];
+    $allowed = [__('Pages'), __('Posts'), __('Articles', 'cds')];
 
     //  __('Settings'), __('Appearance')
     // http://localhost/wp-admin/options-reading.php
@@ -82,6 +85,35 @@ function remove_from_admin_bar($wp_admin_bar)
     $wp_admin_bar->remove_menu('wp-mail-smtp-menu');
     $wp_admin_bar->remove_menu('wpseo-menu');
     $wp_admin_bar->remove_menu('WPML_ALS');
+    $wp_admin_bar->remove_menu('edit-profile', 'user-actions');
 }
 
 add_action('admin_bar_menu', 'remove_from_admin_bar', 999);
+
+/*--------------------------------------------*
+ * Footer Text
+ *--------------------------------------------*/
+add_filter('admin_footer_text', '__return_false');
+
+
+/*--------------------------------------------*
+ * Screen Options Tab
+ *--------------------------------------------*/
+function cds_remove_screen_options()
+{
+    return false;
+}
+
+add_filter('screen_options_show_screen', 'cds_remove_screen_options');
+
+
+/*--------------------------------------------*
+ * Help Tab
+ *--------------------------------------------*/
+function cds_remove_help_tab()
+{
+    $screen = get_current_screen();
+    $screen->remove_help_tabs();
+}
+
+add_action( 'admin_head', 'cds_remove_help_tab' );

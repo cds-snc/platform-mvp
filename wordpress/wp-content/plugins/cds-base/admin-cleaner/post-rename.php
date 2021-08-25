@@ -1,32 +1,31 @@
 <?php
-//
 function revcon_change_post_label()
 {
-global $menu;
-global $submenu;
-$menu[5][0] = 'News';
-$submenu['edit.php'][5][0] = 'News';
-$submenu['edit.php'][10][0] = 'Add News';
-$submenu['edit.php'][16][0] = 'News Tags';
+    global $menu;
+    global $submenu;
+    $menu[5][0] = _('Articles', 'cds');
+    $submenu['edit.php'][5][0] = _('Articles', 'cds');
+    $submenu['edit.php'][10][0] = _('Add Article', 'cds');
+    $submenu['edit.php'][16][0] = _('Article Tags', 'cds');
 }
 
 function revcon_change_post_object()
 {
-global $wp_post_types;
-$labels = &$wp_post_types['post']->labels;
-$labels->name = 'News';
-$labels->singular_name = 'News';
-$labels->add_new = 'Add News';
-$labels->add_new_item = 'Add News';
-$labels->edit_item = 'Edit News';
-$labels->new_item = 'News';
-$labels->view_item = 'View News';
-$labels->search_items = 'Search News';
-$labels->not_found = 'No News found';
-$labels->not_found_in_trash = 'No News found in Trash';
-$labels->all_items = 'All News';
-$labels->menu_name = 'News';
-$labels->name_admin_bar = 'News';
+    global $wp_post_types;
+    $labels = &$wp_post_types['post']->labels;
+    $labels->name = _('Articles', 'cds');
+    $labels->singular_name = _('Articles', 'cds');
+    $labels->add_new = _('Add Articles', 'cds');
+    $labels->add_new_item = _('Add Articles', 'cds');
+    $labels->edit_item = _('Edit Articles', 'cds');
+    $labels->new_item = _('Articles', 'cds');
+    $labels->view_item = _('View Articles', 'cds');
+    $labels->search_items = _('Search Articles', 'cds');
+    $labels->not_found = _('No Articles found', 'cds');
+    $labels->not_found_in_trash = _('No Articles found in Trash', 'cds');
+    $labels->all_items = _('All Articles', 'cds');
+    $labels->menu_name = _('Articles', 'cds');
+    $labels->name_admin_bar = _('Articles', 'cds');
 }
 
 add_action('admin_menu', 'revcon_change_post_label');
