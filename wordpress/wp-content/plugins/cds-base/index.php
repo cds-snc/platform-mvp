@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+require __DIR__ ."/vendor/autoload.php";
+
 /**
  * Plugin Name: CDS-SNC Base
  * Plugin URI: https://github.com/cds-snc/platform-mvp
