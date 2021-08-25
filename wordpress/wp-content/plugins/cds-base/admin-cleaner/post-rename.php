@@ -1,5 +1,5 @@
 <?php
-function revcon_change_post_label()
+function cds_change_post_label()
 {
     global $menu;
     global $submenu;
@@ -9,7 +9,7 @@ function revcon_change_post_label()
     $submenu['edit.php'][16][0] = _('Article Tags', 'cds');
 }
 
-function revcon_change_post_object()
+function cds_change_post_object()
 {
     global $wp_post_types;
     $labels = &$wp_post_types['post']->labels;
@@ -28,5 +28,5 @@ function revcon_change_post_object()
     $labels->name_admin_bar = _('Articles', 'cds');
 }
 
-add_action('admin_menu', 'revcon_change_post_label');
-add_action('init', 'revcon_change_post_object');
+add_action('admin_menu', 'cds_change_post_label');
+add_action('init', 'cds_change_post_object');

@@ -67,10 +67,14 @@ add_action('admin_init', 'remove_dashboard_meta');
 /*--------------------------------------------*
  * Admin Bar
  *--------------------------------------------*/
+function remove_from_admin_bar_before(){
+    global $wp_admin_bar;
+    $wp_admin_bar->remove_menu('WPML_ALS');
+}
+
 
 function remove_from_admin_bar($wp_admin_bar)
 {
-
     if (super_admin()) {
         return;
     }
@@ -85,11 +89,12 @@ function remove_from_admin_bar($wp_admin_bar)
     /* plugins */
     $wp_admin_bar->remove_menu('wp-mail-smtp-menu');
     $wp_admin_bar->remove_menu('wpseo-menu');
-    $wp_admin_bar->remove_menu('WPML_ALS');
     $wp_admin_bar->remove_menu('edit-profile', 'user-actions');
 }
 
-add_action('admin_bar_menu', 'remove_from_admin_bar', 999);
+add_action('admin_bar_menu', 'remove_from_admin_bar', 2147483647);
+
+add_action( 'wp_before_admin_bar_render', 'remove_from_admin_bar_before', 99 );
 
 /*--------------------------------------------*
  * Footer Text
@@ -118,3 +123,4 @@ function cds_remove_help_tab()
 }
 
 add_action( 'admin_head', 'cds_remove_help_tab' );
+

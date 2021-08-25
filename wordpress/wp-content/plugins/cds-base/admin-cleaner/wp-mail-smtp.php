@@ -1,6 +1,10 @@
 <?php
 function hide_wp_mail_smtp_menus()
 {
+    if (super_admin()) {
+        return;
+    }
+
     //Hide "WP Mail SMTP".
     remove_menu_page('wp-mail-smtp');
     //Hide "WP Mail SMTP → Settings".
