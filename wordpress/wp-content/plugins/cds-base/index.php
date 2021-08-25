@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-require_once(__DIR__ ."/admin-cleaner/index.php");
-
 /**
  * Plugin Name: CDS-SNC Base
  * Plugin URI: https://github.com/cds-snc/platform-mvp
@@ -15,6 +13,16 @@ require_once(__DIR__ ."/admin-cleaner/index.php");
  */
 
 defined('ABSPATH') || exit;
+
+if ( !defined( 'BASE_PLUGIN_NAME' ) ) {
+    define( 'BASE_PLUGIN_NAME', "cds-base" );
+}
+
+require_once(__DIR__ ."/admin-cleaner/index.php");
+
+function cds_plugin_images_url($filename){
+    return plugin_dir_url(__FILE__)."images/".$filename;
+}
 
 /**
  * Load all translations for our plugin from the MO file.
