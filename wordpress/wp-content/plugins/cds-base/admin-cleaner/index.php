@@ -6,6 +6,7 @@ require_once(__DIR__ . "/clean-login.php");
 require_once(__DIR__ . "/post-rename.php");
 require_once(__DIR__ . "/notices.php");
 require_once(__DIR__ . "/profile.php");
+require_once(__DIR__ . "/welcome.php");
 
 /*--------------------------------------------*
  * Menu Pages
