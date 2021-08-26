@@ -3,7 +3,7 @@
     <div id="wb-bnr" class="container">
         <div class="row">
             <section id="wb-lng" class="col-xs-3 col-sm-12 pull-right text-right">
-                <h2 class="wb-inv">Language selection</h2>
+                <h2 class="wb-inv">{{ __('Language selection', 'cds-snc') }}</h2>
                 <ul class="list-inline mrgn-bttm-0">
                     <li>
                         <a lang="fr" hreflang="fr" href="content-fr.html">
@@ -13,13 +13,12 @@
                     </li>
                 </ul>
             </section>
-            {{ __("Huzzah") }}
             <div class="brand col-xs-9 col-sm-5 col-md-4" property="publisher" resource="#wb-publisher" typeof="GovernmentOrganization">
                 <a href="https://www.canada.ca/<?php echo get_active_language(); ?>.html" property="url">
                     <img src="{{ __('https://canada.ca/etc/designs/canada/wet-boew/assets/sig-blk-en.svg', 'cds-snc') }}" alt=""
                         property="logo">
                 </a>
-                <meta property="name" content="Government of Canada">
+                <meta property="name" content="{{ __('Government of Canada', 'cds-snc') }}">
                 <meta property="areaServed" typeof="Country" content="Canada">
                 <link property="logo" href="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/assets/wmms-blk.svg">
             </div>

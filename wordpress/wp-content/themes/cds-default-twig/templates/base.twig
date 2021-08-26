@@ -13,7 +13,7 @@
 		<main property="mainContentOfPage" resource="#wb-main" class="container" typeof="WebPageElement">
 			{% if title %}<h1 property="name" id="wb-cont">{{title}}</h1>{% endif %}
 			{% block content %}
-				Sorry, no content
+				{{ __("Sorry, no content", "cds-snc") }}
 			{% endblock %}
 		</main>
 
