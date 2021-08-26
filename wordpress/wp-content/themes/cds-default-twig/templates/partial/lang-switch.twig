@@ -1,0 +1,19 @@
+{% set languages = function('apply_filters', 'wpml_active_languages', null, 'orderby=id&order=desc') %}
+
+<section id="wb-lng" class="col-xs-3 col-sm-12 pull-right text-right">
+    <h2 class="wb-inv">{{ __('Language selection', 'cds-snc') }}</h2>
+    <ul class="list-inline mrgn-bttm-0">
+        <li>
+            {%- for code, language in languages -%}
+                {% if not language.active %}
+                    <a href="{{ language.url }}" lang="{{ language.code }}" hreflang="{{ language.code }}">
+                        {%- if language.native_name -%}
+                            <span class="hidden-xs">{{ language.native_name }}</span>
+                            <abbr title="{{  language.native_name }}" class="visible-xs h3 mrgn-tp-sm mrgn-bttm-0 text-uppercase">{{ language.code }}</abbr>
+                        {%- endif -%}
+                    </a>
+                {% endif %}
+            {%- endfor -%}
+        </li>
+    </ul>
+</section>
