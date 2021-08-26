@@ -38,7 +38,7 @@ msgstr ""
 
 #: strings.php:5
 msgid "https://canada.ca/etc/designs/canada/wet-boew/assets/sig-blk-en.svg"
-msgstr ""
+msgstr "https://canada.ca/etc/designs/canada/wet-boew/assets/sig-blk-fr.svg"
 
 #: strings.php:6
 msgid "Government of Canada"
