@@ -1,11 +1,12 @@
 {
   "name": "platform-mvp",
+  "type": "module",
   "scripts": {
     "deploy-plugin": "./deploy/plugin",
     "deploy-theme": "./deploy/theme",
     "cli": "docker exec -it cli /bin/zsh",
     "postinstall": "cd wordpress/wp-content/plugins/cds-base && npm install && npm run build",
-    "import": "node ./import/import.mjs"
+    "import": "node ./import/import.js"
   },
   "devDependencies": {
     "@prettier/plugin-php": "^0.17.3",

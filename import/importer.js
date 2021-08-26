@@ -1,6 +1,6 @@
 import { readFileSync } from 'fs';
 import { spawn } from 'child_process';
-import markdownConverter from "./markdown-converter.mjs";
+import markdownConverter from "./markdown-converter.js";
 
 export default class Importer {
 
