@@ -1,6 +1,6 @@
 'use strict'
 
-import Importer from './importer.mjs'
+import Importer from './importer.js'
 
 const timeout = (process.env.npm_config_timeout) ? process.env.npm_config_timeout : 3000
 Importer.processNotifyTemplate(process.env.npm_config_file, timeout)
