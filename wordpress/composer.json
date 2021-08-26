@@ -19,7 +19,10 @@
         "10up/wp_mock": "0.4.2"
     },
     "scripts": {
-        "post-install-cmd": "cd wp-content/themes/cds-default && composer install",
+        "post-install-cmd": [
+            "cd wp-content/themes/cds-default && composer install",
+            "cd wp-content/plugins/cds-base && composer install"
+        ],
          "make-pot": "wp i18n make-pot --domain=cds-snc wp-content/themes/cds-default wp-content/themes/cds-default/languages/cds-snc.pot"
     }
 }
