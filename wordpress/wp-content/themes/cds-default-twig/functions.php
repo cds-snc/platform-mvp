@@ -59,6 +59,7 @@ class StarterSite extends Timber\Site
     public function __construct()
     {
         add_action('after_setup_theme', [$this, 'theme_supports']);
+        add_action('after_setup_theme', [$this, 'load_translations']);
         add_filter('timber/context', [$this, 'add_to_context']);
         add_filter('timber/twig', [$this, 'add_to_twig']);
         add_action('init', [$this, 'register_post_types']);
@@ -72,6 +73,14 @@ class StarterSite extends Timber\Site
     /** This is where you can register custom taxonomies. */
     public function register_taxonomies()
     {
+    }
+
+    public function load_translations()
+    {
+        $loaded = load_theme_textdomain(
+            'cds-snc',
+            get_template_directory() . '/languages',
+        );
     }
 
     /** This is where you add some context
