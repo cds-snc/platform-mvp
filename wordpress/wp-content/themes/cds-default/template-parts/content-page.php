@@ -23,7 +23,7 @@ declare(strict_types=1);
 
         wp_link_pages(
             [
-                'before' => '<div class="page-links">' . esc_html__('Pages:', 'cds'),
+                'before' => '<div class="page-links">' . esc_html__('Pages:', 'cds-snc'),
                 'after' => '</div>',
             ]
         );
@@ -37,7 +37,7 @@ declare(strict_types=1);
             sprintf(
                 wp_kses(
                         /* translators: %s: Name of current post. Only visible to screen readers */
-                        __('Edit <span class="screen-reader-text">%s</span>', 'cds'),
+                        __('Edit <span class="screen-reader-text">%s</span>', 'cds-snc'),
                     [
                             'span' => [
                                 'class' => [],

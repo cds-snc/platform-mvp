@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 <section class="no-results not-found template-part-content-none">
     <header class="page-header">
-        <h1 class="gc-thickline"><?php esc_html_e('Nothing Found', 'cds'); ?></h1>
+        <h1 class="gc-thickline"><?php esc_html_e('Nothing Found', 'cds-snc'); ?></h1>
     </header><!-- .page-header -->
 
     <div class="page-content">
@@ -23,7 +23,7 @@ declare(strict_types=1);
             printf(
                 '<p>' . wp_kses(
                     /* translators: 1: link to WP admin new post page. */
-                    __('Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'cds'),
+                    __('Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'cds-snc'),
                     [
                         'a' => [
                             'href' => [],
@@ -35,13 +35,13 @@ declare(strict_types=1);
         } elseif (is_search()) {
             ?>
 
-            <p><?php esc_html_e('Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'cds'); ?></p>
+            <p><?php esc_html_e('Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'cds-snc'); ?></p>
             <?php
             get_search_form();
         } else {
             ?>
 
-            <p><?php esc_html_e('It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'cds'); ?></p>
+            <p><?php esc_html_e('Nothing found! Perhaps searching can help.', 'cds-snc'); ?></p>
             <?php
             get_search_form();
         }

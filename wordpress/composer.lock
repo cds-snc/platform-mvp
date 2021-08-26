@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8a6c7c8b05898eef901be14d6e55d05e",
+    "content-hash": "3ac1c895b9609016b94e110262904df4",
     "packages": [
         {
             "name": "composer/installers",
@@ -173,6 +173,24 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/oasis-workflow/"
+        },
+        {
+            "name": "wpackagist-plugin/two-factor",
+            "version": "0.7.0",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/two-factor/",
+                "reference": "trunk"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/two-factor.zip?timestamp=1620374007"
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/two-factor/"
         },
         {
             "name": "wpackagist-plugin/wordpress-importer",
@@ -6440,5 +6458,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.0.0"
 }
