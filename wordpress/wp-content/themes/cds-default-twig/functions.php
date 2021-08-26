@@ -53,7 +53,7 @@ Timber::$autoescape = false;
  * We're going to configure our theme inside of a subclass of Timber\Site
  * You can move this to its own file and include here via php's include("MySite.php")
  */
-class StarterSite extends Timber\Site
+final class StarterSite extends Timber\Site
 {
     /** Add timber support. */
     public function __construct()
