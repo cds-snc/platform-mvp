@@ -11,9 +11,25 @@ function remove_additional_capabilities_func(): bool
     return false;
 }
 
+add_action( 'wpml_user_profile_options', array('ProfileCleaner', 'wpml_options') );
+
 
 class ProfileCleaner
 {
+
+    /**
+     * Utility method to search text within a string
+     * @return bool
+     */
+    public static function contains($haystack, $needle) : bool
+    {
+        if (strpos($haystack, $needle) !== false) {
+            return true;
+        }
+
+        return false;
+    }
+
     /**
      * Called on 'personal_options'.
      * @return void
@@ -25,17 +41,8 @@ class ProfileCleaner
         ob_start();
     }
 
-    public static function contains($haystack, $needle): bool
-    {
-        if (strpos($haystack, $needle) !== false) {
-            return true;
-        }
-
-        return false;
-    }
-
     /**
-     * Strips the bio box from the buffered content.
+     * Removes Profile section
      * @return void
      */
     public static function stop()
@@ -69,10 +76,10 @@ class ProfileCleaner
          *--------------------------------------------*/
         // WPML settings under personal options
         $crawler->filter('#name')->addClass("hidden");
-        $crawler->filter('.user-language-wrap')->remove();
+        //$crawler->filter('.user-language-wrap')->remove();
 
         $crawler->filter('.user-user-login-wrap')->remove();
-        $crawler->filter('.user-nickname-wrap')->remove();
+        // note nickname is a require field so it's hidden using CSS
         $crawler->filter('.user-display-name-wrap')->remove();
 
         /*--------------------------------------------*
@@ -140,13 +147,15 @@ class ProfileCleaner
 
 
         print $crawler->save();
+    }
 
-
+    public static function wpml_options($userId){
+        echo '<input type="hidden" id="icl_show_hidden_languages" name="icl_show_hidden_languages" type="checkbox" value="1">';
     }
 }
 
 if (is_admin()) {
     remove_action("admin_color_scheme_picker", "admin_color_scheme_picker");
     remove_action('personal_options', 'wpml_show_user_options');
-
+    remove_action('personal_options_update', array('SitePress','save_user_options'));
 }
