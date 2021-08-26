@@ -88,6 +88,14 @@ function remove_from_admin_bar($wp_admin_bar)
     /* plugins */
     $wp_admin_bar->remove_menu('wp-mail-smtp-menu');
     $wp_admin_bar->remove_menu('wpseo-menu');
+
+    /* remove "Howdy" from admin bar */
+    $my_account = $wp_admin_bar->get_node('my-account');
+    $newtext = str_replace( 'Howdy,', '', $my_account->title );
+    $wp_admin_bar->add_node( array(
+        'id' => 'my-account',
+        'title' => $newtext,
+    ) );
 }
 
 add_action('admin_bar_menu', 'remove_from_admin_bar', 2147483647);
