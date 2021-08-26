@@ -1,5 +1,8 @@
 <?php
-function cds_change_post_label()
+
+declare(strict_types=1);
+
+function cds_change_post_label(): void
 {
     global $menu;
     global $submenu;
@@ -9,7 +12,7 @@ function cds_change_post_label()
     $submenu['edit.php'][16][0] = _('Article Tags', 'cds');
 }
 
-function cds_change_post_object()
+function cds_change_post_object(): void
 {
     global $wp_post_types;
     $labels = &$wp_post_types['post']->labels;

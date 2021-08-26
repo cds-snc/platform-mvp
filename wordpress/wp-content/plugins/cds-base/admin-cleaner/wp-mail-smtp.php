@@ -1,5 +1,8 @@
 <?php
-function hide_wp_mail_smtp_menus()
+
+declare(strict_types=1);
+
+function hide_wp_mail_smtp_menus(): void
 {
     if (super_admin()) {
         return;

@@ -1,17 +1,20 @@
 <?php
-require_once(__DIR__ . "/util.php");
-require_once(__DIR__ . "/wp-mail-smtp.php");
-require_once(__DIR__ . "/clean-login.php");
-require_once(__DIR__ . "/post-rename.php");
-require_once(__DIR__ . "/notices.php");
-require_once(__DIR__ . "/profile.php");
-require_once(__DIR__ . "/welcome.php");
+
+declare(strict_types=1);
+
+require_once __DIR__ . '/util.php';
+require_once __DIR__ . '/wp-mail-smtp.php';
+require_once __DIR__ . '/clean-login.php';
+require_once __DIR__ . '/post-rename.php';
+require_once __DIR__ . '/notices.php';
+require_once __DIR__ . '/profile.php';
+require_once __DIR__ . '/welcome.php';
 
 /*--------------------------------------------*
  * Menu Pages
  *--------------------------------------------*/
 
-function remove_menu_pages()
+function remove_menu_pages(): void
 {
     if (super_admin()) {
         return;
@@ -27,7 +30,7 @@ function remove_menu_pages()
     end($menu);
     while (prev($menu)) {
         $value = explode(' ', $menu[key($menu)][0]);
-        if (!in_array(null != $value[0] ? $value[0] : '', $allowed)) {
+        if (!in_array($value[0] !== null ? $value[0] : '', $allowed)) {
             unset($menu[key($menu)]);
         }
     }
@@ -37,12 +40,11 @@ function remove_menu_pages()
 
 add_action('admin_menu', 'remove_menu_pages', 2147483647);
 
-
 /*--------------------------------------------*
  * Dashboard
  *--------------------------------------------*/
 
-function remove_dashboard_meta()
+function remove_dashboard_meta(): void
 {
     remove_meta_box('dashboard_incoming_links', 'dashboard', 'normal');
     remove_meta_box('dashboard_plugins', 'dashboard', 'normal');
@@ -66,13 +68,13 @@ add_action('admin_init', 'remove_dashboard_meta');
 /*--------------------------------------------*
  * Admin Bar
  *--------------------------------------------*/
-function remove_from_admin_bar_before(){
+function remove_from_admin_bar_before(): void
+{
     global $wp_admin_bar;
     $wp_admin_bar->remove_menu('WPML_ALS');
 }
 
-
-function remove_from_admin_bar($wp_admin_bar)
+function remove_from_admin_bar($wp_admin_bar): void
 {
     if (super_admin()) {
         return;
@@ -91,22 +93,21 @@ function remove_from_admin_bar($wp_admin_bar)
 
     /* remove "Howdy" from admin bar */
     $my_account = $wp_admin_bar->get_node('my-account');
-    $newtext = str_replace( 'Howdy,', '', $my_account->title );
-    $wp_admin_bar->add_node( array(
+    $newtext = str_replace('Howdy,', '', $my_account->title);
+    $wp_admin_bar->add_node([
         'id' => 'my-account',
         'title' => $newtext,
-    ) );
+    ]);
 }
 
 add_action('admin_bar_menu', 'remove_from_admin_bar', 2147483647);
 
-add_action( 'wp_before_admin_bar_render', 'remove_from_admin_bar_before', 99 );
+add_action('wp_before_admin_bar_render', 'remove_from_admin_bar_before', 99);
 
 /*--------------------------------------------*
  * Footer Text
  *--------------------------------------------*/
 add_filter('admin_footer_text', '__return_false');
-
 
 /*--------------------------------------------*
  * Screen Options Tab
@@ -118,15 +119,13 @@ function cds_remove_screen_options()
 
 add_filter('screen_options_show_screen', 'cds_remove_screen_options');
 
-
 /*--------------------------------------------*
  * Help Tab
  *--------------------------------------------*/
-function cds_remove_help_tab()
+function cds_remove_help_tab(): void
 {
     $screen = get_current_screen();
     $screen->remove_help_tabs();
 }
 
-add_action( 'admin_head', 'cds_remove_help_tab' );
-
+add_action('admin_head', 'cds_remove_help_tab');

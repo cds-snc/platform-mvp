@@ -1,9 +1,12 @@
 <?php
-function cds_login_logo()
+
+declare(strict_types=1);
+
+function cds_login_logo(): void
 { ?>
     <style type="text/css">
         body.login div#login h1 a {
-            background-image: url(<?php echo cds_plugin_images_url("site-login-logo.svg"); ?>);
+            background-image: url(<?php echo cds_plugin_images_url('site-login-logo.svg'); ?>);
             width: 300px;
             height: 59px;
             background-size: contain;
@@ -35,15 +38,16 @@ function cds_login_logo_url()
 
 add_filter('login_headerurl', 'cds_login_logo_url');
 
-
-function cds_customize_login_headertext( $headertext ) {
-    return esc_html__( 'Canadian Digital Service', 'cds' );
+function cds_customize_login_headertext($headertext)
+{
+    return esc_html__('Canadian Digital Service', 'cds');
 }
 
-add_filter( 'login_headertext', 'cds_customize_login_headertext' );
+add_filter('login_headertext', 'cds_customize_login_headertext');
 
-function cds_favicon() {
-    $favicon_url = cds_plugin_images_url("favicon.ico");
+function cds_favicon(): void
+{
+    $favicon_url = cds_plugin_images_url('favicon.ico');
     echo '<link rel="shortcut icon" href="' . $favicon_url . '" />';
 }
 
