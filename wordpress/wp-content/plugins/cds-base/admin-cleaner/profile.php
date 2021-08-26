@@ -36,6 +36,9 @@ class ProfileCleaner
      */
     public static function start()
     {
+        if(is_super_admin()){
+            return;
+        }
         $action = (IS_PROFILE_PAGE ? 'show' : 'edit') . '_user_profile';
         add_action($action, array(__CLASS__, 'stop'));
         ob_start();
