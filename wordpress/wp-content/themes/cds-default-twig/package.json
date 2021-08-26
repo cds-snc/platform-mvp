@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "make-pot": "node ./scripts/extract-strings.js && wp i18n make-pot --domain=cds-snc ./tmp ./languages/cds-snc.pot"
+    "make-pot": "node ./scripts/extract-strings.js && wp i18n make-pot --domain=cds-snc ./.cache languages/cds-snc-theme.pot"
   },
   "author": "",
   "license": "ISC",
