@@ -26,6 +26,29 @@ function cds_plugin_images_url($filename){
     return plugin_dir_url(__FILE__)."images/".$filename;
 }
 
+//
+
+function cds_base_style_admin(): void
+{
+    // add stylesheet to the wp admin
+    wp_enqueue_style('cds-base-style', plugin_dir_url(__FILE__)."css/admin.css", [], 1);
+}
+
+
+
+add_action('admin_head', 'cds_base_style_admin');
+
+function cds_base_js_admin(): void
+{
+    // add stylesheet to the wp admin
+    wp_enqueue_script('blog-customizer', plugins_url('js/admin.js', __FILE__),array('jquery'),'1.0.0', true);
+}
+
+add_action('admin_enqueue_scripts', 'cds_base_js_admin');
+
+
+//
+
 /**
  * Load all translations for our plugin from the MO file.
  */

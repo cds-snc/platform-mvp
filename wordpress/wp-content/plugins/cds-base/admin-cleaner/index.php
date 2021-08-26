@@ -88,7 +88,6 @@ function remove_from_admin_bar($wp_admin_bar)
     /* plugins */
     $wp_admin_bar->remove_menu('wp-mail-smtp-menu');
     $wp_admin_bar->remove_menu('wpseo-menu');
-    $wp_admin_bar->remove_menu('edit-profile', 'user-actions');
 }
 
 add_action('admin_bar_menu', 'remove_from_admin_bar', 2147483647);
