@@ -2,7 +2,7 @@
 // https://github.com/WordPress/gutenberg/blob/3da717b8d0ac7d7821fc6d0475695ccf3ae2829f/packages/blocks/src/api/raw-handling/markdown-converter.js
 //
 // License:
-// 
+//
 // Gutenberg
 // Copyright 2016-2021 by the contributors
 // License for Contributions (on and after April 15, 2021)
@@ -12,19 +12,19 @@
 /**
  * External dependencies
  */
- import showdown from 'showdown';
+import showdown from 'showdown'
 
- // Reuse the same showdown converter.
- const converter = new showdown.Converter( {
-     noHeaderId: true,
-     tables: true,
-     literalMidWordUnderscores: true,
-     omitExtraWLInCodeBlocks: true,
-     simpleLineBreaks: true,
-     strikethrough: true,
- } );
- 
- /**
+// Reuse the same showdown converter.
+const converter = new showdown.Converter({
+  noHeaderId: true,
+  tables: true,
+  literalMidWordUnderscores: true,
+  omitExtraWLInCodeBlocks: true,
+  simpleLineBreaks: true,
+  strikethrough: true
+})
+
+/**
   * Corrects the Slack Markdown variant of the code block.
   * If uncorrected, it will be converted to inline code.
   *
@@ -34,14 +34,14 @@
   *
   * @return {string} The corrected Markdown.
   */
- function slackMarkdownVariantCorrector( text ) {
-     return text.replace(
-         /((?:^|\n)```)([^\n`]+)(```(?:$|\n))/,
-         ( match, p1, p2, p3 ) => `${ p1 }\n${ p2 }\n${ p3 }`
-     );
- }
- 
- /**
+function slackMarkdownVariantCorrector (text) {
+  return text.replace(
+    /((?:^|\n)```)([^\n`]+)(```(?:$|\n))/,
+    (match, p1, p2, p3) => `${p1}\n${p2}\n${p3}`
+  )
+}
+
+/**
   * Converts a piece of text into HTML based on any Markdown present.
   * Also decodes any encoded HTML.
   *
@@ -49,6 +49,6 @@
   *
   * @return {string} HTML.
   */
- export default function markdownConverter( text ) {
-     return converter.makeHtml( slackMarkdownVariantCorrector( text ) );
- }
+export default function markdownConverter (text) {
+  return converter.makeHtml(slackMarkdownVariantCorrector(text))
+}
