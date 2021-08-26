@@ -32,7 +32,7 @@ if (!function_exists('cds_setup')) {
      * runs before the init hook. The init hook is too late for some features, such
      * as indicating support for post thumbnails.
      */
-    function load_translations()
+    function load_translations(): void
     {
         $domain = 'cds-snc';
         $locale = apply_filters('theme_locale', determine_locale(), $domain);
