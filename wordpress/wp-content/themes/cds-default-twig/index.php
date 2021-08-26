@@ -13,11 +13,11 @@
  * @since   Timber 0.1
  */
 
-$context          = Timber::context();
+$context = Timber::context();
 $context['posts'] = new Timber\PostQuery();
-$context['foo']   = 'bar';
-$templates        = array( 'index.twig' );
-if ( is_home() ) {
-	array_unshift( $templates, 'front-page.twig', 'home.twig' );
+$context['foo'] = 'bar';
+$templates = ['index.twig'];
+if (is_home()) {
+    array_unshift($templates, 'front-page.twig', 'home.twig');
 }
-Timber::render( $templates, $context );
+Timber::render($templates, $context);
