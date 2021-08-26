@@ -7,7 +7,8 @@
     "test": "tests"
   },
   "scripts": {
-    "make-pot": "node ./scripts/extract-strings.js && wp i18n make-pot --domain=cds-snc ./.cache languages/cds-snc.pot"
+    "make-pot": "node scripts/translations/extract-messages.js && wp i18n make-pot --domain=cds-snc ./.cache languages/cds-snc.pot",
+    "update-translations": "node scripts/translations/extract-messages.js && scripts/translations/update-translation-files.sh && scripts/translations/compile-translation-files.sh"
   },
   "author": "",
   "license": "ISC",
