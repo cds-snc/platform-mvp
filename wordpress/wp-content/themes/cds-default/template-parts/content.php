@@ -25,7 +25,7 @@ declare(strict_types=1);
 
     <?php cds_post_thumbnail(); ?>
 
-    <div class="entry-content template-part-content">
+    <div id="content" class="entry-content template-part-content">
         <?php
          if (is_singular()) {
              the_content(

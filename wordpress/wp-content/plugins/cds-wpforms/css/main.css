@@ -1,0 +1,91 @@
+#content .wpforms-field input,
+#content .wpforms-field textarea {
+    box-sizing: border-box;
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 400;
+    font-family: Noto Sans, Arial, sans-serif;
+    width: 100%;
+    --border-opacity: 1;
+    border: 2px solid #000;
+    border-color: rgba(0, 0, 0, var(--border-opacity));
+    padding: 25px .5rem;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+}
+
+
+#content .focus-colour {
+    color: #0535d2;
+    transition-property: color;
+    transition-duration: .2s;
+}
+
+#content .wpforms-field input:focus:not(.wpforms-has-error) {
+    --tw-border-opacity: 1;
+    border-color: rgba(48, 63, 195, var(--tw-border-opacity));
+    --tw-shadow: inset 0 0 0 2px #0535d2;
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    transition-duration: .2s;
+}
+
+#content .wpforms-field label.wpforms-field-label {
+    margin-bottom: .5rem;
+    display: block;
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 700;
+}
+
+#content .wpforms-submit {
+    margin: 0 .5rem 0 0;
+    width: 15rem;
+    cursor: pointer;
+    border-bottom-width: 4px;
+    --tw-border-opacity: 1;
+    border-color: rgba(17, 24, 39, var(--tw-border-opacity));
+    --tw-bg-opacity: 1;
+    background-color: rgba(0, 112, 60, var(--tw-bg-opacity));
+    padding: .75rem 1.25rem;
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 700;
+    --tw-text-opacity: 1;
+    color: rgba(249, 250, 251, var(--tw-text-opacity));
+    text-decoration: none;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+}
+
+#content .wpforms-submit:active {
+    outline: 2px solid #1b2736;
+    outline-offset: 2px;
+    background-color: rgba(27, 39, 54, var(--tw-bg-opacity));
+}
+
+#content .wpforms-submit::focus {
+    outline: 2px solid #303fc3;
+    outline-offset: 2px;
+    background-color: rgba(48, 63, 195, var(--tw-bg-opacity));
+}
+
+/**/
+
+.wpforms-field.wpforms-has-error input.wpforms-error:not(:focus),
+.wpforms-field.wpforms-has-error textarea.wpforms-error:not(:focus) {
+    border: 2px solid #af3c43 !important;
+    background-color: transparent;
+    background: transparent !important;
+}
+
+.wpforms-field.wpforms-has-error label.wpforms-field-label,
+.wpforms-field.wpforms-has-error label.wpforms-error {
+    color: #af3c43 !important;
+}
+
+.wpforms-required-label {
+    color: #af3c43 !important;
+}
+
