@@ -1,5 +1,5 @@
-#post-2174 .wpforms-field input,
-#post-2174 .wpforms-field textarea {
+#content .wpforms-field input,
+#content .wpforms-field textarea {
     padding: 5px 4px 4px;
     box-sizing: border-box;
     font-size: 1.9rem;
@@ -13,11 +13,11 @@
 }
 
 
-.focus-colour{
+#content .focus-colour{
     color: #0535d2;
 }
 
-#post-2174 .wpforms-field input:focus:not(.wpforms-has-error){
+#content .wpforms-field input:focus:not(.wpforms-has-error){
     --tw-border-opacity: 1;
     border-color: rgba(48,63,195,var(--tw-border-opacity));
     --tw-shadow: inset 0 0 0 2px #0535d2;
@@ -26,8 +26,7 @@
     outline-offset: 2px;
 }
 
-
-#post-2174 .wpforms-field label.wpforms-field-label {
+#content .wpforms-field label.wpforms-field-label {
     margin-bottom: .5rem;
     display: block;
     font-size: 20px;
@@ -35,7 +34,7 @@
     font-weight: 700;
 }
 
-#post-2174 .btn-primary{
+#content .btn-primary{
     margin: 0 .5rem 0 0;
     width: 15rem;
     cursor: pointer;

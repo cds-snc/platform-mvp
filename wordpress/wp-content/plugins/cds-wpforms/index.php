@@ -25,7 +25,6 @@ function cds_wpforms_images_url($filename)
 function cds_wpforms_styles(): void
 {
     wp_enqueue_style('cds_wpforms', plugin_dir_url(__FILE__).'css/main.css', [], 1);
-    wp_enqueue_style('cds_wpforms_post_23', plugin_dir_url(__FILE__).'css/post23.css', [], 1);
 }
 
 function cds_wpforms_styles_js(): void
