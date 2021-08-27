@@ -23,7 +23,13 @@ function remove_menu_pages(): void
     global $menu, $submenu;
 
     /* add items to keep here */
-    $allowed = [__('Pages'), __('Posts'), __('Articles', 'cds')];
+    $allowed = [
+        __('Pages'),
+        __('Posts'),
+        __('Articles', 'cds'),
+        __('Users'),
+        __('WPForms'),
+    ];
 
     //  __('Settings'), __('Appearance')
     // http://localhost/wp-admin/options-reading.php
