@@ -1,40 +1,55 @@
 <?php
 
-function get_unsubscribe($data)
-{
-    // return new WP_Error('no_author', 'Invalid author', ['status' => 404]);
-    $data = ['unsubscribed'];
-    // $response = new WP_REST_Response($data);
-    return $data;
-}
-
-function post_unsubscribe($data)
+function do_unsubscribe($email)
 {
     global $wpdb;
 
-    $results = $wpdb->get_results(
+    $count = $wpdb->query(
         $wpdb->prepare(
             "
                 DELETE from {$wpdb->prefix}wpforms_entries
                 WHERE JSON_SEARCH(fields, 'one', %s)
             ",
-            $data['email'],
+            $email,
         ),
     );
 
-    return [
-        'email' => $data['email'],
-    ];
+    return $count > 0;
+}
+
+function unsubscribe($data)
+{
+    $email = $data['email'];
+
+    if(do_unsubscribe($email)) {
+        $response = new WP_REST_Response( [
+            'email' => $data['email'],
+            'action' => 'unsubscribed',
+            'status' => 'success',
+        ] );
+
+        $response->set_status( 200 );
+
+        return $response;
+    }
+
+    $response = new WP_REST_Response( [
+        'status' => 'not found'
+    ]);
+
+    $response->set_status(404);
+
+    return $response;
 }
 
 add_action('rest_api_init', function () {
-    register_rest_route('lists/v1', '/unsubscribe', [
+    register_rest_route('lists/v1', '/unsubscribe/(?P<email>[^/]+)', [
         'methods' => 'GET',
-        'callback' => 'get_unsubscribe',
+        'callback' => 'unsubscribe',
     ]);
 
     register_rest_route('lists/v1', '/unsubscribe', [
         'methods' => 'POST',
-        'callback' => 'post_unsubscribe',
+        'callback' => 'unsubscribe',
     ]);
 });
