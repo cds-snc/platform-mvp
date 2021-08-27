@@ -32,10 +32,10 @@ function cds_wpforms_styles_js(): void
     wp_enqueue_script('cds_wpforms', plugins_url('js/main.js', __FILE__), ['jquery'], '1.0.0', true);
 }
 
-function cds_wpforms_setup(){
+function cds_wpforms_setup(): void
+{
     cds_wpforms_styles();
     cds_wpforms_styles_js();
 }
 
 add_action('wp_enqueue_scripts', 'cds_wpforms_setup');
-

@@ -18,16 +18,16 @@ get_header();
         <section class="error-404 not-found">
             <header class="page-header">
                 <h1 class="page-title"><?php esc_html_e(
-                    'Page not found.',
-                    'cds-snc',
-                ); ?></h1>
+    'Page not found.',
+    'cds-snc',
+); ?></h1>
             </header><!-- .page-header -->
 
             <div class="page-content">
                 <p><?php esc_html_e(
-                    'It looks like nothing was found at this location. Maybe try one of the links below or a search?',
-                    'cds-snc',
-                ); ?></p>
+    'It looks like nothing was found at this location. Maybe try one of the links below or a search?',
+    'cds-snc',
+); ?></p>
 
                     <?php
                     get_search_form();
@@ -37,17 +37,17 @@ get_header();
 
                     <div class="widget widget_categories">
                         <h2 class="widget-title"><?php esc_html_e(
-                            'Most Used Categories',
-                            'cds-snc',
-                        ); ?></h2>
+                        'Most Used Categories',
+                        'cds-snc',
+                    ); ?></h2>
                         <ul>
                             <?php wp_list_categories([
-                                'orderby' => 'count',
-                                'order' => 'DESC',
-                                'show_count' => 1,
-                                'title_li' => '',
-                                'number' => 10,
-                            ]); ?>
+    'orderby' => 'count',
+    'order' => 'DESC',
+    'show_count' => 1,
+    'title_li' => '',
+    'number' => 10,
+]); ?>
                         </ul>
                     </div><!-- .widget -->
 
