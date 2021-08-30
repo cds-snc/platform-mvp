@@ -36,6 +36,8 @@ const CDS_DB_VERSION = 100;
 
 function cds_alter_table():void{
     global $wpdb;
+
+   
     $option_name = "CDS_WP_FORMS_TABLE_VERSION";
     $installed_ver = get_option($option_name);
     $wpp = $wpdb->prefix . "wpforms";
@@ -55,3 +57,4 @@ function cds_wpforms_setup(): void
 }
 
 add_action('wp_enqueue_scripts', 'cds_wpforms_setup');
+add_action('admin_enqueue_scripts', 'cds_wpforms_setup');
