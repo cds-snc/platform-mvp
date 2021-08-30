@@ -24,7 +24,7 @@ function send_confirmation_email($data)
     $form_id = $data['form_id'];
     $subscription_id = Uuid::uuid1()->toString();
     $base_url = get_site_url();
-    $confirm_link = "{$base_url}/lists/confirm/{$subscription_id}";
+    $confirm_link = "{$base_url}/wp-json/lists/confirm/{$subscription_id}";
     $notifyTemplateId = "dc61faaf-2ee5-4392-bc98-bb08ad75b4c7";
 
     // Add a subscription_id to the entry for future use
