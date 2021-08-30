@@ -1,0 +1,24 @@
+name: Database snapshot
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 5 * * *" # Everyday at 5am UTC
+
+env:
+  REGION: ca-central-1
+  DATABASE_NAME: ${{ secrets.DEV_DATABASE_NAME }}
+  AWS_ACCESS_KEY_ID: ${{ secrets.DEV_AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.DEV_AWS_SECRET_ACCESS_KEY }}
+
+jobs:
+  database-snapshot:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Create database snapshot
+      run: |
+        export TIMESTAMP="$(date '+%s')"
+        aws lightsail create-relational-database-snapshot \
+          --relational-database-name ${{ env.DATABASE_NAME }} \
+          --relational-database-snapshot-name ${{ env.DATABASE_NAME }}-$TIMESTAMP \
+          --region ${{ env.REGION }}
