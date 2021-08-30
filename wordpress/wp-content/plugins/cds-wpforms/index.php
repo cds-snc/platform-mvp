@@ -37,7 +37,9 @@ function cds_alter_table():void{
     $installed_ver = get_option(CDS_DB_VERSION);
     $wpp = $wpdb->prefix . "wpforms";
     if ($installed_ver < 102)
-        $wpdb->query("ALTER TABLE ${wpp}entries // ");
+        $wpdb->query("ALTER TABLE ${wpp}entries ADD COLUMN confirmed boolean");
+        $wpdb->query("ALTER TABLE ${wpp}entries ADD COLUMN subscription_id varchar");
+
 
     update_option(CDS_DB_VERSION, $db_version);
 }
