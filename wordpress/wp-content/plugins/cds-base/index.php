@@ -124,4 +124,5 @@ function cds_register_block(): void
         wp_set_script_translations('cds-snc-base', 'cds-snc');
     }
 }
+
 add_action('init', 'cds_register_block');
