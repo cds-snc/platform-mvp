@@ -39,7 +39,7 @@ function cds_alter_table():void{
 
 
     $option_name = "CDS_WP_FORMS_TABLE_VERSION";
-    echo $installed_ver = get_option($option_name);
+    $installed_ver = get_option($option_name);
     $wpp = $wpdb->prefix . "wpforms";
     if ($installed_ver < 200) {
         $confirmed_result = $wpdb->query("ALTER TABLE ${wpp}_entries ADD COLUMN confirmed boolean");
