@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-require __DIR__ .'/vendor/autoload.php';
-
 /**
  * Plugin Name: CDS-SNC Base
  * Plugin URI: https://github.com/cds-snc/platform-mvp
@@ -20,11 +18,11 @@ if (!defined('BASE_PLUGIN_NAME')) {
     define('BASE_PLUGIN_NAME', 'cds-base');
 }
 
-require_once __DIR__ .'/admin-cleaner/index.php';
+require_once __DIR__ . '/admin-cleaner/index.php';
 
 function cds_plugin_images_url($filename)
 {
-    return plugin_dir_url(__FILE__).'images/'.$filename;
+    return plugin_dir_url(__FILE__) . 'images/' . $filename;
 }
 
 function cds_base_style_admin(): void
@@ -33,7 +31,7 @@ function cds_base_style_admin(): void
         return;
     }
     // add stylesheet to the wp admin
-    wp_enqueue_style('cds-base-style', plugin_dir_url(__FILE__).'css/admin.css', [], 1);
+    wp_enqueue_style('cds-base-style', plugin_dir_url(__FILE__) . 'css/admin.css', [], 1);
 }
 
 add_action('admin_head', 'cds_base_style_admin');
@@ -122,4 +120,5 @@ function cds_register_block(): void
         wp_set_script_translations('cds-snc-base', 'cds-snc');
     }
 }
+
 add_action('init', 'cds_register_block');
