@@ -24,7 +24,7 @@ if (!defined('BASE_PLUGIN_NAME')) {
 }
 
 require_once __DIR__ . '/admin-cleaner/index.php';
-require_once __DIR__ . '/unsubscriber/index.php';
+require_once __DIR__ . '/subscriptions/index.php';
 
 function cds_plugin_images_url($filename)
 {
