@@ -32,18 +32,19 @@ function cds_wpforms_styles_js(): void
     wp_enqueue_script('cds_wpforms', plugins_url('js/main.js', __FILE__), ['jquery'], '1.0.0', true);
 }
 
-const CDS_DB_VERSION = 100;
+const CDS_DB_VERSION = 101;
 
 function cds_alter_table():void{
     global $wpdb;
 
-   
+
     $option_name = "CDS_WP_FORMS_TABLE_VERSION";
-    $installed_ver = get_option($option_name);
-    $wpp = $wpdb->prefix . "wpforms";
-    if ($installed_ver < 102)
-        $wpdb->query("ALTER TABLE ${wpp}entries ADD COLUMN confirmed boolean");
-        $wpdb->query("ALTER TABLE ${wpp}entries ADD COLUMN subscription_id varchar");
+    echo $installed_ver = get_option($option_name);
+    $wpp = $wpdb->prefix . "_wpforms";
+    if ($installed_ver < 102) {
+        $confirmed_result = $wpdb->query("ALTER TABLE ${wpp}_entries ADD COLUMN confirmed boolean");
+        $subscription_id_result = $wpdb->query("ALTER TABLE ${wpp}_entries ADD COLUMN subscription_id varchar");
+    }
 
 
     update_option($option_name, CDS_DB_VERSION);
