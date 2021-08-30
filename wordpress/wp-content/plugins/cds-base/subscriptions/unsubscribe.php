@@ -41,3 +41,15 @@ function unsubscribe($data)
 
     return $response;
 }
+
+add_action('rest_api_init', function () {
+    register_rest_route('lists', '/unsubscribe/(?P<email>[^/]+)', [
+        'methods' => 'GET',
+        'callback' => 'unsubscribe',
+    ]);
+
+    register_rest_route('lists', '/unsubscribe', [
+        'methods' => 'POST',
+        'callback' => 'unsubscribe',
+    ]);
+});

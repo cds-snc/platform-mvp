@@ -10,6 +10,7 @@
         "wa72/htmlpagedom": "^2.0",
         "vlucas/phpdotenv": "^5.3",
         "php-http/guzzle6-adapter": "^2.0",
-        "alphagov/notifications-php-client": "^3.2"
+        "alphagov/notifications-php-client": "^3.2",
+        "ramsey/uuid": "^4.2"
     }
 }
