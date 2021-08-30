@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 require __DIR__ . '/vendor/autoload.php';
 
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 /**
  * Plugin Name: CDS-SNC Base
  * Plugin URI: https://github.com/cds-snc/platform-mvp
@@ -21,7 +24,7 @@ if (!defined('BASE_PLUGIN_NAME')) {
 }
 
 require_once __DIR__ . '/admin-cleaner/index.php';
-require_once __DIR__ . '/unsubscriber/index.php';
+require_once __DIR__ . '/subscriptions/index.php';
 
 function cds_plugin_images_url($filename)
 {
