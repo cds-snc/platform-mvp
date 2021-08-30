@@ -1,6 +1,6 @@
 <?php
 
-function do_unsubscribe($email)
+function do_unsubscribe($subscription_id)
 {
     global $wpdb;
 
@@ -8,9 +8,9 @@ function do_unsubscribe($email)
         $wpdb->prepare(
             "
                 DELETE from {$wpdb->prefix}wpforms_entries
-                WHERE JSON_SEARCH(fields, 'one', %s)
+                WHERE subscription_id = %s
             ",
-            $email,
+            $subscription_id,
         ),
     );
 
@@ -19,9 +19,9 @@ function do_unsubscribe($email)
 
 function unsubscribe($data)
 {
-    $email = $data['email'];
+    $subscription_id = $data['subscription_id'];
 
-    if(do_unsubscribe($email)) {
+    if(do_unsubscribe($subscription_id)) {
         $response = new WP_REST_Response( [
             'email' => $data['email'],
             'action' => 'unsubscribed',
@@ -42,14 +42,22 @@ function unsubscribe($data)
     return $response;
 }
 
+function unsubscribe_by_email($data)
+{
+    $email = $data['email'];
+
+    // get subscription id by email
+    // do_unsubscribe(subscription_id)
+}
+
 add_action('rest_api_init', function () {
-    register_rest_route('lists', '/unsubscribe/(?P<email>[^/]+)', [
+    register_rest_route('lists', '/unsubscribe/(?P<subscription_id>[^/]+)', [
         'methods' => 'GET',
         'callback' => 'unsubscribe',
     ]);
 
     register_rest_route('lists', '/unsubscribe', [
         'methods' => 'POST',
-        'callback' => 'unsubscribe',
+        'callback' => 'unsubscribe_by_email',
     ]);
 });
