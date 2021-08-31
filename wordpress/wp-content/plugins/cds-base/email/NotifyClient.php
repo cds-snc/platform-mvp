@@ -2,12 +2,11 @@
 
 namespace NotifyClient\CDS;
 
-
+use Alphagov\Notifications\Exception\NotifyException;
 use Http\Adapter\Guzzle6\Client;
 
 class NotifyClient
 {
-
     public $notifyClient;
 
     public function __construct()
@@ -19,20 +18,20 @@ class NotifyClient
     {
         $NOTIFY_API_KEY = $_ENV['NOTIFY_API_KEY'];
         return new \Alphagov\Notifications\Client([
-            'baseUrl' => "https://api.notification.canada.ca",
+            'baseUrl' => 'https://api.notification.canada.ca',
             'apiKey' => $NOTIFY_API_KEY,
-            'httpClient' => new Client
+            'httpClient' => new Client(),
         ]);
     }
 
-    public function sendMail($emailTo, $templateId, $data = [], $ref = "")
+    public function sendMail($emailTo, $templateId, $data = [], $ref = '')
     {
         try {
             $response = $this->notifyClient->sendEmail(
                 $emailTo,
                 $templateId,
                 $data,
-                $ref
+                $ref,
             );
         } catch (NotifyException $e) {
             echo $e->getMessage();
