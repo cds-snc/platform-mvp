@@ -1,10 +1,11 @@
 <?php
 
-namespace NotifyMailer\CDS;
+namespace NotifyClient\CDS;
+
 
 use Http\Adapter\Guzzle6\Client;
 
-class NotifyMailer
+class NotifyClient
 {
 
     public $notifyClient;
