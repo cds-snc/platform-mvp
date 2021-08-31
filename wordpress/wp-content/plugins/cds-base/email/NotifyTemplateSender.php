@@ -22,6 +22,11 @@ class NotifyTemplateSender
     {
         add_menu_page(__('Send Template'), __('Send Notify Template'), 'activate_plugins', self::$admin_page,
             ['NotifyTemplateSender', 'render_form']);
+
+        add_submenu_page(self::$admin_page, __('Settings'), __('Settings'), 'activate_plugins',
+            self::$admin_page . "_settings", ['NotifyTemplateSender', 'render_settings']);
+
+        add_action('admin_init', ['NotifyTemplateSender', 'register_settings']);
     }
 
     public static function notice_success(): void
@@ -112,8 +117,10 @@ class NotifyTemplateSender
         <?php
     }
 
-    public static function process_send($data): void
-    {
+    public
+    static function process_send(
+        $data
+    ): void {
 
         $base_redirect = get_admin_url() . "admin.php?page=" . self::$admin_page;
 
@@ -139,16 +146,25 @@ class NotifyTemplateSender
         }
     }
 
-    public function send_internal($templateId, $formId, $type): void
-    {
+    public
+    function send_internal(
+        $templateId,
+        $formId,
+        $type
+    ): void {
 
         // php loop send
 
     }
 
 
-    public static function send($template_id, $list_id, $template_type, $ref): \Psr\Http\Message\ResponseInterface
-    {
+    public
+    static function send(
+        $template_id,
+        $list_id,
+        $template_type,
+        $ref
+    ): \Psr\Http\Message\ResponseInterface {
         $client = new Client([]);
         $endpoint = $_ENV['LIST_MANAGER_ENDPOINT'];
 
@@ -162,11 +178,46 @@ class NotifyTemplateSender
         ]);
     }
 
-    public static function setup_endpoints(): void
+    public
+    static function setup_endpoints(): void
     {
         register_rest_route('wp-notify/v1', '/bulk', [
             'methods' => 'POST',
             'callback' => [self::class, 'process_send']
         ]);
+    }
+
+    //
+    // SETTINGS
+    //
+
+    public static function register_settings(): void
+    {
+        register_setting('cds-settings-group', 'sender_type');
+    }
+
+    public static function render_settings(): void
+    {
+        ?>
+        <div class="wrap">
+            <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
+            <form action='options.php' method='post'>
+                <?php settings_fields('cds-settings-group'); ?>
+                <?php do_settings_sections('cds-settings-group'); ?>
+                <table class="form-table">
+                    <tr valign="top">
+                        <th scope="row">Sender Type</th>
+                        <td>
+                            <?php $val = esc_attr(get_option('sender_type')); ?>
+                            <input type="text" name="sender_type" value="<?php echo $val; ?>"/>
+                        </td>
+                    </tr>
+                </table>
+                <?php
+                submit_button();
+                ?>
+            </form>
+        </div>
+        <?php
     }
 }
