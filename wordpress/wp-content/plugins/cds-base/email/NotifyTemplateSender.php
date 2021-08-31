@@ -33,6 +33,15 @@ class NotifyTemplateSender
         <?php
     }
 
+    public static function notice_data_fail(): void
+    {
+        ?>
+        <div class="notice notice-error is-dismissible">
+            <p><?php _e('Template ID is required', 'cds-snc'); ?></p>
+        </div>
+        <?php
+    }
+
     public static function notice_fail(): void
     {
         ?>
@@ -51,6 +60,10 @@ class NotifyTemplateSender
             switch ($_GET['status']) {
                 case 200:
                     add_action('admin_notices', [self::class, 'notice_success']);
+                    break;
+                case 400:
+                    // no template ID
+                    add_action('admin_notices', [self::class, 'notice_data_fail']);
                     break;
                 case 500:
                     add_action('admin_notices', [self::class, 'notice_fail']);
@@ -79,10 +92,10 @@ class NotifyTemplateSender
                         <th scope="row"><label for="list_id"><?php _e("List ID"); ?></label></th>
                         <td>
                             <select name="list_id" id="list_id">
-                                <option value="123456-1">Email - EN</option>
-                                <option value="123456-2">SMS - EN</option>
-                                <option value="123456-3">Email - FR</option>
-                                <option value="123456-4">SMS - FR</option>
+                                <option value="123456-email">Email - EN</option>
+                                <option value="123456-sms">SMS - EN</option>
+                                <option value="123456-email">Email - FR</option>
+                                <option value="123456-sms">SMS - FR</option>
                             </select>
                         </td>
                     </tr>
@@ -101,18 +114,27 @@ class NotifyTemplateSender
 
     public static function process_send($data): void
     {
-        $list = $data["list_id"];
 
-        $redirect = get_admin_url() . "admin.php?page=" . self::$admin_page;
+        $base_redirect = get_admin_url() . "admin.php?page=" . self::$admin_page;
 
         try {
-            self::send();
-            $redirect .= "&status=200";
-            wp_redirect($redirect);
+            $template_id = $data["template_id"];
+
+            if (empty($template_id)) {
+                wp_redirect($base_redirect . "&status=400");
+                exit();
+            }
+
+            // @todo - validate data
+            $parts = explode("-", $data["list_id"]);
+            $list_id = $parts[0];
+            $list_type = $parts[1];
+
+            $result = self::send($template_id, $list_id, $list_type, "WP Bulk send");
+            wp_redirect($base_redirect . "&status=200");
             exit();
-        } catch (e) {
-            $redirect .= "&status=500";
-            wp_redirect($redirect);
+        } catch (Exception $e) {
+            wp_redirect($base_redirect . "&status=500");
             exit();
         }
     }
@@ -125,13 +147,18 @@ class NotifyTemplateSender
     }
 
 
-    public static function send(): \Psr\Http\Message\ResponseInterface
+    public static function send($template_id, $list_id, $template_type, $ref): \Psr\Http\Message\ResponseInterface
     {
         $client = new Client([]);
         $endpoint = $_ENV['LIST_MANAGER_ENDPOINT'];
 
-        return $client->request('POST', $endpoint . '/subscription', [
-            'json' => ['list_id' => '6a999e75-cdcd-49a5-b582-91798ebf55d0', 'email' => 'tim.arney+wpadmin@cds-snc.ca']
+        return $client->request('POST', $endpoint . '/send', [
+            'json' => [
+                'template_id' => $template_id,
+                'list_id' => $list_id,
+                'template_type' => $template_type,
+                'job_name' => $ref
+            ]
         ]);
     }
 
