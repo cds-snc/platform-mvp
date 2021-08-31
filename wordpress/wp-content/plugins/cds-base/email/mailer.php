@@ -2,10 +2,12 @@
 
 namespace NotifyMailer\CDS;
 
+use Http\Adapter\Guzzle6\Client;
+
 class NotifyMailer
 {
 
-    public \Alphagov\Notifications\Client $notifyClient;
+    public $notifyClient;
 
     public function __construct()
     {
@@ -18,7 +20,7 @@ class NotifyMailer
         return new \Alphagov\Notifications\Client([
             'baseUrl' => "https://api.notification.canada.ca",
             'apiKey' => $NOTIFY_API_KEY,
-            'httpClient' => new \Http\Adapter\Guzzle6\Client
+            'httpClient' => new Client
         ]);
     }
 
