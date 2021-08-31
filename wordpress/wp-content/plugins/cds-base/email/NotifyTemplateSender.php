@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use GuzzleHttp\Client;
+use NotifyClient\CDS\NotifyClient;
 use Psr\Http\Message\ResponseInterface;
 
 add_action('admin_menu', ['NotifyTemplateSender', 'add_menu']);
@@ -200,9 +201,6 @@ class NotifyTemplateSender
 
     public static function send_internal($templateId, $formId, $type): void
     {
-        // @TODO: harcoded
-        $formId = 9;
-
         $notifyMailer = new NotifyClient();
         $subscribers = self::get_subscribers($formId);
 
