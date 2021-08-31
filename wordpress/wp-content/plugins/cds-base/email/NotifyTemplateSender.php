@@ -144,11 +144,8 @@ class NotifyTemplateSender
         }
     }
 
-    public function send_internal(
-        $templateId,
-        $formId,
-        $type
-    ): void {
+    public function send_internal($templateId, $formId, $type): void
+    {
 
         // php loop send
 
