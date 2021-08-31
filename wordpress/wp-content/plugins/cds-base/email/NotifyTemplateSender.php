@@ -144,8 +144,7 @@ class NotifyTemplateSender
         }
     }
 
-    public
-    function send_internal(
+    public function send_internal(
         $templateId,
         $formId,
         $type
@@ -171,8 +170,7 @@ class NotifyTemplateSender
         ]);
     }
 
-    public
-    static function setup_endpoints(): void
+    public static function setup_endpoints(): void
     {
         register_rest_route('wp-notify/v1', '/bulk', [
             'methods' => 'POST',
