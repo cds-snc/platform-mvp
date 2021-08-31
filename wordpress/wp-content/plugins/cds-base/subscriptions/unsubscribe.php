@@ -1,6 +1,6 @@
 <?php
 
-function do_unsubscribe($subscription_id)
+function cds_subscriptions_do_unsubscribe($subscription_id): bool
 {
     global $wpdb;
 
@@ -17,15 +17,13 @@ function do_unsubscribe($subscription_id)
     return $count > 0;
 }
 
-function unsubscribe($data)
+function cds_subscriptions_unsubscribe($data): WP_REST_Response
 {
     $subscription_id = $data['subscription_id'];
 
-    if(do_unsubscribe($subscription_id)) {
+    if(cds_subscriptions_do_unsubscribe($subscription_id)) {
         $response = new WP_REST_Response( [
-            'email' => $data['email'],
-            'action' => 'unsubscribed',
-            'status' => 'success',
+            'status' => 'Success',
         ] );
 
         $response->set_status( 200 );
@@ -34,7 +32,7 @@ function unsubscribe($data)
     }
 
     $response = new WP_REST_Response( [
-        'status' => 'not found'
+        'status' => 'Not found'
     ]);
 
     $response->set_status(404);
@@ -42,13 +40,21 @@ function unsubscribe($data)
     return $response;
 }
 
-function unsubscribe_by_email($data)
+function cds_subscriptions_unsubscribe_by_email($data): WP_REST_Response
 {
     $email = $data['email'];
 
     // validate params
     // get subscription id by email/form_id
     // do_unsubscribe(subscription_id)
+
+    $response = new WP_REST_Response( [
+        'status' => 'Not found'
+    ]);
+
+    $response->set_status(404);
+
+    return $response;
 }
 
 add_action('rest_api_init', function () {
@@ -57,7 +63,7 @@ add_action('rest_api_init', function () {
      */
     register_rest_route('lists', '/unsubscribe/(?P<subscription_id>[^/]+)', [
         'methods' => 'GET',
-        'callback' => 'unsubscribe',
+        'callback' => 'cds_subscriptions_unsubscribe',
     ]);
 
     /*
@@ -66,6 +72,6 @@ add_action('rest_api_init', function () {
      */
     register_rest_route('lists', '/unsubscribe', [
         'methods' => 'POST',
-        'callback' => 'unsubscribe_by_email',
+        'callback' => 'cds_subscriptions_unsubscribe_by_email',
     ]);
 });

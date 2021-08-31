@@ -5,13 +5,13 @@ use Ramsey\Uuid\Uuid;
 
 require_once __DIR__ . '/../email/mailer.php';
 
-function send_confirmation_email($data)
+function cds_subscriptions_send_confirmation_email($data): WP_REST_Response
 {
     global $wpdb;
     $notifyMailer = new NotifyMailer();
 
     // Validate the request contains email and form_id
-    if ($errors = validateRequest($data)) {
+    if ($errors = cds_subscriptions_validate_request($data)) {
         $response = new WP_REST_Response([
             'errors' => $errors
         ]);
@@ -51,7 +51,7 @@ function send_confirmation_email($data)
         ]);
 
         return new WP_REST_Response([
-            'status' => 'success',
+            'status' => 'Success',
             'message' => 'Confirmation email sent'
         ]);
     }
@@ -61,7 +61,7 @@ function send_confirmation_email($data)
     ]);
 }
 
-function confirm_subscription($data)
+function cds_subscriptions_confirm_subscription($data): WP_REST_Response
 {
     global $wpdb;
 
@@ -78,7 +78,7 @@ function confirm_subscription($data)
 
     if($result) {
         $response = new WP_REST_Response([
-            'status' => 'confirmed'
+            'status' => 'Confirmed'
         ]);
 
         return $response;
@@ -96,7 +96,7 @@ function confirm_subscription($data)
 /*
  * Validate the request
  */
-function validateRequest($data)
+function cds_subscriptions_validate_request($data): array
 {
     $errors = [];
 
@@ -118,7 +118,7 @@ add_action('rest_api_init', function () {
      */
     register_rest_route('lists', '/confirm', [
         'methods' => 'POST',
-        'callback' => 'send_confirmation_email'
+        'callback' => 'cds_subscriptions_send_confirmation_email'
     ]);
 
     /*
@@ -126,6 +126,6 @@ add_action('rest_api_init', function () {
      */
     register_rest_route('lists', '/confirm/(?P<subscription_id>[^/]+)', [
         'methods' => 'GET',
-        'callback' => 'confirm_subscription',
+        'callback' => 'cds_subscriptions_confirm_subscription',
     ]);
 });
