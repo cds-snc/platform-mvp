@@ -3,12 +3,12 @@
 use NotifyMailer\CDS\NotifyMailer;
 use Ramsey\Uuid\Uuid;
 
-require_once __DIR__ . '/../email/mailer.php';
+require_once __DIR__ . '/../email/NotifyClient.php';
 
 function cds_subscriptions_send_confirmation_email($data): WP_REST_Response
 {
     global $wpdb;
-    $notifyMailer = new NotifyMailer();
+    $notifyMailer = new NotifyClient();
 
     // Validate the request contains email and form_id
     if ($errors = cds_subscriptions_validate_request($data)) {
