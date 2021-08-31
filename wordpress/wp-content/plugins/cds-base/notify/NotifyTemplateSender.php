@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace CDS\Notify;
 
 use GuzzleHttp\Client;
-use NotifyClient\CDS\NotifyClient;
 use Psr\Http\Message\ResponseInterface;
 
 add_action('admin_menu', ['NotifyTemplateSender', 'add_menu']);
@@ -155,7 +154,7 @@ class NotifyTemplateSender
             );
             wp_redirect($base_redirect . '&status=200');
             exit();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             wp_redirect($base_redirect . '&status=500');
             exit();
         }
