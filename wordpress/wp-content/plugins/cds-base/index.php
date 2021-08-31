@@ -20,6 +20,8 @@ if (!defined('BASE_PLUGIN_NAME')) {
 
 require_once __DIR__ . '/admin-cleaner/index.php';
 
+require_once __DIR__ . '/email/NotifyTemplateSender.php';
+
 function cds_plugin_images_url($filename)
 {
     return plugin_dir_url(__FILE__) . 'images/' . $filename;

@@ -2,7 +2,7 @@
 
 namespace NotifyMailer\CDS;
 
-class NotifyMailer
+class NotifyClient
 {
 
     public \Alphagov\Notifications\Client $notifyClient;
