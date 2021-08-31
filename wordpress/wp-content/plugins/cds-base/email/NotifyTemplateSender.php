@@ -117,10 +117,8 @@ class NotifyTemplateSender
         <?php
     }
 
-    public
-    static function process_send(
-        $data
-    ): void {
+    public static function process_send($data): void
+    {
 
         $base_redirect = get_admin_url() . "admin.php?page=" . self::$admin_page;
 
@@ -158,13 +156,8 @@ class NotifyTemplateSender
     }
 
 
-    public
-    static function send(
-        $template_id,
-        $list_id,
-        $template_type,
-        $ref
-    ): \Psr\Http\Message\ResponseInterface {
+    public static function send($template_id, $list_id, $template_type, $ref): \Psr\Http\Message\ResponseInterface
+    {
         $client = new Client([]);
         $endpoint = $_ENV['LIST_MANAGER_ENDPOINT'];
 
