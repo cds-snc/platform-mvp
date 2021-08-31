@@ -1,16 +1,17 @@
 {
-    "name": "cds-snc/base",
-    "autoload": {
-        "psr-4": {
-            "CdsSnc\\Base\\": "src/"
-        }
-    },
-    "require": {
-        "php": ">=5.6",
-        "wa72/htmlpagedom": "^2.0",
-        "vlucas/phpdotenv": "^5.3",
-        "php-http/guzzle6-adapter": "^2.0",
-        "alphagov/notifications-php-client": "^3.2",
-        "ramsey/uuid": "^4.2"
+  "name": "cds-snc/base",
+  "autoload": {
+    "psr-4": {
+      "CdsSnc\\Base\\": "src/",
+      "CDS\\Notify\\": "notify/"
     }
+  },
+  "require": {
+    "php": ">=5.6",
+    "wa72/htmlpagedom": "^2.0",
+    "vlucas/phpdotenv": "^5.3",
+    "php-http/guzzle6-adapter": "^2.0",
+    "alphagov/notifications-php-client": "^3.2",
+    "ramsey/uuid": "^4.2"
+  }
 }

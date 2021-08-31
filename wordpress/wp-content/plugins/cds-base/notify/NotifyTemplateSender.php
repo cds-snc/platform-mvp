@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace CDS\Notify;
+
 use GuzzleHttp\Client;
 use NotifyClient\CDS\NotifyClient;
 use Psr\Http\Message\ResponseInterface;

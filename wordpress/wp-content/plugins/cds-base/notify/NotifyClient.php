@@ -1,6 +1,6 @@
 <?php
 
-namespace NotifyClient\CDS;
+namespace CDS\Notify;
 
 use Alphagov\Notifications\Exception\NotifyException;
 use Http\Adapter\Guzzle6\Client;

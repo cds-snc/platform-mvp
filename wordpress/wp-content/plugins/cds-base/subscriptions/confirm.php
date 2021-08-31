@@ -1,9 +1,9 @@
 <?php
 
-use NotifyMailer\CDS\NotifyMailer;
+use CDS\Notify\NotifyClient;
 use Ramsey\Uuid\Uuid;
 
-require_once __DIR__ . '/../email/NotifyClient.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 function cds_subscriptions_send_confirmation_email($data): WP_REST_Response
 {
@@ -13,7 +13,7 @@ function cds_subscriptions_send_confirmation_email($data): WP_REST_Response
     // Validate the request contains email and form_id
     if ($errors = cds_subscriptions_validate_request($data)) {
         $response = new WP_REST_Response([
-            'errors' => $errors
+            'errors' => $errors,
         ]);
 
         $response->set_status(400);
@@ -25,7 +25,7 @@ function cds_subscriptions_send_confirmation_email($data): WP_REST_Response
     $subscription_id = Uuid::uuid1()->toString();
     $base_url = get_site_url();
     $confirm_link = "{$base_url}/wp-json/lists/confirm/{$subscription_id}";
-    $notifyTemplateId = "dc61faaf-2ee5-4392-bc98-bb08ad75b4c7";
+    $notifyTemplateId = 'dc61faaf-2ee5-4392-bc98-bb08ad75b4c7';
 
     // Add a subscription_id to the entry for future use
     $result = $wpdb->query(
@@ -39,25 +39,25 @@ function cds_subscriptions_send_confirmation_email($data): WP_REST_Response
             ",
             $subscription_id,
             $email,
-            $form_id
-        )
+            $form_id,
+        ),
     );
 
-    if($result) {
+    if ($result) {
         // Send the confirmation email
         $notifyMailer->sendMail($email, $notifyTemplateId, [
             'list_name' => 'The List',
-            'confirm_link' => $confirm_link
+            'confirm_link' => $confirm_link,
         ]);
 
         return new WP_REST_Response([
             'status' => 'Success',
-            'message' => 'Confirmation email sent'
+            'message' => 'Confirmation email sent',
         ]);
     }
 
     return new WP_REST_Response([
-        'status' => 'Not found'
+        'status' => 'Not found',
     ]);
 }
 
@@ -72,20 +72,20 @@ function cds_subscriptions_confirm_subscription($data): WP_REST_Response
                 SET confirmed = 1
                 WHERE subscription_id = %s
             ",
-            $data['subscription_id']
-        )
+            $data['subscription_id'],
+        ),
     );
 
-    if($result) {
+    if ($result) {
         $response = new WP_REST_Response([
-            'status' => 'Confirmed'
+            'status' => 'Confirmed',
         ]);
 
         return $response;
     }
 
     $response = new WP_REST_Response([
-        'status' => 'Not found or already confirmed'
+        'status' => 'Not found or already confirmed',
     ]);
 
     $response->set_status(400);
@@ -118,7 +118,7 @@ add_action('rest_api_init', function () {
      */
     register_rest_route('lists', '/confirm', [
         'methods' => 'POST',
-        'callback' => 'cds_subscriptions_send_confirmation_email'
+        'callback' => 'cds_subscriptions_send_confirmation_email',
     ]);
 
     /*
