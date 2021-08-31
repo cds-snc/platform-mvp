@@ -2,6 +2,11 @@
 
 declare(strict_types=1);
 
+require __DIR__ . '/vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 /**
  * Plugin Name: CDS-SNC Base
  * Plugin URI: https://github.com/cds-snc/platform-mvp
@@ -12,13 +17,14 @@ declare(strict_types=1);
  * @package cds-snc-base
  */
 
-defined('ABSPATH') || exit;
+defined('ABSPATH') || exit();
 
 if (!defined('BASE_PLUGIN_NAME')) {
     define('BASE_PLUGIN_NAME', 'cds-base');
 }
 
 require_once __DIR__ . '/admin-cleaner/index.php';
+require_once __DIR__ . '/subscriptions/index.php';
 
 require_once __DIR__ . '/email/NotifyTemplateSender.php';
 
@@ -33,7 +39,12 @@ function cds_base_style_admin(): void
         return;
     }
     // add stylesheet to the wp admin
-    wp_enqueue_style('cds-base-style', plugin_dir_url(__FILE__) . 'css/admin.css', [], 1);
+    wp_enqueue_style(
+        'cds-base-style',
+        plugin_dir_url(__FILE__) . 'css/admin.css',
+        [],
+        1,
+    );
 }
 
 add_action('admin_head', 'cds_base_style_admin');
@@ -44,7 +55,13 @@ function cds_base_js_admin(): void
         return;
     }
     // add stylesheet to the wp admin
-    wp_enqueue_script('blog-customizer', plugins_url('js/admin.js', __FILE__), ['jquery'], '1.0.0', true);
+    wp_enqueue_script(
+        'blog-customizer',
+        plugins_url('js/admin.js', __FILE__),
+        ['jquery'],
+        '1.0.0',
+        true,
+    );
 }
 
 add_action('admin_enqueue_scripts', 'cds_base_js_admin');
@@ -67,7 +84,6 @@ function cds_textdomain(): void
  */
 function cds_register_block(): void
 {
-
     // automatically load dependencies and version
     $asset_file = include plugin_dir_path(__FILE__) . 'build/index.asset.php';
 
@@ -75,7 +91,7 @@ function cds_register_block(): void
         'cds-snc',
         plugins_url('build/index.js', __FILE__),
         $asset_file['dependencies'],
-        $asset_file['version']
+        $asset_file['version'],
     );
 
     /* blocks */
@@ -89,29 +105,20 @@ function cds_register_block(): void
     ]);
 
     /* table styles */
-    register_block_style(
-        'core/table',
-        [
-            'name' => 'bordered-table',
-            'label' => 'Bordered Table',
-        ]
-    );
+    register_block_style('core/table', [
+        'name' => 'bordered-table',
+        'label' => 'Bordered Table',
+    ]);
 
-    register_block_style(
-        'core/table',
-        [
-            'name' => 'filterable',
-            'label' => 'Filterable Table',
-        ]
-    );
+    register_block_style('core/table', [
+        'name' => 'filterable',
+        'label' => 'Filterable Table',
+    ]);
 
-    register_block_style(
-        'core/table',
-        [
-            'name' => 'responsive-cards',
-            'label' => 'Responsive Cards Table',
-        ]
-    );
+    register_block_style('core/table', [
+        'name' => 'responsive-cards',
+        'label' => 'Responsive Cards Table',
+    ]);
 
     if (function_exists('wp_set_script_translations')) {
         /**
