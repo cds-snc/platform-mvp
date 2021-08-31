@@ -42,11 +42,39 @@ function cds_subscriptions_unsubscribe($data): WP_REST_Response
 
 function cds_subscriptions_unsubscribe_by_email($data): WP_REST_Response
 {
-    $email = $data['email'];
+    // Validate the request contains email and form_id
+    if ($errors = cds_subscriptions_validate_request($data)) {
+        $response = new WP_REST_Response([
+            'errors' => $errors
+        ]);
 
-    // validate params
-    // get subscription id by email/form_id
-    // do_unsubscribe(subscription_id)
+        $response->set_status(400);
+        return $response;
+    }
+    
+    $email = $data['email'];
+    $form_id = $data['form_id'];
+
+    global $wpdb;
+
+    $count = $wpdb->query(
+        $wpdb->prepare(
+            "
+                DELETE from {$wpdb->prefix}wpforms_entries
+                WHERE JSON_SEARCH(fields, 'one', %s)
+                AND form_id = %s
+            ",
+            $email,
+            $form_id
+        ),
+    );
+
+    if ($count) {
+        return new WP_REST_Response([
+            'status' => 'Success',
+            'message' => 'You have been unsubscribed'
+        ]);
+    }
 
     $response = new WP_REST_Response( [
         'status' => 'Not found'
@@ -55,6 +83,24 @@ function cds_subscriptions_unsubscribe_by_email($data): WP_REST_Response
     $response->set_status(404);
 
     return $response;
+}
+
+/*
+ * Validate the request
+ */
+function cds_subscriptions_validate_unsubscribe_request($data): array
+{
+    $errors = [];
+
+    if (!isset($data['email'])) {
+        array_push($errors, 'Email required');
+    }
+
+    if (!isset($data['form_id'])) {
+        array_push($errors, 'Form ID required');
+    }
+
+    return $errors;
 }
 
 add_action('rest_api_init', function () {
