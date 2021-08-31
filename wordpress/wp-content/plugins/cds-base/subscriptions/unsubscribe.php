@@ -46,16 +46,24 @@ function unsubscribe_by_email($data)
 {
     $email = $data['email'];
 
-    // get subscription id by email
+    // validate params
+    // get subscription id by email/form_id
     // do_unsubscribe(subscription_id)
 }
 
 add_action('rest_api_init', function () {
+    /*
+     * GET /lists/unsubscribe/{subscription_id}
+     */
     register_rest_route('lists', '/unsubscribe/(?P<subscription_id>[^/]+)', [
         'methods' => 'GET',
         'callback' => 'unsubscribe',
     ]);
 
+    /*
+     * POST /lists/unsubscribe
+     * Params: email, form_id
+     */
     register_rest_route('lists', '/unsubscribe', [
         'methods' => 'POST',
         'callback' => 'unsubscribe_by_email',

@@ -112,13 +112,18 @@ function validateRequest($data)
 }
 
 add_action('rest_api_init', function () {
-    // POST /lists/confirm
+    /*
+     * POST /lists/confirm
+     * Params: email, form_id
+     */
     register_rest_route('lists', '/confirm', [
         'methods' => 'POST',
         'callback' => 'send_confirmation_email'
     ]);
 
-    // GET /lists/confirm/{subscription_id}
+    /*
+     * GET /lists/confirm/{subscription_id}
+     */
     register_rest_route('lists', '/confirm/(?P<subscription_id>[^/]+)', [
         'methods' => 'GET',
         'callback' => 'confirm_subscription',
