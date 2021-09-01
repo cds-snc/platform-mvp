@@ -81,7 +81,7 @@ services:
     depends_on:
       - db
       - wordpress
-    image: wordpress:cli-php8.0
+    image: wordpress:cli-php7.3
     env_file: .env
     environment:
       WORDPRESS_CONFIG_EXTRA: |
