@@ -3,13 +3,13 @@
 declare(strict_types=1);
 
 use GuzzleHttp\Client;
+use NotifyClient\CDS\NotifyClient;
 
 require_once __DIR__ . '/NotifySettings.php';
 
 add_action('admin_menu', ['NotifyTemplateSender', 'add_menu']);
 
 add_action('rest_api_init', ['NotifyTemplateSender', 'setup_endpoints']);
-
 
 class NotifyTemplateSender
 {
@@ -22,8 +22,13 @@ class NotifyTemplateSender
 
     public static function add_menu(): void
     {
-        add_menu_page(__('Send Template'), __('Send Notify Template'), 'activate_plugins', self::$admin_page,
-            ['NotifyTemplateSender', 'render_form']);
+        add_menu_page(
+            __('Send Template'),
+            __('Send Notify Template'),
+            'activate_plugins',
+            self::$admin_page,
+            ['NotifyTemplateSender', 'render_form'],
+        );
 
         NotifySettings::add_menu();
     }
@@ -57,65 +62,89 @@ class NotifyTemplateSender
 
     public static function render_form(): void
     {
-        $action = get_home_url() . "/wp-json/wp-notify/v1/bulk";
+        $action = get_home_url() . '/wp-json/wp-notify/v1/bulk';
 
         if (isset($_GET['status'])) {
-
             switch ($_GET['status']) {
                 case 200:
-                    add_action('admin_notices', [self::class, 'notice_success']);
+                    add_action('admin_notices', [
+                        self::class,
+                        'notice_success',
+                    ]);
                     break;
                 case 400:
                     // no template ID
-                    add_action('admin_notices', [self::class, 'notice_data_fail']);
+                    add_action('admin_notices', [
+                        self::class,
+                        'notice_data_fail',
+                    ]);
                     break;
                 case 500:
                     add_action('admin_notices', [self::class, 'notice_fail']);
                     break;
                 default:
-                    echo "";
+                    echo '';
             }
 
             do_action('admin_notices');
         }
-
         ?>
 
         <div class="wrap">
             <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
             <form id="email-sender" method="post" action="<?php echo $action; ?>">
-                <input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>"/>
+                <input type="hidden" name="page" value="<?php echo $_REQUEST[
+                    'page'
+                ]; ?>"/>
                 <table class="form-table" role="presentation">
                     <tbody>
                     <!-- Template ID -->
                     <tr>
-                        <th scope="row"><label for="template_id"><?php _e("Template ID"); ?></label></th>
+                        <th scope="row"><label for="template_id"><?php _e(
+                            'Template ID',
+                        ); ?></label></th>
                         <td><input type="text" class="regular-text" name="template_id" value=""/></td>
                     </tr>
                     <!-- List ID -->
                     <tr>
-                        <th scope="row"><label for="list_id"><?php _e("List ID"); ?></label></th>
+                        <th scope="row"><label for="list_id"><?php _e(
+                            'List ID',
+                        ); ?></label></th>
                         <td>
                             <select name="list_id" id="list_id">
-                                <?php
-                                try {
+                                <?php try {
                                     $data = get_option('list_values');
-                                    $data = preg_replace('/[ \t]+/', ' ', preg_replace('/[\r\n]+/', "\n", $data));
+                                    $data = preg_replace(
+                                        '/[ \t]+/',
+                                        ' ',
+                                        preg_replace('/[\r\n]+/', "\n", $data),
+                                    );
                                     $data = json_decode($data, true);
 
                                     if (empty($data)) {
-                                        throw new ErrorException("unable to parse data");
+                                        throw new ErrorException(
+                                            'unable to parse data',
+                                        );
                                     }
 
-                                    echo '<option value="">' . __("Select a list") . '</option>';
+                                    echo '<option value="">' .
+                                        __('Select a list') .
+                                        '</option>';
 
                                     foreach ($data as &$value) {
-                                        echo '<option value="' . $value['id'] . '-' . $value['type'] . '">' . $value['label'] . '</option>';
+                                        echo '<option value="' .
+                                            $value['id'] .
+                                            '-' .
+                                            $value['type'] .
+                                            '">' .
+                                            $value['label'] .
+                                            '</option>';
                                     }
                                 } catch (Exception $e) {
-                                    echo '<option value="">' . __('No lists found', 'cds-snc') . '</option>';
-                                }
-                                ?>
+                                    echo '<option value="">' .
+                                        __('No lists found', 'cds-snc') .
+                                        '</option>';
+                                } ?>
 
                             </select>
                         </td>
@@ -125,8 +154,7 @@ class NotifyTemplateSender
                 <!-- Submit -->
                 <?php
                 wp_nonce_field('acme-settings-save', 'acme-custom-message');
-                submit_button("Send");
-                ?>
+                submit_button('Send');?>
             </form>
             </table>
         </div>
@@ -135,48 +163,116 @@ class NotifyTemplateSender
 
     public static function process_send($data): void
     {
-
-        $base_redirect = get_admin_url() . "admin.php?page=" . self::$admin_page;
+        $base_redirect =
+            get_admin_url() . 'admin.php?page=' . self::$admin_page;
 
         try {
-            $template_id = $data["template_id"];
+            $template_id = $data['template_id'];
 
             if (empty($template_id)) {
-                wp_redirect($base_redirect . "&status=400");
+                wp_redirect($base_redirect . '&status=400');
                 exit();
             }
 
             // @todo - validate data
-            $parts = explode("-", $data["list_id"]);
+            $parts = explode('-', $data['list_id']);
             $list_id = $parts[0];
             $list_type = $parts[1];
 
             $sender_type = get_option('sender_type');
 
             $result = match ($sender_type) {
-                "list_manager" => self::send($template_id, $list_id, $list_type, "WP Bulk send"),
-                "wp_forms" => self::send_internal($template_id, $list_id, $list_type, "WP Bulk send"),
+                'list_manager' => self::send(
+                    $template_id,
+                    $list_id,
+                    $list_type,
+                    'WP Bulk send',
+                ),
+                'wp_forms' => self::send_internal(
+                    $template_id,
+                    $list_id,
+                    $list_type,
+                    'WP Bulk send',
+                )
             };
 
             // @todo ensure the status we're retuning is correct
-            wp_redirect($base_redirect . "&status=200");
+            wp_redirect($base_redirect . '&status=200');
             exit();
         } catch (Exception $e) {
-            wp_redirect($base_redirect . "&status=500");
+            wp_redirect($base_redirect . '&status=500');
             exit();
         }
     }
 
-    public static function send_internal($templateId, $formId, $type): void
+    /**
+     * Get subscribers by $formId
+     * @param $formId
+     * @return array
+     */
+    public static function get_subscribers($formId): array
     {
+        global $wpdb;
 
-        // php loop send
+        // get all "confirmed" entries (subscriptions) for this form_id
+        $entries = $wpdb->get_results(
+            $wpdb->prepare(
+                "
+                SELECT fields, subscription_id 
+                FROM {$wpdb->prefix}wpforms_entries
+                WHERE form_id = %s
+                AND confirmed = 1
+            ",
+                $formId,
+            ),
+        );
 
+        $subscribers = [];
+
+        foreach ($entries as $entry) {
+            $aEntry = json_decode($entry->fields, true);
+
+            foreach ($aEntry as $item) {
+                if ($item['type'] == 'email') {
+                    array_push($subscribers, [
+                        'email' => $item['value'],
+                        'subscription_id' => $entry->subscription_id,
+                    ]);
+                }
+            }
+        }
+
+        return array_unique($subscribers, SORT_REGULAR);
     }
 
-
-    public static function send($template_id, $list_id, $template_type, $ref): \Psr\Http\Message\ResponseInterface
+    public static function send_internal($templateId, $formId, $type): void
     {
+        $notifyMailer = new NotifyClient();
+        $subscribers = self::get_subscribers($formId);
+
+        foreach ($subscribers as $subscriber) {
+            if ($type == 'email') {
+                // @TODO: get this from subscriptions/unsubscribe
+                $base_url = get_site_url();
+                $unsubscribe_link = "{$base_url}/wp-json/lists/unsubscribe/{$subscriber['subscription_id']}";
+
+                $notifyMailer->sendMail($subscriber['email'], $templateId, [
+                    'unsubscribe_link' => $unsubscribe_link,
+                ]);
+            }
+            // @TODO: send sms
+            if ($type == 'sms') {
+                // send sms
+            }
+        }
+    }
+
+    public static function send(
+        $template_id,
+        $list_id,
+        $template_type,
+        $ref,
+    ): \Psr\Http\Message\ResponseInterface {
         $client = new Client([]);
         $endpoint = $_ENV['LIST_MANAGER_ENDPOINT'];
 
@@ -185,8 +281,8 @@ class NotifyTemplateSender
                 'template_id' => $template_id,
                 'list_id' => $list_id,
                 'template_type' => $template_type,
-                'job_name' => $ref
-            ]
+                'job_name' => $ref,
+            ],
         ]);
     }
 
@@ -194,7 +290,7 @@ class NotifyTemplateSender
     {
         register_rest_route('wp-notify/v1', '/bulk', [
             'methods' => 'POST',
-            'callback' => [self::class, 'process_send']
+            'callback' => [self::class, 'process_send'],
         ]);
     }
 }
