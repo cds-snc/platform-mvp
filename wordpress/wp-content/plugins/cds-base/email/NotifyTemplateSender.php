@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 use GuzzleHttp\Client;
 
+require_once __DIR__ . '/NotifySettings.php';
+
 add_action('admin_menu', ['NotifyTemplateSender', 'add_menu']);
 
 add_action('rest_api_init', ['NotifyTemplateSender', 'setup_endpoints']);
@@ -23,10 +25,7 @@ class NotifyTemplateSender
         add_menu_page(__('Send Template'), __('Send Notify Template'), 'activate_plugins', self::$admin_page,
             ['NotifyTemplateSender', 'render_form']);
 
-        add_submenu_page(self::$admin_page, __('Settings'), __('Settings'), 'activate_plugins',
-            self::$admin_page . "_settings", ['NotifyTemplateSender', 'render_settings']);
-
-        add_action('admin_init', ['NotifyTemplateSender', 'register_settings']);
+        NotifySettings::add_menu();
     }
 
     public static function notice_success(): void
@@ -81,6 +80,7 @@ class NotifyTemplateSender
         }
 
         ?>
+
         <div class="wrap">
             <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
             <form id="email-sender" method="post" action="<?php echo $action; ?>">
@@ -97,10 +97,26 @@ class NotifyTemplateSender
                         <th scope="row"><label for="list_id"><?php _e("List ID"); ?></label></th>
                         <td>
                             <select name="list_id" id="list_id">
-                                <option value="123456-email">Email - EN</option>
-                                <option value="123456-sms">SMS - EN</option>
-                                <option value="123456-email">Email - FR</option>
-                                <option value="123456-sms">SMS - FR</option>
+                                <?php
+                                try {
+                                    $data = get_option('list_values');
+                                    $data = preg_replace('/[ \t]+/', ' ', preg_replace('/[\r\n]+/', "\n", $data));
+                                    $data = json_decode($data, true);
+
+                                    if (empty($data)) {
+                                        throw new ErrorException("unable to parse data");
+                                    }
+
+                                    echo '<option value="">' . __("Select a list"). '</option>';
+
+                                    foreach ($data as &$value) {
+                                        echo '<option value="' . $value['id'] . '-' . $value['type'] . '">' . $value['label'] . '</option>';
+                                    }
+                                } catch (Exception $e) {
+                                    echo '<option value="">' . __('No lists found', 'cds-snc') . '</option>';
+                                }
+                                ?>
+
                             </select>
                         </td>
                     </tr>
@@ -173,39 +189,5 @@ class NotifyTemplateSender
             'methods' => 'POST',
             'callback' => [self::class, 'process_send']
         ]);
-    }
-
-    //
-    // SETTINGS
-    //
-
-    public static function register_settings(): void
-    {
-        register_setting('cds-settings-group', 'sender_type');
-    }
-
-    public static function render_settings(): void
-    {
-        ?>
-        <div class="wrap">
-            <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
-            <form action='options.php' method='post'>
-                <?php settings_fields('cds-settings-group'); ?>
-                <?php do_settings_sections('cds-settings-group'); ?>
-                <table class="form-table">
-                    <tr valign="top">
-                        <th scope="row">Sender Type</th>
-                        <td>
-                            <?php $val = esc_attr(get_option('sender_type')); ?>
-                            <input type="text" name="sender_type" value="<?php echo $val; ?>"/>
-                        </td>
-                    </tr>
-                </table>
-                <?php
-                submit_button();
-                ?>
-            </form>
-        </div>
-        <?php
     }
 }
