@@ -1,28 +1,27 @@
 {
-    "repositories":[
-        {
-            "type":"composer",
-            "url":"https://wpackagist.org"
-        }
-    ],
-    "require": {
-        "wpackagist-plugin/wp-rest-api-v2-menus": "^0.10.0",
-        "wpackagist-plugin/oasis-workflow": "^5.7",
-        "wpackagist-plugin/wp-mail-smtp": "^3.0",
-        "wpackagist-plugin/wordpress-importer": "^0.7.0",
-        "wpackagist-plugin/wordpress-seo": "^16.9",
-        "wpackagist-plugin/two-factor": "^0.7.0"
-    },
-    "require-dev": {
-        "nunomaduro/phpinsights": "^2.0",
-        "pestphp/pest": "^1.16",
-        "10up/wp_mock": "0.4.2"
-    },
-    "scripts": {
-        "post-install-cmd": [
-            "cd wp-content/themes/cds-default && composer install",
-            "cd wp-content/plugins/cds-base && composer install"
-        ],
-         "make-pot": "wp i18n make-pot --domain=cds-snc wp-content/themes/cds-default wp-content/themes/cds-default/languages/cds-snc.pot"
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org"
     }
+  ],
+  "require": {
+    "wpackagist-plugin/wp-rest-api-v2-menus": "^0.10.0",
+    "wpackagist-plugin/oasis-workflow": "^5.7",
+    "wpackagist-plugin/wp-mail-smtp": "^3.0",
+    "wpackagist-plugin/wordpress-importer": "^0.7.0",
+    "wpackagist-plugin/wordpress-seo": "^16.9",
+    "wpackagist-plugin/two-factor": "^0.7.0"
+  },
+  "require-dev": {
+    "pestphp/pest": "^1.16",
+    "10up/wp_mock": "0.4.2"
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "cd wp-content/themes/cds-default && composer install",
+      "cd wp-content/plugins/cds-base && composer install"
+    ],
+    "make-pot": "wp i18n make-pot --domain=cds-snc wp-content/themes/cds-default wp-content/themes/cds-default/languages/cds-snc.pot"
+  }
 }
