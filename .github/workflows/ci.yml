@@ -2,16 +2,6 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-  phpinsights:
-    runs-on: ubuntu-latest
-    name: PHP Insights checks
-    steps:
-      - uses: actions/checkout@v2
-      - uses: shivammathur/setup-php@v1
-        with:
-          php-version: 8.0
-      - run: cd wordpress && composer install --prefer-dist --no-progress --no-suggest
-      - run: cd wordpress && vendor/bin/phpinsights analyse -n --ansi --format=github-action ./wp-content/**/cds-*
   php-tests:
     runs-on: ubuntu-latest
     name: PHP Pest tests
