@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-
 class NotifySettings extends NotifyTemplateSender
 {
-    public static string $admin_page = 'cds_notify_send';
+    public static $admin_page = 'cds_notify_send';
 
     public function __construct()
     {
@@ -14,8 +13,14 @@ class NotifySettings extends NotifyTemplateSender
 
     public static function add_menu(): void
     {
-        add_submenu_page(parent::$admin_page, __('Settings'), __('Settings'), 'activate_plugins',
-            self::$admin_page . "_settings", ['NotifySettings', 'render_settings']);
+        add_submenu_page(
+            parent::$admin_page,
+            __('Settings'),
+            __('Settings'),
+            'activate_plugins',
+            self::$admin_page . '_settings',
+            ['NotifySettings', 'render_settings'],
+        );
 
         add_action('admin_init', ['NotifySettings', 'register_settings']);
     }
@@ -34,9 +39,9 @@ class NotifySettings extends NotifyTemplateSender
         if ($data['value'] == $current_val) {
             $str .= 'selected="selected"';
         }
-        $str .= ">";
+        $str .= '>';
         $str .= $data['label'];
-        $str .= "</option>";
+        $str .= '</option>';
 
         return $str;
     }
@@ -52,18 +57,35 @@ class NotifySettings extends NotifyTemplateSender
                 <table class="form-table">
                     <!-- Sender Type -->
                     <tr valign="top">
-                        <th scope="row"><?php _e("Sender Type", "cds-snc") ?></th>
+                        <th scope="row"><?php _e(
+                            'Sender Type',
+                            'cds-snc',
+                        ); ?></th>
                         <td>
-                            <?php $current_val = esc_attr(get_option('sender_type')); ?>
+                            <?php $current_val = esc_attr(
+                                get_option('sender_type'),
+                            ); ?>
                             <select name="sender_type">
                                 <?php
-                                $label = __("List Manager", "cds-snc");
-                                $data = ["value" => "list_manager", 'label' => $label];
-                                echo self::render_select_option($data, $current_val);
+                                $label = __('List Manager', 'cds-snc');
+                                $data = [
+                                    'value' => 'list_manager',
+                                    'label' => $label,
+                                ];
+                                echo self::render_select_option(
+                                    $data,
+                                    $current_val,
+                                );
 
-                                $label = __("WPForms", "cds-snc");
-                                $data = ["value" => "wp_forms", 'label' => $label];
-                                echo self::render_select_option($data, $current_val);
+                                $label = __('WPForms', 'cds-snc');
+                                $data = [
+                                    'value' => 'wp_forms',
+                                    'label' => $label,
+                                ];
+                                echo self::render_select_option(
+                                    $data,
+                                    $current_val,
+                                );
                                 ?>
                             </select>
                         </td>
@@ -71,20 +93,24 @@ class NotifySettings extends NotifyTemplateSender
 
                     <!-- Sender Type -->
                     <tr valign="top">
-                        <th scope="row"><?php _e("List Values JSON", "cds-snc") ?></th>
+                        <th scope="row"><?php _e(
+                            'List Values JSON',
+                            'cds-snc',
+                        ); ?></th>
                         <td>
                             <?php $val = esc_attr(get_option('list_values')); ?>
                             <textarea name="list_values" rows="4" cols="50"><?php echo $val; ?></textarea>
 
-                            <p class="description" id="new-admin-email-description"><?php _e("Format", "cds-snc") ?>:
+                            <p class="description" id="new-admin-email-description"><?php _e(
+                                'Format',
+                                'cds-snc',
+                            ); ?>:
                             <pre>[{"id":"123", "type":"email", "label":"my-list"}]</pre>
                             </p>
                         </td>
                     </tr>
                 </table>
-                <?php
-                submit_button();
-                ?>
+                <?php submit_button(); ?>
             </form>
         </div>
         <?php
