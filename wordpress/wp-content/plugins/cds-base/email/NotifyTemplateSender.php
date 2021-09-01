@@ -13,7 +13,7 @@ add_action('rest_api_init', ['NotifyTemplateSender', 'setup_endpoints']);
 
 class NotifyTemplateSender
 {
-    public static string $admin_page = 'cds_notify_send';
+    public static $admin_page = 'cds_notify_send';
 
     public function __construct()
     {
@@ -181,20 +181,23 @@ class NotifyTemplateSender
 
             $sender_type = get_option('sender_type');
 
-            $result = match ($sender_type) {
-                'list_manager' => self::send(
-                    $template_id,
-                    $list_id,
-                    $list_type,
-                    'WP Bulk send',
-                ),
-                'wp_forms' => self::send_internal(
-                    $template_id,
-                    $list_id,
-                    $list_type,
-                    'WP Bulk send',
-                )
-            };
+            switch ($sender_type) {
+                case 'list_manager':
+                    $result = self::send(
+                        $template_id,
+                        $list_id,
+                        $list_type,
+                        'WP Bulk send',
+                    );
+                    break;
+                case 'wp_forms':
+                    $result = self::send_internal(
+                        $template_id,
+                        $list_id,
+                        $list_type,
+                        'WP Bulk send',
+                    );
+            }
 
             // @todo ensure the status we're retuning is correct
             wp_redirect($base_redirect . '&status=200');
@@ -267,12 +270,8 @@ class NotifyTemplateSender
         }
     }
 
-    public static function send(
-        $template_id,
-        $list_id,
-        $template_type,
-        $ref,
-    ): \Psr\Http\Message\ResponseInterface {
+    public static function send($template_id, $list_id, $template_type, $ref)
+    {
         $client = new Client([]);
         $endpoint = $_ENV['LIST_MANAGER_ENDPOINT'];
 
