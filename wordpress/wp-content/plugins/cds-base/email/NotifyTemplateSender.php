@@ -107,7 +107,7 @@ class NotifyTemplateSender
                                         throw new ErrorException("unable to parse data");
                                     }
 
-                                    echo '<option value="">' . __("Select a list"). '</option>';
+                                    echo '<option value="">' . __("Select a list") . '</option>';
 
                                     foreach ($data as &$value) {
                                         echo '<option value="' . $value['id'] . '-' . $value['type'] . '">' . $value['label'] . '</option>';
@@ -151,7 +151,14 @@ class NotifyTemplateSender
             $list_id = $parts[0];
             $list_type = $parts[1];
 
-            $result = self::send($template_id, $list_id, $list_type, "WP Bulk send");
+            $sender_type = get_option('sender_type');
+
+            $result = match ($sender_type) {
+                "list_manager" => self::send($template_id, $list_id, $list_type, "WP Bulk send"),
+                "wp_forms" => self::send_internal($template_id, $list_id, $list_type, "WP Bulk send"),
+            };
+
+            // @todo ensure the status we're retuning is correct
             wp_redirect($base_redirect . "&status=200");
             exit();
         } catch (Exception $e) {
@@ -160,7 +167,7 @@ class NotifyTemplateSender
         }
     }
 
-    public function send_internal($templateId, $formId, $type): void
+    public static function send_internal($templateId, $formId, $type): void
     {
 
         // php loop send
