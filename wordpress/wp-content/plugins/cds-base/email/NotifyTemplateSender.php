@@ -134,7 +134,7 @@ class NotifyTemplateSender
                                     foreach ($data as &$value) {
                                         echo '<option value="' .
                                             $value['id'] .
-                                            '-' .
+                                            '~' .
                                             $value['type'] .
                                             '">' .
                                             $value['label'] .
@@ -175,7 +175,7 @@ class NotifyTemplateSender
             }
 
             // @todo - validate data
-            $parts = explode('-', $data['list_id']);
+            $parts = explode('~', $data['list_id']);
             $list_id = $parts[0];
             $list_type = $parts[1];
 
